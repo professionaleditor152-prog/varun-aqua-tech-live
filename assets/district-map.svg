@@ -1,0 +1,98 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0877C9" />
+      <stop offset="100%" stop-color="#061B33" />
+    </linearGradient>
+    <linearGradient id="baseCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F5FAFC" />
+    </linearGradient>
+    <filter id="mShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#061B33" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- District Outer Boundary Concept -->
+  <path d="M120 180 Q210 50 340 70 Q490 80 560 180 Q590 310 500 410 Q320 440 180 390 Q90 300 120 180 Z" fill="#F0F7FB" stroke="#C8DFEB" stroke-width="2.5" stroke-dasharray="8 6"/>
+
+  <!-- Connecting Service Corridor Lines to Bosinaickenhalli Hub -->
+  <!-- Center is Dharmapuri / Bosinaickenhalli Hub at (330, 240) -->
+  <g stroke="#0877C9" stroke-width="2" stroke-dasharray="5 4" opacity="0.4">
+    <!-- To Harur -->
+    <line x1="330" y1="240" x2="520" y2="230"/>
+    <!-- To Palacode -->
+    <line x1="330" y1="240" x2="260" y2="120"/>
+    <!-- To Karimangalam -->
+    <line x1="330" y1="240" x2="380" y2="130"/>
+    <!-- To Pennagaram -->
+    <line x1="330" y1="240" x2="170" y2="270"/>
+    <!-- To Nallampalli -->
+    <line x1="330" y1="240" x2="270" y2="350"/>
+    <!-- To Pappireddipatti -->
+    <line x1="330" y1="240" x2="480" y2="350"/>
+  </g>
+
+  <!-- Taluk 1: Dharmapuri (Central Base Hub) -->
+  <g transform="translate(230, 195)" filter="url(#mShadow)">
+    <rect width="200" height="88" rx="14" fill="url(#hubGrad)" stroke="#13C5D8" stroke-width="2"/>
+    <circle cx="30" cy="34" r="8" fill="#13C5D8"/>
+    <circle cx="30" cy="34" r="4" fill="#FFFFFF"/>
+    <text x="46" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">Dharmapuri Taluk</text>
+    <text x="46" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="700" fill="#38E1F2">BASE HUB: Bosinaickenhalli</text>
+    <text x="46" y="68" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#D9ECF5">Harur Main Rd • ATM India1</text>
+  </g>
+
+  <!-- Taluk 2: Palacode (North West) -->
+  <g transform="translate(180, 80)" filter="url(#mShadow)">
+    <rect width="160" height="66" rx="12" fill="url(#baseCard)" stroke="#0877C9" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#061B33">Palacode Taluk</text>
+    <text x="16" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#0877C9">Marandahalli • Pulikarai</text>
+    <text x="16" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73">Sales, Repair &amp; Service</text>
+  </g>
+
+  <!-- Taluk 3: Karimangalam (North Central) -->
+  <g transform="translate(370, 85)" filter="url(#mShadow)">
+    <rect width="170" height="66" rx="12" fill="url(#baseCard)" stroke="#0877C9" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#061B33">Karimangalam Taluk</text>
+    <text x="16" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#0877C9">Kambainallur • Periyanahalli</text>
+    <text x="16" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73">Domestic &amp; Commercial RO</text>
+  </g>
+
+  <!-- Taluk 4: Pennagaram (West) -->
+  <g transform="translate(80, 240)" filter="url(#mShadow)">
+    <rect width="165" height="66" rx="12" fill="url(#baseCard)" stroke="#0877C9" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#061B33">Pennagaram Taluk</text>
+    <text x="16" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#0877C9">Perumbalai • Papparapatti</text>
+    <text x="16" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73">Service by Prior Schedule</text>
+  </g>
+
+  <!-- Taluk 5: Harur (East) -->
+  <g transform="translate(460, 195)" filter="url(#mShadow)">
+    <rect width="165" height="66" rx="12" fill="url(#baseCard)" stroke="#0877C9" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#061B33">Harur Taluk</text>
+    <text x="16" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#0877C9">Theerthamalai • Morappur</text>
+    <text x="16" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73">Harur Main Road Corridor</text>
+  </g>
+
+  <!-- Taluk 6: Nallampalli (South West) -->
+  <g transform="translate(180, 340)" filter="url(#mShadow)">
+    <rect width="160" height="66" rx="12" fill="url(#baseCard)" stroke="#0877C9" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#061B33">Nallampalli Taluk</text>
+    <text x="16" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#0877C9">Salem-Dharmapuri Corridor</text>
+    <text x="16" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73">Maintenance &amp; Filter Change</text>
+  </g>
+
+  <!-- Taluk 7: Pappireddipatti (South East) -->
+  <g transform="translate(410, 335)" filter="url(#mShadow)">
+    <rect width="175" height="66" rx="12" fill="url(#baseCard)" stroke="#0877C9" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#061B33">Pappireddipatti Taluk</text>
+    <text x="16" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#0877C9">Thenkaraikottai • Kadathur</text>
+    <text x="16" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73">Doorstep RO Support</text>
+  </g>
+
+  <!-- Map Legend -->
+  <rect x="220" y="435" width="240" height="28" rx="8" fill="#FFFFFF" stroke="#E1EDF2" stroke-width="1.2"/>
+  <circle cx="236" cy="449" r="5" fill="#13C5D8"/>
+  <text x="248" y="453" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="700" fill="#061B33">Coverage Area: 7 Revenue Taluks</text>
+</svg>

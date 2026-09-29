@@ -1,0 +1,421 @@
+﻿$global:NAP = @{
+  Name = "VARUN AQUA TECH"
+  Category = "RO Water Purifier Sales & Service Center"
+  Street = "India1 ATM, Harur Main Road, Bosinaickenhalli"
+  Locality = "near Dharmapuri"
+  Region = "Tamil Nadu"
+  PostalCode = "635303"
+  FullAddress = "India1 ATM, Harur Main Road, near Dharmapuri, Bosinaickenhalli, Tamil Nadu – 635303, India"
+  Phone = "+91 88380 55968"
+  PhoneTel = "+918838055968"
+  WhatsApp = "https://wa.me/918838055968"
+  Hours = "Open 24 Hours — Monday to Sunday"
+  MapsUrl = "https://www.google.com/maps/search/?api=1&query=VARUN+AQUA+TECH+India1+ATM+Harur+Main+Road+Bosinaickenhalli+Dharmapuri+Tamil+Nadu+635303"
+}
+function Get-Header($relPath, $activeNav) {
+  $logoPath = "${relPath}assets/logo.svg"
+  $homePath = if ($relPath -eq "") { "./" } else { "${relPath}" }
+  $aboutPath = "${relPath}about/"
+  $salesPath = "${relPath}ro-water-purifier-sales/"
+  $servicePath = "${relPath}ro-service/"
+  $installPath = "${relPath}ro-installation/"
+  $repairPath = "${relPath}ro-repair/"
+  $maintPath = "${relPath}ro-maintenance/"
+  $amcPath = "${relPath}ro-amc/"
+  $filterPath = "${relPath}filter-membrane-replacement/"
+  $commPath = "${relPath}commercial-ro-dharmapuri/"
+  $districtPath = "${relPath}dharmapuri/"
+  $districtPillar = "${relPath}ro-service-dharmapuri-district/"
+  $contactPath = "${relPath}contact/"
+  $guidesPath = "${relPath}ro-water-purifier-buying-guide-dharmapuri/"
+
+  return @"
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="$homePath" class="brand-logo" aria-label="VARUN AQUA TECH Home">
+        <img src="$logoPath" alt="VARUN AQUA TECH RO Water Purifier Sales &amp; Service Dharmapuri" width="220" height="42">
+      </a>
+      
+      <nav class="nav-desktop" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="$homePath" class="nav-link $(if($activeNav -eq 'home'){'active'})">Home</a></li>
+          <li><a href="$aboutPath" class="nav-link $(if($activeNav -eq 'about'){'active'})">About</a></li>
+          <li><a href="$salesPath" class="nav-link $(if($activeNav -eq 'sales'){'active'})">RO Sales</a></li>
+          <li class="nav-dropdown">
+            <a href="$servicePath" class="nav-link $(if($activeNav -eq 'service'){'active'})">RO Service &#9662;</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="$servicePath">All RO Services</a></li>
+              <li><a href="$installPath">RO Installation</a></li>
+              <li><a href="$repairPath">RO Repair &amp; Service</a></li>
+              <li><a href="$maintPath">Routine Maintenance</a></li>
+              <li><a href="$amcPath">AMC Services</a></li>
+              <li><a href="$filterPath">Filter &amp; Membrane Replacement</a></li>
+              <li><a href="$commPath">Commercial RO Solutions</a></li>
+            </ul>
+          </li>
+          <li><a href="$installPath" class="nav-link $(if($activeNav -eq 'install'){'active'})">Installation</a></li>
+          <li><a href="$amcPath" class="nav-link $(if($activeNav -eq 'amc'){'active'})">AMC</a></li>
+          <li class="nav-dropdown">
+            <a href="$districtPath" class="nav-link $(if($activeNav -eq 'district'){'active'})">District Areas &#9662;</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="$districtPillar">District Service Coverage</a></li>
+              <li><a href="${relPath}ro-service-dharmapuri/">Dharmapuri Taluk</a></li>
+              <li><a href="${relPath}ro-service-harur/">Harur Taluk</a></li>
+              <li><a href="${relPath}ro-service-palacode/">Palacode Taluk</a></li>
+              <li><a href="${relPath}ro-service-pennagaram/">Pennagaram Taluk</a></li>
+              <li><a href="${relPath}ro-service-nallampalli/">Nallampalli Taluk</a></li>
+              <li><a href="${relPath}ro-service-karimangalam/">Karimangalam Taluk</a></li>
+              <li><a href="${relPath}ro-service-pappireddipatti/">Pappireddipatti Taluk</a></li>
+            </ul>
+          </li>
+          <li><a href="$guidesPath" class="nav-link $(if($activeNav -eq 'guides'){'active'})">Guides</a></li>
+          <li><a href="$contactPath" class="nav-link $(if($activeNav -eq 'contact'){'active'})">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta-group">
+        <a href="tel:$($global:NAP.PhoneTel)" class="header-phone-link">
+          <span>&#128222;</span> $($global:NAP.Phone)
+        </a>
+        <a href="${relPath}contact/#service-form" class="btn btn-primary btn-sm">Book Service</a>
+        <button class="mobile-menu-btn" aria-label="Open mobile navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-overlay"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile Navigation Drawer">
+    <div class="mobile-drawer-header">
+      <img src="$logoPath" alt="VARUN AQUA TECH" width="180">
+      <button class="drawer-close-btn" aria-label="Close mobile navigation">&times;</button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="$homePath">Home</a></li>
+      <li><a href="$aboutPath">About</a></li>
+      <li><a href="$salesPath">RO Purifier Sales</a></li>
+      <li><a href="$servicePath">RO Service Hub</a></li>
+      <li><a href="$installPath">RO Installation</a></li>
+      <li><a href="$repairPath">RO Repair</a></li>
+      <li><a href="$maintPath">RO Maintenance</a></li>
+      <li><a href="$amcPath">AMC Services</a></li>
+      <li><a href="$filterPath">Filter &amp; Membrane Replacement</a></li>
+      <li><a href="$commPath">Commercial RO</a></li>
+      <li><a href="$districtPillar">District Coverage (7 Taluks)</a></li>
+      <li><a href="${relPath}ro-water-purifier-buying-guide-dharmapuri/">RO Buying Guide</a></li>
+      <li><a href="${relPath}ro-repair-guide/">RO Repair Guide</a></li>
+      <li><a href="$contactPath">Contact Us</a></li>
+    </ul>
+    <div class="mobile-drawer-footer">
+      <a href="tel:$($global:NAP.PhoneTel)" class="btn btn-secondary btn-full">&#128222; Call $($global:NAP.Phone)</a>
+      <a href="$($global:NAP.WhatsApp)" class="btn btn-whatsapp btn-full" target="_blank" rel="noopener">&#128172; WhatsApp Us</a>
+      <a href="${relPath}contact/#service-form" class="btn btn-primary btn-full">Book RO Service</a>
+    </div>
+  </aside>
+"@
+}
+function Get-Footer($relPath) {
+  $logoPath = "${relPath}assets/logo.svg"
+  $salesPath = "${relPath}ro-water-purifier-sales/"
+  $installPath = "${relPath}ro-installation/"
+  $repairPath = "${relPath}ro-repair/"
+  $maintPath = "${relPath}ro-maintenance/"
+  $amcPath = "${relPath}ro-amc/"
+  $filterPath = "${relPath}filter-membrane-replacement/"
+  $commPath = "${relPath}commercial-ro-dharmapuri/"
+  $districtPillar = "${relPath}ro-service-dharmapuri-district/"
+  $contactPath = "${relPath}contact/"
+  $buyingGuide = "${relPath}ro-water-purifier-buying-guide-dharmapuri/"
+  $repairGuide = "${relPath}ro-repair-guide/"
+  $sitemapPath = "${relPath}sitemap.xml"
+
+  return @"
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="$logoPath" alt="VARUN AQUA TECH" width="220" style="filter: brightness(0) invert(1);">
+          <p>
+            Professional RO Water Purifier Sales &amp; Service Center serving domestic and commercial requirements in Dharmapuri and surrounding areas of Tamil Nadu.
+          </p>
+          <p style="font-size: 0.85rem; color: #7A9AA8; margin-top: 0.75rem;">
+            PURE WATER. PROFESSIONAL SERVICE. LOCAL EXPERTISE.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Core Services</h4>
+          <ul class="footer-links">
+            <li><a href="$salesPath">RO Purifier Sales</a></li>
+            <li><a href="$installPath">RO Installation</a></li>
+            <li><a href="$repairPath">RO Repair &amp; Service</a></li>
+            <li><a href="$maintPath">Routine Maintenance</a></li>
+            <li><a href="$amcPath">AMC Care Plans</a></li>
+            <li><a href="$filterPath">Filter &amp; Membrane</a></li>
+            <li><a href="$commPath">Commercial RO Solutions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Service Areas</h4>
+          <ul class="footer-links">
+            <li><a href="${relPath}ro-service-dharmapuri/">Dharmapuri Taluk</a></li>
+            <li><a href="${relPath}ro-service-harur/">Harur Taluk</a></li>
+            <li><a href="${relPath}ro-service-palacode/">Palacode Taluk</a></li>
+            <li><a href="${relPath}ro-service-pennagaram/">Pennagaram Taluk</a></li>
+            <li><a href="${relPath}ro-service-nallampalli/">Nallampalli Taluk</a></li>
+            <li><a href="${relPath}ro-service-karimangalam/">Karimangalam Taluk</a></li>
+            <li><a href="${relPath}ro-service-pappireddipatti/">Pappireddipatti Taluk</a></li>
+            <li><a href="$districtPillar">District Coverage Hub</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact &amp; Location</h4>
+          <div style="font-size: 0.88rem; line-height: 1.6; color: #B3DAE8;">
+            <p style="margin-bottom: 0.5rem;">
+              <strong>VARUN AQUA TECH</strong><br>
+              $($global:NAP.FullAddress)
+            </p>
+            <p style="margin-bottom: 0.5rem;">
+              <strong>Phone:</strong> <a href="tel:$($global:NAP.PhoneTel)" style="color: var(--color-aqua); font-weight: 700;">$($global:NAP.Phone)</a>
+            </p>
+            <p style="margin-bottom: 0;">
+              <strong>Hours:</strong> $($global:NAP.Hours)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 VARUN AQUA TECH. All Rights Reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+          <a href="$buyingGuide" style="color: #7A9AA8;">RO Buying Guide</a>
+          <a href="$repairGuide" style="color: #7A9AA8;">RO Repair Guide</a>
+          <a href="$contactPath" style="color: #7A9AA8;">Contact</a>
+          <a href="$sitemapPath" style="color: #7A9AA8;">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-sticky-bar" aria-label="Mobile Quick Actions">
+    <div class="mobile-bar-inner">
+      <a href="tel:$($global:NAP.PhoneTel)" class="mobile-bar-btn call-btn">
+        <span>&#128222;</span> Call
+      </a>
+      <a href="$($global:NAP.WhatsApp)" class="mobile-bar-btn whatsapp-btn" target="_blank" rel="noopener">
+        <span>&#128172;</span> WhatsApp
+      </a>
+      <a href="${contactPath}#service-form" class="mobile-bar-btn book-btn">
+        <span>&#128295;</span> Book Service
+      </a>
+    </div>
+  </div>
+
+  <script src="${relPath}js/main.js"></script>
+"@
+}
+function Get-LeadForm($relPath, $defaultService, $defaultLocation) {
+  if (!$defaultService) { $defaultService = "RO Service" }
+  if (!$defaultLocation) { $defaultLocation = "Dharmapuri" }
+
+  $services = @(
+    "New RO Purifier",
+    "RO Installation",
+    "RO Repair",
+    "RO Maintenance",
+    "AMC",
+    "Filter Replacement",
+    "Membrane Replacement",
+    "Commercial RO",
+    "Other"
+  )
+
+  $options = ""
+  foreach ($s in $services) {
+    $sel = if ($s -eq $defaultService) { " selected" } else { "" }
+    $options += "                  <option value=""$s""$sel>$s</option>`n"
+  }
+
+  return @"
+          <div class="form-card" id="service-form">
+            <h3 style="font-size: 1.3rem; margin-bottom: 1.25rem; color: var(--color-navy);">Request Service</h3>
+            
+            <div id="form-success-box" style="display: none; background-color: #E8F9FB; border: 1px solid #13C5D8; color: #065996; padding: 1rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.9rem;">
+              &#10003; Thank you! Connecting you directly via WhatsApp to VARUN AQUA TECH...
+            </div>
+
+            <form id="leadForm">
+              <div class="form-group">
+                <label for="form-name" class="form-label">Your Name *</label>
+                <input type="text" id="form-name" class="form-control" placeholder="Enter your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-phone" class="form-label">Phone Number *</label>
+                <input type="tel" id="form-phone" class="form-control" placeholder="e.g. 9876543210" required>
+              </div>
+
+              <div class="form-group">
+                <label for="service-select" class="form-label">Service Required *</label>
+                <select id="service-select" class="form-control" required>
+$options                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="form-location" class="form-label">Your Location in Dharmapuri *</label>
+                <input type="text" id="form-location" class="form-control" value="$defaultLocation" required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-message" class="form-label">Message / Problem Description</label>
+                <textarea id="form-message" class="form-control" placeholder="Briefly describe your purifier issue or requirement"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full btn-lg">Request Service</button>
+              <p class="form-note">Your inquiry is sent directly to VARUN AQUA TECH for fast response.</p>
+            </form>
+          </div>
+"@
+}
+
+function Get-Breadcrumb($items) {
+  # $items is array of @{ label = "Home"; url = "./" }
+  $html = "<nav class=""breadcrumb-nav"" aria-label=""Breadcrumb""><div class=""container""><ol class=""breadcrumb-list"">"
+  for ($i = 0; $i -lt $items.Count; $i++) {
+    $item = $items[$i]
+    if ($i -eq $items.Count - 1) {
+      $html += "<li class=""breadcrumb-item current"" aria-current=""page"">$($item.label)</li>"
+    } else {
+      $html += "<li class=""breadcrumb-item""><a href=""$($item.url)"">$($item.label)</a> <span>/</span></li>"
+    }
+  }
+  $html += "</ol></div></nav>"
+  return $html
+}
+function Build-Subpage($folder, $title, $metaDesc, $canonical, $h1, $subtitle, $activeNav, $breadcrumbs, $mainContent, $defaultService, $defaultLocation) {
+  if (!$defaultService) { $defaultService = "RO Service" }
+  if (!$defaultLocation) { $defaultLocation = "Dharmapuri" }
+
+  $breadcrumbHtml = Get-Breadcrumb -items $breadcrumbs
+  $headerHtml = Get-Header -relPath "../" -activeNav $activeNav
+  $footerHtml = Get-Footer -relPath "../"
+  $leadFormHtml = Get-LeadForm -relPath "../" -defaultService $defaultService -defaultLocation $defaultLocation
+
+  $pageHtml = @"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$title</title>
+  <meta name="description" content="$metaDesc">
+  <link rel="canonical" href="$canonical">
+  
+  <meta property="og:title" content="$title">
+  <meta property="og:description" content="$metaDesc">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="$canonical">
+  
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VARUN AQUA TECH",
+    "image": "https://varunaquatech.com/assets/logo.svg",
+    "telephone": "+918838055968",
+    "priceRange": "&#8377;&#8377;",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "India1 ATM, Harur Main Road, Bosinaickenhalli",
+      "addressLocality": "near Dharmapuri",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "635303",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "12.128",
+      "longitude": "78.163"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  }
+  </script>
+</head>
+<body>
+$headerHtml
+  $breadcrumbHtml
+  <main id="main-content">
+    <!-- Subpage Hero Banner -->
+    <section class="section" style="padding-top: 3.5rem; padding-bottom: 3rem; background: linear-gradient(180deg, #FFFFFF 0%, #F5FAFC 100%); border-bottom: 1px solid var(--color-border);">
+      <div class="container container-narrow text-center">
+        <span class="badge badge-aqua">VARUN AQUA TECH &bull; DHARMAPURI</span>
+        <h1 style="margin-bottom: 0.85rem;">$h1</h1>
+        <p style="font-size: 1.15rem; color: var(--color-blue); font-weight: 600; margin-bottom: 1.25rem;">$subtitle</p>
+        <div class="btn-group" style="justify-content: center;">
+          <a href="tel:$($global:NAP.PhoneTel)" class="btn btn-secondary btn-sm">&#128222; Call $($global:NAP.Phone)</a>
+          <a href="$($global:NAP.WhatsApp)" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">&#128172; WhatsApp Us</a>
+          <a href="#service-form" class="btn btn-primary btn-sm">Book Service</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subpage Main Content -->
+    <section class="section">
+      <div class="container">
+        $mainContent
+      </div>
+    </section>
+
+    <!-- Subpage Lead Capture Section -->
+    <section class="section section-bg-light" id="inquiry-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="badge badge-aqua">Doorstep Support</span>
+            <h2>Schedule RO Service or Consultation</h2>
+            <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">
+              Contact VARUN AQUA TECH for prompt RO sales, installation, repair, maintenance or replacement services in Dharmapuri and surrounding areas.
+            </p>
+            <div style="background-color: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+              <p style="margin-bottom: 0.5rem; font-size: 0.95rem;">
+                <strong>Sales &amp; Service Center:</strong><br>
+                $($global:NAP.FullAddress)
+              </p>
+              <p style="margin-bottom: 0.5rem; font-size: 0.95rem;">
+                <strong>Direct Phone:</strong> <a href="tel:$($global:NAP.PhoneTel)" style="color: var(--color-blue); font-weight: 700;">$($global:NAP.Phone)</a>
+              </p>
+              <p style="margin-bottom: 0; font-size: 0.95rem;">
+                <strong>Hours:</strong> $($global:NAP.Hours)
+              </p>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--color-text-muted);">
+              Service availability is confirmed directly with our team based on your exact location and requirement.
+            </p>
+          </div>
+          $leadFormHtml
+        </div>
+      </div>
+    </section>
+  </main>
+$footerHtml
+</body>
+</html>
+"@
+
+  $dest = "d:\varun aqua tech website\$folder\index.html"
+  [System.IO.File]::WriteAllText($dest, $pageHtml, [System.Text.Encoding]::UTF8)
+  Write-Output "Built $dest ($($pageHtml.Length) bytes)"
+}

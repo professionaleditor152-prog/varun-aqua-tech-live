@@ -1,0 +1,37 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="100%" height="100%">
+  <defs>
+    <linearGradient id="aquaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#13C5D8" />
+      <stop offset="100%" stop-color="#0877C9" />
+    </linearGradient>
+    <linearGradient id="dropGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#38E1F2" />
+      <stop offset="50%" stop-color="#13C5D8" />
+      <stop offset="100%" stop-color="#065492" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#13C5D8" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Icon: Technical Water Droplet & RO Membrane Arc -->
+  <g transform="translate(10, 8)" filter="url(#glow)">
+    <path d="M32 4 C18 4 6 16 6 30 C6 46 22 58 32 62 C42 58 58 46 58 30 C58 16 46 4 32 4 Z" 
+          fill="none" stroke="url(#aquaGrad)" stroke-width="2.5" stroke-dasharray="120" stroke-dashoffset="10" opacity="0.4"/>
+    <path d="M32 10 C32 10 16 32 16 42 C16 51 23 58 32 58 C41 58 48 51 48 42 C48 32 32 10 32 10 Z" 
+          fill="url(#dropGrad)"/>
+    <path d="M25 40 C28 35 34 33 37 36 C40 39 37 45 32 47 C27 49 23 46 25 40 Z" 
+          fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="32" cy="42" r="4" fill="#FFFFFF" opacity="0.9"/>
+    <path d="M8 32 A24 24 0 0 1 56 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+    <path d="M12 40 A20 20 0 0 1 52 40" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-dasharray="2 3" opacity="0.8"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="82" y="38" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-size="24" font-weight="800" letter-spacing="1.2" fill="#061B33">
+    VARUN <tspan fill="#0877C9">AQUA TECH</tspan>
+  </text>
+  <text x="84" y="58" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-size="9" font-weight="600" letter-spacing="2.2" fill="#4A5E73">
+    RO WATER PURIFIER SALES &amp; SERVICE • DHARMAPURI
+  </text>
+</svg>

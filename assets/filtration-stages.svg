@@ -1,0 +1,81 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0877C9" />
+      <stop offset="100%" stop-color="#13C5D8" />
+    </linearGradient>
+    <filter id="fShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#061B33" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Flow Pipe Connection Line -->
+  <line x1="60" y1="120" x2="660" y2="120" stroke="url(#pipeGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 6" opacity="0.6"/>
+
+  <!-- Stage 1: Pre-Sediment Filter -->
+  <g transform="translate(40, 40)" filter="url(#fShadow)">
+    <rect width="105" height="160" rx="14" fill="#FFFFFF" stroke="#0877C9" stroke-width="1.8"/>
+    <rect x="16" y="24" width="73" height="70" rx="8" fill="#EAF3FA"/>
+    <!-- Particles Graphic -->
+    <circle cx="34" cy="46" r="3" fill="#D9822B"/>
+    <circle cx="52" cy="62" r="4" fill="#D9822B"/>
+    <circle cx="68" cy="42" r="2.5" fill="#D9822B"/>
+    <text x="52" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="800" fill="#061B33" text-anchor="middle">Stage 1</text>
+    <text x="52" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#0877C9" text-anchor="middle">Sediment Filter</text>
+    <text x="52" y="142" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73" text-anchor="middle">Sand, Rust, Clay</text>
+  </g>
+
+  <!-- Stage 2: Activated Carbon Filter -->
+  <g transform="translate(175, 40)" filter="url(#fShadow)">
+    <rect width="105" height="160" rx="14" fill="#FFFFFF" stroke="#0877C9" stroke-width="1.8"/>
+    <rect x="16" y="24" width="73" height="70" rx="8" fill="#102033"/>
+    <!-- Carbon Granules Graphic -->
+    <rect x="30" y="38" width="10" height="10" rx="2" fill="#4A5E73"/>
+    <rect x="48" y="44" width="8" height="8" rx="2" fill="#4A5E73"/>
+    <rect x="62" y="58" width="10" height="10" rx="2" fill="#4A5E73"/>
+    <text x="52" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="800" fill="#061B33" text-anchor="middle">Stage 2</text>
+    <text x="52" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#0877C9" text-anchor="middle">Pre-Carbon</text>
+    <text x="52" y="142" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73" text-anchor="middle">Chlorine &amp; Odour</text>
+  </g>
+
+  <!-- Stage 3: RO Membrane (Core Filtration) -->
+  <g transform="translate(310, 24)" filter="url(#fShadow)">
+    <rect width="120" height="190" rx="16" fill="#061B33" stroke="#13C5D8" stroke-width="2.5"/>
+    <rect x="16" y="22" width="88" height="80" rx="10" fill="#0B2545"/>
+    <!-- Micro Porous Membrane Motif -->
+    <circle cx="60" cy="62" r="26" fill="none" stroke="#13C5D8" stroke-width="2" stroke-dasharray="3 3"/>
+    <circle cx="60" cy="62" r="14" fill="#13C5D8" opacity="0.3"/>
+    <text x="60" y="66" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">0.0001 µm</text>
+    <text x="60" y="124" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#13C5D8" text-anchor="middle">Core Stage</text>
+    <text x="60" y="142" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">RO Membrane</text>
+    <text x="60" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#D9ECF5" text-anchor="middle">High TDS &amp; Heavy Metals</text>
+    <text x="60" y="172" font-family="'Plus Jakarta Sans', sans-serif" font-size="7.5" fill="#38E1F2" text-anchor="middle">Dissolved Salts Removal</text>
+  </g>
+
+  <!-- Stage 4: Post Carbon / Taste Enhancer -->
+  <g transform="translate(450, 40)" filter="url(#fShadow)">
+    <rect width="105" height="160" rx="14" fill="#FFFFFF" stroke="#0877C9" stroke-width="1.8"/>
+    <rect x="16" y="24" width="73" height="70" rx="8" fill="#EAF3FA"/>
+    <!-- Drop Graphic -->
+    <path d="M52 38 C52 38 40 54 40 60 C40 66 45 70 52 70 C59 70 64 66 64 60 C64 54 52 38 52 38 Z" fill="#0877C9"/>
+    <text x="52" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="800" fill="#061B33" text-anchor="middle">Stage 4</text>
+    <text x="52" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#0877C9" text-anchor="middle">Post-Carbon</text>
+    <text x="52" y="142" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73" text-anchor="middle">Taste &amp; Sweetness</text>
+  </g>
+
+  <!-- Stage 5: Mineralizer / UV Disinfection -->
+  <g transform="translate(580, 40)" filter="url(#fShadow)">
+    <rect width="105" height="160" rx="14" fill="#FFFFFF" stroke="#0877C9" stroke-width="1.8"/>
+    <rect x="16" y="24" width="73" height="70" rx="8" fill="#E8F9FB"/>
+    <circle cx="52" cy="59" r="18" fill="#13C5D8" opacity="0.3"/>
+    <path d="M44 59 L50 65 L62 51" fill="none" stroke="#0877C9" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="52" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="800" fill="#061B33" text-anchor="middle">Stage 5</text>
+    <text x="52" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#0877C9" text-anchor="middle">Mineral Balance</text>
+    <text x="52" y="142" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A5E73" text-anchor="middle">Essential Minerals</text>
+  </g>
+
+  <!-- Bottom Clarification Tag -->
+  <text x="360" y="254" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#4A5E73" text-anchor="middle">
+    Filtration configuration is tailored based on raw borewell/tap water TDS and water quality testing in Dharmapuri.
+  </text>
+</svg>
