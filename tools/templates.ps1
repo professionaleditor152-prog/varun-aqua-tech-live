@@ -1,20 +1,21 @@
-﻿$global:NAP = @{
+$global:NAP = @{
   Name = "VARUN AQUA TECH"
   Category = "RO Water Purifier Sales & Service Center"
   Street = "India1 ATM, Harur Main Road, Bosinaickenhalli"
   Locality = "near Dharmapuri"
   Region = "Tamil Nadu"
   PostalCode = "635303"
-  FullAddress = "India1 ATM, Harur Main Road, near Dharmapuri, Bosinaickenhalli, Tamil Nadu – 635303, India"
+  FullAddress = "India1 ATM, Harur Main Road, near Dharmapuri, Bosinaickenhalli, Tamil Nadu - 635303, India"
   Phone = "+91 88380 55968"
   PhoneTel = "+918838055968"
   WhatsApp = "https://wa.me/918838055968"
-  Hours = "Open 24 Hours — Monday to Sunday"
+  Hours = "Open 24 Hours - Monday to Sunday"
   MapsUrl = "https://www.google.com/maps/search/?api=1&query=VARUN+AQUA+TECH+India1+ATM+Harur+Main+Road+Bosinaickenhalli+Dharmapuri+Tamil+Nadu+635303"
 }
 function Get-Header($relPath, $activeNav) {
-  $logoPath = "${relPath}assets/logo.svg"
+  $logoPath = "${relPath}assets/logo.png"
   $homePath = if ($relPath -eq "") { "./" } else { "${relPath}" }
+  $customPath = if ($relPath -eq "") { "#custom-machines" } else { "${relPath}#custom-machines" }
   $aboutPath = "${relPath}about/"
   $salesPath = "${relPath}ro-water-purifier-sales/"
   $servicePath = "${relPath}ro-service/"
@@ -33,12 +34,17 @@ function Get-Header($relPath, $activeNav) {
   <header class="site-header">
     <div class="container header-container">
       <a href="$homePath" class="brand-logo" aria-label="VARUN AQUA TECH Home">
-        <img src="$logoPath" alt="VARUN AQUA TECH RO Water Purifier Sales &amp; Service Dharmapuri" width="220" height="42">
+        <img src="$logoPath" alt="VARUN AQUA TECH Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-text-name">VARUN <span style="color: var(--color-blue);">AQUA TECH</span></span>
+          <span class="brand-text-owner">Founder: Mr. Varun</span>
+        </div>
       </a>
       
       <nav class="nav-desktop" aria-label="Main Navigation">
         <ul class="nav-list">
           <li><a href="$homePath" class="nav-link $(if($activeNav -eq 'home'){'active'})">Home</a></li>
+          <li><a href="$customPath" class="nav-link">Custom Machines</a></li>
           <li><a href="$aboutPath" class="nav-link $(if($activeNav -eq 'about'){'active'})">About</a></li>
           <li><a href="$salesPath" class="nav-link $(if($activeNav -eq 'sales'){'active'})">RO Sales</a></li>
           <li class="nav-dropdown">
@@ -88,11 +94,18 @@ function Get-Header($relPath, $activeNav) {
   <div class="mobile-nav-overlay"></div>
   <aside class="mobile-nav-drawer" aria-label="Mobile Navigation Drawer">
     <div class="mobile-drawer-header">
-      <img src="$logoPath" alt="VARUN AQUA TECH" width="180">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <img src="$logoPath" alt="VARUN AQUA TECH" style="height: 44px; width: auto;">
+        <div>
+          <div style="font-weight: 800; font-size: 1.05rem; color: var(--color-navy);">VARUN AQUA TECH</div>
+          <div style="font-size: 0.72rem; color: var(--color-blue); font-weight: 700;">Founder: Mr. Varun</div>
+        </div>
+      </div>
       <button class="drawer-close-btn" aria-label="Close mobile navigation">&times;</button>
     </div>
     <ul class="mobile-nav-list">
       <li><a href="$homePath">Home</a></li>
+      <li><a href="$customPath" style="font-weight: 700; color: var(--color-blue);">⚡ Custom Built Machines</a></li>
       <li><a href="$aboutPath">About</a></li>
       <li><a href="$salesPath">RO Purifier Sales</a></li>
       <li><a href="$servicePath">RO Service Hub</a></li>
@@ -116,7 +129,7 @@ function Get-Header($relPath, $activeNav) {
 "@
 }
 function Get-Footer($relPath) {
-  $logoPath = "${relPath}assets/logo.svg"
+  $logoPath = "${relPath}assets/logo.png"
   $salesPath = "${relPath}ro-water-purifier-sales/"
   $installPath = "${relPath}ro-installation/"
   $repairPath = "${relPath}ro-repair/"
@@ -135,12 +148,19 @@ function Get-Footer($relPath) {
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="$logoPath" alt="VARUN AQUA TECH" width="220" style="filter: brightness(0) invert(1);">
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem;">
+            <img src="$logoPath" alt="VARUN AQUA TECH" style="height: 52px; width: auto; background: #fff; padding: 4px; border-radius: 8px;">
+            <div>
+              <div style="font-weight: 800; font-size: 1.25rem; color: #FFFFFF; letter-spacing: 0.03em;">VARUN <span style="color: var(--color-aqua);">AQUA TECH</span></div>
+              <div style="font-size: 0.78rem; color: var(--color-aqua); font-weight: 700;">Founder: Mr. Varun</div>
+            </div>
+          </div>
           <p>
             Professional RO Water Purifier Sales &amp; Service Center serving domestic and commercial requirements in Dharmapuri and surrounding areas of Tamil Nadu.
           </p>
           <p style="font-size: 0.85rem; color: #7A9AA8; margin-top: 0.75rem;">
-            PURE WATER. PROFESSIONAL SERVICE. LOCAL EXPERTISE.
+            PURE WATER. PROFESSIONAL SERVICE. LOCAL EXPERTISE.<br>
+            <span style="color: var(--color-aqua); font-weight: 700;">15+ Years Experience &bull; 5,000+ Services Trusted</span>
           </p>
         </div>
 
@@ -297,7 +317,7 @@ function Get-Breadcrumb($items) {
   $html += "</ol></div></nav>"
   return $html
 }
-function Build-Subpage($folder, $title, $metaDesc, $canonical, $h1, $subtitle, $activeNav, $breadcrumbs, $mainContent, $defaultService, $defaultLocation) {
+function Build-Subpage($folder, $title, $metaDesc, $canonical, $h1, $subtitle, $activeNav, $breadcrumbs, $mainContent, $defaultService, $defaultLocation, $extraScripts = "") {
   if (!$defaultService) { $defaultService = "RO Service" }
   if (!$defaultLocation) { $defaultLocation = "Dharmapuri" }
 
@@ -411,6 +431,7 @@ $headerHtml
     </section>
   </main>
 $footerHtml
+$extraScripts
 </body>
 </html>
 "@

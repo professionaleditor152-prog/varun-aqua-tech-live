@@ -125,12 +125,17 @@
 <body>  <header class="site-header">
     <div class="container header-container">
       <a href="./" class="brand-logo" aria-label="VARUN AQUA TECH Home">
-        <img src="assets/logo.svg" alt="VARUN AQUA TECH RO Water Purifier Sales &amp; Service Dharmapuri" width="220" height="42">
+        <img src="assets/logo.png" alt="VARUN AQUA TECH Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-text-name">VARUN <span style="color: var(--color-blue);">AQUA TECH</span></span>
+          <span class="brand-text-owner">Founder: Mr. Varun</span>
+        </div>
       </a>
       
       <nav class="nav-desktop" aria-label="Main Navigation">
         <ul class="nav-list">
           <li><a href="./" class="nav-link active">Home</a></li>
+          <li><a href="#custom-machines" class="nav-link">Custom Machines</a></li>
           <li><a href="about/" class="nav-link ">About</a></li>
           <li><a href="ro-water-purifier-sales/" class="nav-link ">RO Sales</a></li>
           <li class="nav-dropdown">
@@ -180,11 +185,18 @@
   <div class="mobile-nav-overlay"></div>
   <aside class="mobile-nav-drawer" aria-label="Mobile Navigation Drawer">
     <div class="mobile-drawer-header">
-      <img src="assets/logo.svg" alt="VARUN AQUA TECH" width="180">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <img src="assets/logo.png" alt="VARUN AQUA TECH" style="height: 44px; width: auto;">
+        <div>
+          <div style="font-weight: 800; font-size: 1.05rem; color: var(--color-navy);">VARUN AQUA TECH</div>
+          <div style="font-size: 0.72rem; color: var(--color-blue); font-weight: 700;">Founder: Mr. Varun</div>
+        </div>
+      </div>
       <button class="drawer-close-btn" aria-label="Close mobile navigation">&times;</button>
     </div>
     <ul class="mobile-nav-list">
       <li><a href="./">Home</a></li>
+      <li><a href="#custom-machines" style="font-weight: 700; color: var(--color-blue);">⚡ Custom Built Machines</a></li>
       <li><a href="about/">About</a></li>
       <li><a href="ro-water-purifier-sales/">RO Purifier Sales</a></li>
       <li><a href="ro-service/">RO Service Hub</a></li>
@@ -281,6 +293,158 @@
         </div>
       </div>
     </section>
+
+    <!-- Owner Spotlight & Brand Identity Section -->
+    <section class="section section-owner-spotlight" id="owner-brand" style="padding-top: 2rem; padding-bottom: 1rem;">
+      <div class="container">
+        <div class="owner-spotlight-card">
+          <div class="owner-spotlight-grid">
+            <div class="owner-avatar-wrap">
+              <img src="assets/logo.png" alt="VARUN AQUA TECH Official Logo" width="80" height="80">
+            </div>
+            <div class="owner-content">
+              <h3>VARUN AQUA TECH</h3>
+              <div class="owner-title-tag">Founder &amp; Proprietor: Mr. Varun &bull; 15+ Years Direct Hands-on Service</div>
+              <p class="owner-bio">
+                At <strong>VARUN AQUA TECH</strong>, every RO system is personally supervised and serviced under the leadership of <strong>Mr. Varun</strong>. With over 15 years of ground-level experience across Dharmapuri district, we guarantee authentic components, accurate water testing, and zero-compromise purification for your family and business.
+              </p>
+            </div>
+            <div class="owner-ctas">
+              <a href="tel:+918838055968" class="btn btn-secondary btn-sm">&#128222; Call Mr. Varun</a>
+              <a href="https://wa.me/918838055968?text=Hello%20Mr.%20Varun,%20I%20need%20RO%20water%20purifier%20assistance%20from%20VARUN%20AQUA%20TECH." class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">&#128172; WhatsApp Founder</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Machines Showcase & CRUD Catalog -->
+    <section class="section section-bg-light" id="custom-machines">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-aqua">Custom Built &bull; Factory Direct</span>
+          <h2>Custom Built RO Machines &amp; Plants</h2>
+          <p>
+            Specially assembled water purification systems by <strong>VARUN AQUA TECH</strong>, calibrated specifically for Dharmapuri's borewell &amp; high-TDS water. Order directly via WhatsApp or manage custom builds below.
+          </p>
+        </div>
+
+        <!-- CRUD Toolbar -->
+        <div class="crud-toolbar">
+          <div class="crud-filter-group" aria-label="Machine Categories">
+            <button class="crud-filter-btn active" data-filter="All">All Machines</button>
+            <button class="crud-filter-btn" data-filter="Domestic">Domestic RO</button>
+            <button class="crud-filter-btn" data-filter="Commercial">Commercial (50-100 LPH)</button>
+            <button class="crud-filter-btn" data-filter="Industrial">Industrial Plants</button>
+          </div>
+
+          <div class="crud-search-wrap">
+            <span class="crud-search-icon">&#128269;</span>
+            <input type="text" id="machine-search-input" class="crud-search-input" placeholder="Search machine, TDS, capacity...">
+          </div>
+
+          <div class="crud-admin-buttons">
+            <button id="btn-add-machine" class="btn btn-primary btn-sm">&#65291; Add Custom Machine</button>
+            <button id="btn-reset-defaults" class="btn btn-secondary btn-sm" title="Restore factory preset models">&#8635; Reset Defaults</button>
+          </div>
+        </div>
+
+        <!-- Custom Machines Grid (Populated dynamically by machines-crud.js) -->
+        <div id="custom-machines-grid" class="custom-machines-grid">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="text-align: center; margin-top: -1rem; margin-bottom: 2rem;">
+          <p style="font-size: 0.92rem; color: var(--color-text-muted);">
+            Need a custom capacity machine not listed here? Call <strong>Mr. Varun</strong> directly at <a href="tel:+918838055968" style="color: var(--color-blue); font-weight: 700;">+91 88380 55968</a> or click any machine to chat on WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Adding / Editing Machine -->
+    <div id="machine-crud-modal" class="crud-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="crud-modal-box">
+        <div class="crud-modal-header">
+          <h3 id="modal-title">Add New Custom RO Machine</h3>
+          <button type="button" class="crud-modal-close" aria-label="Close dialog">&times;</button>
+        </div>
+
+        <form id="machine-crud-form">
+          <input type="hidden" id="machine-id">
+
+          <div class="form-group">
+            <label for="m-form-name" class="form-label">Machine Model Name *</label>
+            <input type="text" id="m-form-name" class="form-control" placeholder="e.g. Varun Pro Copper RO" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="m-form-category" class="form-label">Category *</label>
+              <select id="m-form-category" class="form-control" required>
+                <option value="Domestic">Domestic</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Industrial">Industrial</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="m-form-capacity" class="form-label">Capacity / Flow Rate *</label>
+              <input type="text" id="m-form-capacity" class="form-control" placeholder="e.g. 15 LPH (12L Tank)" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="m-form-stages" class="form-label">Filtration Stages / Technology *</label>
+            <input type="text" id="m-form-stages" class="form-control" placeholder="e.g. 8-Stage RO + UV + UF + Copper + Alkaline" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="m-form-ideal" class="form-label">Ideal For *</label>
+              <input type="text" id="m-form-ideal" class="form-control" placeholder="e.g. Borewell / Up to 2500 TDS" required>
+            </div>
+
+            <div class="form-group">
+              <label for="m-form-price" class="form-label">Price / Starting Rate *</label>
+              <input type="text" id="m-form-price" class="form-control" placeholder="e.g. ₹8,499" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="m-form-badge" class="form-label">Highlight Badge</label>
+            <input type="text" id="m-form-badge" class="form-control" placeholder="e.g. Free Installation Included">
+          </div>
+
+          <div class="form-group">
+            <label for="m-form-image-preset" class="form-label">Select Photo Asset</label>
+            <select id="m-form-image-preset" class="form-control">
+              <option value="assets/bele-water-purifier.jpg">Domestic Alkaline RO (Wall-Mounted)</option>
+              <option value="assets/benchtop-filtration.jpg">Compact Countertop / Under-Sink Unit</option>
+              <option value="assets/bluetech-smart.jpg">Commercial 50 LPH Purifier Unit</option>
+              <option value="assets/reverse-osmosis-system.jpg">Heavy-Duty 250-5000 LPH Plant</option>
+              <option value="assets/modern-kitchen-tap.jpg">Kitchen Counter Tap Installation</option>
+              <option value="assets/ro-membrane-layers.jpg">Multi-Layer Spiral-Wound RO Membrane</option>
+            </select>
+            <input type="text" id="m-form-image-custom" class="form-control" style="margin-top: 0.5rem;" placeholder="Or enter custom image URL / path">
+            <div class="img-preview-box">
+              <img id="m-form-image-preview" src="assets/bele-water-purifier.jpg" alt="Preview">
+              <span style="font-size: 0.82rem; color: var(--color-text-muted);">Current image preview shown to customers.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="m-form-desc" class="form-label">Description / Features</label>
+            <textarea id="m-form-desc" class="form-control" rows="3" placeholder="Explain the key features, filter materials, and advantages..."></textarea>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+            <button type="button" id="btn-cancel-modal" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Machine</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Primary Services Section -->
     <section class="section" id="services">
@@ -409,7 +573,11 @@
       <div class="container">
         <div class="split-section">
           <div class="split-visual">
-            <img src="assets/filtration-stages.svg" alt="VARUN AQUA TECH RO water purifier service in Dharmapuri Tamil Nadu" width="600" height="380">
+            <img src="assets/ro-technician-service.jpg" alt="Certified RO Technician Service by VARUN AQUA TECH in Dharmapuri" width="600" height="380" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md); object-fit: cover; width: 100%; height: auto;">
+            <div style="display: flex; gap: 0.6rem; margin-top: 0.85rem; flex-wrap: wrap;">
+              <span class="badge badge-aqua">&#10003; 15+ Years Hands-on Experience</span>
+              <span class="badge badge-navy">Founder: Mr. Varun</span>
+            </div>
           </div>
 
           <div class="split-content">
@@ -507,7 +675,10 @@
               <a href="ro-water-purifier-sales/" class="btn btn-primary">Find the Right RO Solution</a>
             </div>
             <div>
-              <img src="assets/filter-cartridges.svg" alt="Domestic RO water purifier service in Bosinaickenhalli" width="540" height="320">
+              <img src="assets/bele-water-purifier.jpg" alt="Domestic RO Water Purifier Wall Installation by VARUN AQUA TECH Dharmapuri" width="540" height="340" style="width: 100%; border-radius: var(--radius-lg); object-fit: cover; box-shadow: var(--shadow-md);">
+              <div style="margin-top: 0.75rem;">
+                <span class="badge badge-aqua">&#10003; Free Doorstep Installation on All Home RO Units</span>
+              </div>
             </div>
           </div>
         </div>
@@ -515,7 +686,10 @@
         <div class="segment-box" style="margin-bottom: 0;" id="commercial-ro">
           <div class="segment-grid">
             <div>
-              <img src="assets/commercial-plant.svg" alt="Commercial RO water purifier installation service near Dharmapuri Tamil Nadu" width="540" height="340">
+              <img src="assets/reverse-osmosis-system.jpg" alt="Heavy-duty Commercial RO Water Purification Plant Assembled by VARUN AQUA TECH" width="540" height="340" style="width: 100%; border-radius: var(--radius-lg); object-fit: cover; box-shadow: var(--shadow-md);">
+              <div style="margin-top: 0.75rem;">
+                <span class="badge badge-navy">&#10003; 50 to 5,000 LPH Skid Plants &bull; AMC Available</span>
+              </div>
             </div>
             <div>
               <span class="badge badge-navy">Business &amp; Institutional</span>
@@ -787,7 +961,13 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/logo.svg" alt="VARUN AQUA TECH" width="220" style="filter: brightness(0) invert(1);">
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem;">
+            <img src="assets/logo.png" alt="VARUN AQUA TECH" style="height: 52px; width: auto; background: #fff; padding: 4px; border-radius: 8px;">
+            <div>
+              <div style="font-weight: 800; font-size: 1.25rem; color: #FFFFFF; letter-spacing: 0.03em;">VARUN <span style="color: var(--color-aqua);">AQUA TECH</span></div>
+              <div style="font-size: 0.78rem; color: var(--color-aqua); font-weight: 700;">Founder: Mr. Varun</div>
+            </div>
+          </div>
           <p>
             Professional RO Water Purifier Sales &amp; Service Center serving domestic and commercial requirements in Dharmapuri and surrounding areas of Tamil Nadu.
           </p>
@@ -869,4 +1049,6 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script></body></html>
+  <script src="js/main.js"></script>
+  <script src="js/machines-crud.js"></script>
+</body></html>
