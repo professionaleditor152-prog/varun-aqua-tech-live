@@ -209,6 +209,10 @@
 
     <div class="crud-admin-buttons">
       <button id="btn-add-machine" class="btn btn-primary btn-sm">&#65291; Add Custom Machine</button>
+      <button type="button" id="btn-view-cart-nav" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+        <span>ðŸ›’</span> Cart (<span id="nav-cart-count">0</span>)
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="machineManager.resetToDefaults()" title="Restore all recommended models">ðŸ”„ Reset</button>
     </div>
   </div>
 
@@ -221,7 +225,7 @@
   <div id="machine-crud-modal" class="crud-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="crud-modal-box">
       <div class="crud-modal-header">
-        <h3 id="modal-title">Add New Custom RO Machine</h3>
+        <h3 id="modal-title">Add New Custom RO Machine (Owner Mode)</h3>
         <button type="button" class="crud-modal-close" aria-label="Close dialog">&times;</button>
       </div>
 
@@ -229,8 +233,13 @@
         <input type="hidden" id="machine-id">
 
         <div class="form-group">
-          <label for="m-form-name" class="form-label">Machine Model Name *</label>
-          <input type="text" id="m-form-name" class="form-control" placeholder="e.g. Varun Pro Copper RO" required>
+          <label for="m-form-name" class="form-label">Machine / Product Model Name *</label>
+          <input type="text" id="m-form-name" class="form-control" placeholder="e.g. Varun Pro Alkaline Copper RO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="m-form-sale-title" class="form-label">Sale Tagline / Offer Title</label>
+          <input type="text" id="m-form-sale-title" class="form-control" placeholder="e.g. Dharmapuri High-TDS Borewell Special â€¢ 8-Stage Mineralizer">
         </div>
 
         <div class="form-grid-2">
@@ -251,19 +260,38 @@
 
         <div class="form-grid-2">
           <div class="form-group">
-            <label for="m-form-stages" class="form-label">Filtration Stages / Technology *</label>
-            <input type="text" id="m-form-stages" class="form-control" placeholder="e.g. 8-Stage RO + UV + Alkaline" required>
+            <label for="m-form-price" class="form-label">Offer / Sale Price (â‚¹) *</label>
+            <input type="number" id="m-form-price" class="form-control" placeholder="e.g. 11999" required>
           </div>
 
           <div class="form-group">
-            <label for="m-form-ideal" class="form-label">Ideal For *</label>
+            <label for="m-form-mrp" class="form-label">Original MRP (â‚¹)</label>
+            <input type="number" id="m-form-mrp" class="form-control" placeholder="e.g. 16999">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="m-form-stages" class="form-label">Filtration Stages / Technology *</label>
+            <input type="text" id="m-form-stages" class="form-control" placeholder="e.g. 8-Stage RO + UV + Alkaline + Copper" required>
+          </div>
+
+          <div class="form-group">
+            <label for="m-form-ideal" class="form-label">Water Source / TDS Limit *</label>
             <input type="text" id="m-form-ideal" class="form-control" placeholder="e.g. Borewell / Up to 2500 TDS" required>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="m-form-badge" class="form-label">Highlight Badge</label>
-          <input type="text" id="m-form-badge" class="form-control" placeholder="e.g. Free Installation Included">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="m-form-warranty" class="form-label">Warranty &amp; Guarantee</label>
+            <input type="text" id="m-form-warranty" class="form-control" placeholder="e.g. 1 Year Comprehensive Onsite Warranty">
+          </div>
+
+          <div class="form-group">
+            <label for="m-form-badge" class="form-label">Highlight / Offer Badge</label>
+            <input type="text" id="m-form-badge" class="form-control" placeholder="e.g. Festive Offer â€¢ 29% OFF">
+          </div>
         </div>
 
         <div class="form-group">
@@ -320,6 +348,63 @@
           <button type="submit" class="btn btn-primary">Save Machine</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Floating Shopping Cart Button -->
+  <button id="floating-cart-btn" class="floating-cart-btn" aria-label="View Shopping Cart">
+    <span class="cart-btn-icon">ðŸ›’</span>
+    <span class="cart-btn-text">Cart</span>
+    <span id="cart-badge-count" class="cart-badge">0</span>
+  </button>
+
+  <!-- Slide-out Shopping Cart Drawer -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <div class="cart-header-title-wrap">
+          <h3 id="cart-title">ðŸ›’ Your Water Purifier Cart</h3>
+          <span id="cart-drawer-count" class="cart-count-pill">0 items</span>
+        </div>
+        <button type="button" id="cart-close-btn" class="cart-close-btn" aria-label="Close cart">&times;</button>
+      </div>
+
+      <div id="cart-items-container" class="cart-drawer-body">
+        <!-- Populated dynamically by machines-crud.js -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-card">
+          <div class="cart-summary-line">
+            <span>Items Total:</span>
+            <span id="cart-subtotal-val" class="cart-sum-val">â‚¹0</span>
+          </div>
+          <div class="cart-summary-line">
+            <span>Delivery &amp; Installation:</span>
+            <span class="cart-sum-free">FREE (Dharmapuri)</span>
+          </div>
+          <div class="cart-summary-line cart-total-line">
+            <span>Total Payable Amount:</span>
+            <span id="cart-total-val" class="cart-sum-total">â‚¹0</span>
+          </div>
+        </div>
+
+        <!-- Customer Order Details -->
+        <div class="cart-customer-fields">
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <input type="text" id="cart-customer-name" class="form-control form-control-sm" placeholder="Your Name (e.g. Selvakumar)">
+          </div>
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <input type="text" id="cart-customer-area" class="form-control form-control-sm" placeholder="Delivery Area / Taluk (e.g. Dharmapuri Town, Harur)">
+          </div>
+        </div>
+
+        <button type="button" id="btn-checkout-whatsapp" class="btn btn-whatsapp btn-block cart-checkout-btn">
+          <span>ðŸ’¬</span> Order Cart on WhatsApp
+        </button>
+        
+        <button type="button" id="btn-clear-cart" class="btn-clear-cart-link">Clear Cart</button>
+      </div>
     </div>
   </div>
 
@@ -515,6 +600,6 @@
   </div>
 
   <script src="../js/main.js"></script>
-<script src="../js/machines-crud.js"></script>
+<script src="../js/machines-crud.js?v=20261006_ecom"></script>
 </body>
 </html>

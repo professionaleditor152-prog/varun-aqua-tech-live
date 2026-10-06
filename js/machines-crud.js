@@ -1,5 +1,5 @@
 /**
- * VARUN AQUA TECH - Custom Machines CRUD & WhatsApp Order System
+ * VARUN AQUA TECH - Custom Machines E-Commerce Catalog & Shopping Cart System
  * Founder & Proprietor: Selvam .V
  * Direct WhatsApp: +91 88380 55968
  */
@@ -7,47 +7,117 @@
 const DEFAULT_MACHINES = [
   {
     id: "cm-domestic-alkaline",
-    name: "Varun Aqua Alkaline Domestic RO",
+    name: "Varun Pro Alkaline Copper RO Purifier",
+    saleTitle: "Dharmapuri High-TDS Borewell Special • 8-Stage Mineralizer",
     category: "Domestic",
+    price: 11999,
+    mrp: 16999,
+    rating: 4.9,
+    reviewCount: 142,
     capacity: "15 LPH (12L Tank)",
-    stages: "8-Stage RO + UV + UF + Alkaline + Copper",
-    idealFor: "Borewell / High TDS Water (Up to 2500 TDS)",
-    badge: "Free Installation Included",
+    stages: "8-Stage RO + UV + UF + Alkaline + Active Copper",
+    idealFor: "Borewell, Well & Kaveri Water (Up to 2500 TDS)",
+    warranty: "1 Year Comprehensive Onsite Warranty",
+    badge: "Bestseller • 29% OFF",
+    freeDelivery: true,
+    freeInstall: true,
     image: "assets/bele-water-purifier.jpg",
-    description: "Multi-stage advanced RO purifier with high-rejection membrane and natural mineral cartridge for sweet, healthy drinking water in Dharmapuri homes."
+    description: "Specially engineered for Dharmapuri groundwater with 80 GPD high-rejection TFC membrane and natural mineral cartridge for sweet, alkaline water (pH 7.5 - 8.5)."
   },
   {
     id: "cm-bluetech-commercial",
-    name: "Bluetech Smart Commercial RO Unit",
+    name: "BlueTech Smart Commercial RO Unit (50 LPH)",
+    saleTitle: "Heavy-Duty Continuous Flow • Dual Pressure Gauge Cabinet",
     category: "Commercial",
-    capacity: "50 LPH Continuous Flow",
+    price: 24500,
+    mrp: 32000,
+    rating: 4.9,
+    reviewCount: 88,
+    capacity: "50 Litres/Hour Flow Rate",
     stages: "5-Stage High-Flow Commercial Filtration",
-    idealFor: "Offices, Clinics, Schools & Commercial Kitchens",
-    badge: "Heavy-Duty Booster Pump",
+    idealFor: "Offices, Clinics, Schools, Bakeries & Commercial Kitchens",
+    warranty: "1 Year Onsite Commercial Warranty",
+    badge: "Commercial Grade • 23% OFF",
+    freeDelivery: true,
+    freeInstall: true,
     image: "assets/bluetech-smart.jpg",
-    description: "Commercial 50 LPH water purification unit with high-pressure diaphragm pump, dual pressure gauges, and durable wall/tabletop cabinet."
+    description: "Commercial 50 LPH water purification cabinet with dual pressure meters, high-pressure diaphragm pump, and wall/tabletop mounting frame for high daily consumption."
   },
   {
     id: "cm-countertop-dispenser",
-    name: "Varun Pro Smart Countertop RO Dispenser",
+    name: "Varun Touch Countertop Instant RO Dispenser",
+    saleTitle: "Smart Modular Kitchen Edition • Touch Dispense",
     category: "Domestic",
+    price: 14499,
+    mrp: 19999,
+    rating: 4.8,
+    reviewCount: 64,
     capacity: "15 LPH Instant Flow",
-    stages: "Multi-Stage RO + UV-C + Micro-Carbon",
-    idealFor: "Modern Modular Kitchens & Dining Tables",
-    badge: "Instant Touch Dispense",
+    stages: "6-Stage Mineral RO + UV-C LED + Carbon Block",
+    idealFor: "Modern Modular Kitchens, Dining Counters & Apartments",
+    warranty: "1 Year Onsite Warranty + 2 Free PM Services",
+    badge: "Instant Touch • 28% OFF",
+    freeDelivery: true,
+    freeInstall: true,
     image: "assets/premium-ro-dispenser.jpg",
-    description: "Sleek tabletop water purifier with digital LED status display, child lock safety, and zero countertop clutter for modern apartments."
+    description: "Sleek tabletop water purifier with digital LED indicator, child lock dispense, instant pure water flow, and zero wall drilling required."
   },
   {
     id: "cm-industrial-plant",
-    name: "Heavy-Duty Commercial Skid RO Plant",
+    name: "Varun Heavy-Duty Skid RO Plant (250 LPH)",
+    saleTitle: "Full 304 Stainless Steel Skid • Automated Backwash",
     category: "Industrial",
-    capacity: "250 to 5000 LPH (Custom Sized)",
-    stages: "FRP Sand & Carbon Media + 4040/8040 RO Membranes",
-    idealFor: "Schools, Hospitals, Hotels & Manufacturing Units",
-    badge: "Custom Built by Selvam .V",
+    price: 68000,
+    mrp: 85000,
+    rating: 5.0,
+    reviewCount: 35,
+    capacity: "250 to 500 LPH (Expandable)",
+    stages: "FRP Sand & Carbon Media + 4040 TFC Membrane + CRI Pump",
+    idealFor: "Hospitals, Hostels, Manufacturing Units & Commercial Buildings",
+    warranty: "1 Year Comprehensive Industrial Warranty",
+    badge: "SS 304 Skid • 20% OFF",
+    freeDelivery: true,
+    freeInstall: true,
     image: "assets/commercial-plant.jpg",
-    description: "Engineered on 304 stainless steel skids with industrial high-pressure multi-stage pumps, digital flow rotameters, and automated backwash valves."
+    description: "Custom fabricated by Selvam .V on 304 stainless steel frame with digital flow meters, automated multiport valves, high pressure pump, and low pressure safety cut-off."
+  },
+  {
+    id: "cm-undersink-system",
+    name: "Varun Compact Under-Sink Mineral RO System",
+    saleTitle: "Hidden Under-Counter Design • Designer Gooseneck Faucet",
+    category: "Domestic",
+    price: 13200,
+    mrp: 17500,
+    rating: 4.8,
+    reviewCount: 52,
+    capacity: "15 LPH (8L Hydrostatic Tank)",
+    stages: "7-Stage RO + Mineralizer + Post-Carbon",
+    idealFor: "Island Kitchens, Quartz Countertops & Modular Cabinets",
+    warranty: "1 Year Comprehensive Onsite Warranty",
+    badge: "Concealed Fit • 25% OFF",
+    freeDelivery: true,
+    freeInstall: true,
+    image: "assets/benchtop-filtration.jpg",
+    description: "Concealed under-counter filtration system that keeps kitchen platforms 100% clean, delivering pure mineral water through a sleek chrome gooseneck faucet."
+  },
+  {
+    id: "cm-spare-parts-kit",
+    name: "Genuine RO Pre-Filter & Annual Service Kit",
+    saleTitle: "Universal Spun Filter + Carbon + Sediment Replacement Pack",
+    category: "Domestic",
+    price: 1499,
+    mrp: 2200,
+    rating: 4.9,
+    reviewCount: 210,
+    capacity: "Full Annual Service Kit",
+    stages: "Spun Pre-Filter + Sediment Filter + Carbon Block + Spanner",
+    idealFor: "All Domestic RO Brands (Kent, Aquaguard, Livpure & Custom)",
+    warranty: "100% Genuine Quality Guarantee",
+    badge: "Maintenance Kit • 32% OFF",
+    freeDelivery: true,
+    freeInstall: false,
+    image: "assets/ro-spare-parts.jpg",
+    description: "Complete filter replacement bundle with 100% food-grade virgin polypropylene spun filter and high-iodine activated carbon for complete sediment and chlorine removal."
   }
 ];
 
@@ -56,12 +126,12 @@ const PRESET_IMAGES = [
   { label: "Commercial 50 LPH Purifier Cabinet", path: "assets/bluetech-smart.jpg" },
   { label: "Smart Countertop RO Dispenser", path: "assets/premium-ro-dispenser.jpg" },
   { label: "Commercial RO Plant (50-5000 LPH)", path: "assets/commercial-plant.jpg" },
-  { label: "Heavy-Duty Multi-Stage Skid RO", path: "assets/reverse-osmosis-system.jpg" },
+  { label: "Compact Under-Sink Filtration Unit", path: "assets/benchtop-filtration.jpg" },
   { label: "Genuine Spare Parts & Assembly Kits", path: "assets/ro-spare-parts.jpg" },
+  { label: "Heavy-Duty Multi-Stage Skid RO", path: "assets/reverse-osmosis-system.jpg" },
   { label: "Water Quality Testing & TDS Meter", path: "assets/water-tds-testing.jpg" },
   { label: "Showroom & Customer Experience Center", path: "assets/storefront-showroom.jpg" },
   { label: "RO Technician Doorstep Service & Filters", path: "assets/ro-service-technician-filters.jpg" },
-  { label: "Compact Under-Sink Filtration Unit", path: "assets/benchtop-filtration.jpg" },
   { label: "Filter Cartridges & RO Membrane Pack", path: "assets/service-filters.jpg" },
   { label: "RO Booster Pump & Electronics Repair", path: "assets/service-repair.jpg" },
   { label: "Doorstep Wall Mounting Installation", path: "assets/service-installation.jpg" },
@@ -73,6 +143,7 @@ const WHATSAPP_PHONE = "918838055968";
 class MachineManager {
   constructor() {
     this.machines = [];
+    this.cart = [];
     this.currentFilter = "All";
     this.searchQuery = "";
     this.assetPrefix = this.detectAssetPrefix();
@@ -98,42 +169,48 @@ class MachineManager {
   }
 
   async init() {
+    this.loadCart();
     await this.loadMachines();
     this.renderCatalog();
     this.setupEventListeners();
     this.renderPresetGrid();
+    this.updateCartUI();
   }
 
   async loadMachines() {
+    let loaded = null;
     try {
       const res = await fetch("/api/machines", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
-          this.machines = data;
-          localStorage.setItem("varun_custom_machines", JSON.stringify(data));
-          return;
+          loaded = data;
         }
       }
     } catch (e) {
       console.log("Using localStorage fallback for machines:", e);
     }
 
-    const saved = localStorage.getItem("varun_custom_machines");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          this.machines = parsed;
-          return;
+    if (!loaded) {
+      const saved = localStorage.getItem("varun_custom_machines");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            loaded = parsed;
+          }
+        } catch (e) {
+          console.error("Failed to parse saved machines", e);
         }
-      } catch (e) {
-        console.error("Failed to parse saved machines", e);
       }
     }
 
-    // Default machines on first run
-    this.machines = [...DEFAULT_MACHINES];
+    // If loaded data is missing price or empty, upgrade with DEFAULT_MACHINES
+    if (!loaded || loaded.length === 0 || !loaded[0].price) {
+      loaded = [...DEFAULT_MACHINES];
+    }
+
+    this.machines = loaded;
     this.persist();
   }
 
@@ -146,16 +223,212 @@ class MachineManager {
         body: JSON.stringify(this.machines)
       });
     } catch (e) {
-      // Offline or static fallback
+      // Offline fallback
     }
   }
 
+  /* ============================================================
+     SHOPPING CART SYSTEM
+     ============================================================ */
+  loadCart() {
+    const saved = localStorage.getItem("varun_cart");
+    if (saved) {
+      try {
+        this.cart = JSON.parse(saved);
+      } catch (e) {
+        this.cart = [];
+      }
+    } else {
+      this.cart = [];
+    }
+  }
+
+  persistCart() {
+    localStorage.setItem("varun_cart", JSON.stringify(this.cart));
+    this.updateCartUI();
+  }
+
+  addToCart(machineId) {
+    const machine = this.getById(machineId);
+    if (!machine) return;
+
+    const existing = this.cart.find(item => item.id === machineId);
+    if (existing) {
+      existing.qty = (existing.qty || 1) + 1;
+    } else {
+      this.cart.push({
+        id: machine.id,
+        name: machine.name,
+        price: machine.price || 11999,
+        category: machine.category,
+        image: machine.image,
+        qty: 1
+      });
+    }
+
+    this.persistCart();
+    this.showToast(`🛒 "${machine.name}" added to cart!`);
+    this.openCartDrawer();
+  }
+
+  removeFromCart(machineId) {
+    this.cart = this.cart.filter(item => item.id !== machineId);
+    this.persistCart();
+  }
+
+  updateCartQty(machineId, delta) {
+    const item = this.cart.find(i => i.id === machineId);
+    if (!item) return;
+
+    item.qty = (item.qty || 1) + delta;
+    if (item.qty <= 0) {
+      this.removeFromCart(machineId);
+    } else {
+      this.persistCart();
+    }
+  }
+
+  clearCart() {
+    this.cart = [];
+    this.persistCart();
+  }
+
+  getCartCount() {
+    return this.cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  }
+
+  getCartTotal() {
+    return this.cart.reduce((sum, item) => sum + ((item.price || 0) * (item.qty || 1)), 0);
+  }
+
+  updateCartUI() {
+    const count = this.getCartCount();
+    const total = this.getCartTotal();
+
+    // Floating button badge
+    const badge = document.getElementById("cart-badge-count");
+    if (badge) badge.innerText = count;
+
+    // Header nav cart count
+    const navCount = document.getElementById("nav-cart-count");
+    if (navCount) navCount.innerText = count;
+
+    // Drawer header count
+    const drawerCount = document.getElementById("cart-drawer-count");
+    if (drawerCount) drawerCount.innerText = `${count} ${count === 1 ? 'item' : 'items'}`;
+
+    // Subtotal and Total
+    const subtotalEl = document.getElementById("cart-subtotal-val");
+    if (subtotalEl) subtotalEl.innerText = `₹${total.toLocaleString('en-IN')}`;
+
+    const totalEl = document.getElementById("cart-total-val");
+    if (totalEl) totalEl.innerText = `₹${total.toLocaleString('en-IN')}`;
+
+    const checkoutBtn = document.getElementById("btn-checkout-whatsapp");
+    if (checkoutBtn) {
+      checkoutBtn.innerHTML = `<span>💬</span> Order Cart on WhatsApp (${total > 0 ? '₹' + total.toLocaleString('en-IN') : 'Empty'})`;
+      checkoutBtn.disabled = count === 0;
+    }
+
+    this.renderCartItems();
+  }
+
+  renderCartItems() {
+    const container = document.getElementById("cart-items-container");
+    if (!container) return;
+
+    if (this.cart.length === 0) {
+      container.innerHTML = `
+        <div class="cart-empty-state">
+          <span class="cart-empty-icon">🛒</span>
+          <h4 style="color: var(--color-navy); margin-bottom: 0.35rem; font-size: 1.15rem;">Your Cart is Empty</h4>
+          <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">
+            Browse our custom-built RO water purifiers and add them to your cart for doorstep delivery in Dharmapuri.
+          </p>
+          <button class="btn btn-secondary btn-sm" onclick="machineManager.closeCartDrawer()">Browse Machines</button>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = this.cart.map(item => {
+      const imgSrc = this.resolveImagePath(item.image);
+      const lineTotal = (item.price || 0) * (item.qty || 1);
+
+      return `
+        <div class="cart-item">
+          <div class="cart-item-thumb">
+            <img src="${imgSrc}" alt="${item.name}" onerror="this.src='${this.resolveImagePath('assets/bele-water-purifier.jpg')}'">
+          </div>
+          <div class="cart-item-info">
+            <h4 class="cart-item-name">${item.name}</h4>
+            <div class="cart-item-price">₹${(item.price || 0).toLocaleString('en-IN')}</div>
+            <div class="cart-item-qty-row">
+              <div class="cart-qty-ctrls">
+                <button type="button" class="cart-qty-btn" onclick="machineManager.updateCartQty('${item.id}', -1)">−</button>
+                <span class="cart-qty-num">${item.qty || 1}</span>
+                <button type="button" class="cart-qty-btn" onclick="machineManager.updateCartQty('${item.id}', 1)">+</button>
+              </div>
+              <button type="button" class="cart-item-remove-btn" onclick="machineManager.removeFromCart('${item.id}')">Remove</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  openCartDrawer() {
+    const overlay = document.getElementById("cart-drawer-overlay");
+    if (overlay) overlay.classList.add("active");
+  }
+
+  closeCartDrawer() {
+    const overlay = document.getElementById("cart-drawer-overlay");
+    if (overlay) overlay.classList.remove("active");
+  }
+
+  checkoutCartWhatsApp() {
+    if (this.cart.length === 0) {
+      alert("Your cart is empty! Please add a custom RO machine first.");
+      return;
+    }
+
+    const nameInput = document.getElementById("cart-customer-name");
+    const areaInput = document.getElementById("cart-customer-area");
+    const customerName = nameInput ? nameInput.value.trim() : "";
+    const customerArea = areaInput ? areaInput.value.trim() : "";
+
+    const itemsSummary = this.cart.map((item, idx) => {
+      const total = (item.price || 0) * (item.qty || 1);
+      return `${idx + 1}. *${item.name}* (Qty: ${item.qty}) - ₹${total.toLocaleString('en-IN')}`;
+    }).join("\n");
+
+    const grandTotal = this.getCartTotal().toLocaleString('en-IN');
+
+    let text = `🛒 *NEW RO MACHINE ORDER - VARUN AQUA TECH*\n`;
+    text += `Founder: Selvam .V | Dharmapuri\n\n`;
+    if (customerName) text += `👤 *Customer Name:* ${customerName}\n`;
+    if (customerArea) text += `📍 *Delivery Location:* ${customerArea}\n`;
+    text += `\n*SELECTED MACHINES:*\n${itemsSummary}\n\n`;
+    text += `💰 *Total Amount:* ₹${grandTotal}\n`;
+    text += `🚚 *Delivery & Installation:* FREE in Dharmapuri\n`;
+    text += `🛡️ *Warranty:* 1 Year Comprehensive Onsite\n\n`;
+    text += `Please confirm availability and schedule my doorstep installation!`;
+
+    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  }
+
+  /* ============================================================
+     CATALOG & FILTERING
+     ============================================================ */
   getFilteredMachines() {
     return this.machines.filter(m => {
       const matchCategory = this.currentFilter === "All" || m.category.toLowerCase() === this.currentFilter.toLowerCase();
       const q = this.searchQuery.toLowerCase().trim();
       const matchSearch = !q || 
         (m.name && m.name.toLowerCase().includes(q)) || 
+        (m.saleTitle && m.saleTitle.toLowerCase().includes(q)) ||
         (m.capacity && m.capacity.toLowerCase().includes(q)) || 
         (m.stages && m.stages.toLowerCase().includes(q)) ||
         (m.idealFor && m.idealFor.toLowerCase().includes(q));
@@ -165,7 +438,9 @@ class MachineManager {
 
   redirectToWhatsApp(machine) {
     if (!machine) return;
-    const text = `Hello VARUN AQUA TECH (Founder: Selvam .V),\n\nI would like to inquire about the custom-built machine:\n• *Model:* ${machine.name}\n• *Category:* ${machine.category} RO\n• *Capacity:* ${machine.capacity}\n• *Stages / Tech:* ${machine.stages}\n• *Ideal For:* ${machine.idealFor}\n\nPlease share quotation, availability, and installation details for Dharmapuri.`;
+    const priceText = machine.price ? `₹${machine.price.toLocaleString('en-IN')}` : "Contact for Best Quote";
+    const mrpText = machine.mrp ? ` (MRP: ₹${machine.mrp.toLocaleString('en-IN')})` : "";
+    const text = `Hello VARUN AQUA TECH (Founder: Selvam .V),\n\nI would like to order / inquire about this custom-built machine:\n• *Model:* ${machine.name}\n• *Offer Price:* ${priceText}${mrpText}\n• *Category:* ${machine.category} RO\n• *Capacity:* ${machine.capacity}\n• *Filtration Stages:* ${machine.stages}\n• *Ideal For:* ${machine.idealFor}\n• *Warranty:* ${machine.warranty || '1 Year Onsite'}\n\nPlease share availability, payment options, and doorstep delivery schedule in Dharmapuri.`;
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   }
@@ -180,9 +455,12 @@ class MachineManager {
           <div style="font-size: 2.8rem; margin-bottom: 0.75rem;">⚙️</div>
           <h3 style="color: var(--color-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Custom RO Machines Ready</h3>
           <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 0.95rem; line-height: 1.6;">
-            Have a custom requirement for your home, commercial kitchen, clinic, or industry? Click below to add and publish custom machines with photos and direct WhatsApp ordering.
+            Have a custom requirement for your home, commercial kitchen, clinic, or industry? Click below to add and publish custom machines with photos, prices, and e-commerce cart.
           </p>
-          <button class="btn btn-primary btn-lg" onclick="machineManager.openAddModal()">＋ Add Custom Machine</button>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-md" onclick="machineManager.openAddModal()">＋ Add Custom Machine</button>
+            <button class="btn btn-secondary btn-md" onclick="machineManager.resetToDefaults()">🔄 Restore Recommended Catalog</button>
+          </div>
         </div>
       `;
       return;
@@ -204,13 +482,16 @@ class MachineManager {
 
     container.innerHTML = filtered.map(m => {
       const imgSrc = this.resolveImagePath(m.image);
-      const isFreeInstall = (m.badge || "").toLowerCase().includes("free installation");
-      const badgeClass = isFreeInstall ? "badge-free-install" : "badge-custom";
+      const price = m.price || 11999;
+      const mrp = m.mrp || Math.round(price * 1.35);
+      const savings = mrp - price;
+      const discountPercent = Math.max(10, Math.round((savings / mrp) * 100));
+      const badgeText = m.badge || `${discountPercent}% OFF`;
 
       return `
         <article class="custom-machine-card" data-id="${m.id}">
-          <div class="machine-card-image-wrap" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))" title="Click to order on WhatsApp">
-            <span class="machine-badge ${badgeClass}">${m.badge || m.category}</span>
+          <div class="machine-card-image-wrap" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))" title="Click to view & order on WhatsApp">
+            <span class="machine-badge badge-free-install">${badgeText}</span>
             <img src="${imgSrc}" alt="${m.name} - VARUN AQUA TECH" loading="lazy" onerror="this.src='${this.resolveImagePath('assets/bele-water-purifier.jpg')}'">
             <div class="machine-image-overlay">
               <span>💬 Click to Order on WhatsApp</span>
@@ -221,45 +502,78 @@ class MachineManager {
             <div class="machine-header-row">
               <span class="machine-category-pill">${m.category} RO</span>
               <div class="machine-admin-actions">
-                <button class="btn-icon-sm" onclick="machineManager.openEditModal('${m.id}')" title="Edit Machine">✏️</button>
-                <button class="btn-icon-sm btn-icon-danger" onclick="machineManager.deleteMachine('${m.id}')" title="Delete Machine">🗑️</button>
+                <button class="btn-icon-sm" onclick="machineManager.openEditModal('${m.id}')" title="Edit Price & Specs">✏️</button>
+                <button class="btn-icon-sm btn-icon-danger" onclick="machineManager.deleteMachine('${m.id}')" title="Delete Product">🗑️</button>
               </div>
             </div>
 
             <h3 class="machine-title" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))">${m.name}</h3>
-            
-            <div class="machine-specs-list">
-              <div class="spec-row">
-                <span class="spec-icon">⚡</span>
-                <span class="spec-key">Capacity:</span>
-                <span class="spec-val">${m.capacity}</span>
+            ${m.saleTitle ? `<div class="machine-card-subtitle">${m.saleTitle}</div>` : ''}
+
+            <div class="machine-rating-row">
+              <span class="rating-stars">★★★★★</span>
+              <span class="rating-text">${m.rating || '4.9'}</span>
+              <span class="rating-count">(${m.reviewCount || '120'} reviews)</span>
+            </div>
+
+            <!-- E-Commerce Price Section -->
+            <div class="ecom-price-box">
+              <div class="ecom-price-row">
+                <span class="ecom-deal-price">₹${price.toLocaleString('en-IN')}</span>
+                <span class="ecom-mrp"><del>₹${mrp.toLocaleString('en-IN')}</del></span>
+                <span class="ecom-discount-tag">Save ₹${savings.toLocaleString('en-IN')} (${discountPercent}% OFF)</span>
               </div>
-              <div class="spec-row">
-                <span class="spec-icon">🛡️</span>
-                <span class="spec-key">Stages:</span>
-                <span class="spec-val">${m.stages}</span>
+              <div class="ecom-perks-row">
+                <span>🚚 FREE Delivery</span> &bull; <span>🔧 FREE Installation in Dharmapuri</span>
               </div>
-              <div class="spec-row">
-                <span class="spec-icon">📍</span>
-                <span class="spec-key">Ideal For:</span>
-                <span class="spec-val">${m.idealFor}</span>
+            </div>
+
+            <!-- Clear Spec Grid -->
+            <div class="ecom-spec-grid">
+              <div class="ecom-spec-item">
+                <span class="ecom-spec-icon">⚡</span>
+                <span class="ecom-spec-key">Capacity:</span>
+                <span class="ecom-spec-val">${m.capacity}</span>
+              </div>
+              <div class="ecom-spec-item">
+                <span class="ecom-spec-icon">🛡️</span>
+                <span class="ecom-spec-key">Stages:</span>
+                <span class="ecom-spec-val">${m.stages}</span>
+              </div>
+              <div class="ecom-spec-item">
+                <span class="ecom-spec-icon">💧</span>
+                <span class="ecom-spec-key">TDS Limit:</span>
+                <span class="ecom-spec-val">${m.idealFor}</span>
+              </div>
+              <div class="ecom-spec-item">
+                <span class="ecom-spec-icon">🏅</span>
+                <span class="ecom-spec-key">Warranty:</span>
+                <span class="ecom-spec-val">${m.warranty || '1 Year Comprehensive Onsite Warranty'}</span>
               </div>
             </div>
 
             <p class="machine-desc">${m.description || ""}</p>
 
-            <div class="machine-card-footer">
-              <div class="machine-consult-tag" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--color-blue); font-weight: 700;">
-                <span>🛡️</span> Custom Build
-              </div>
-              <button class="btn btn-whatsapp btn-sm machine-order-btn" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))">
-                <span>💬</span> Order on WhatsApp
+            <!-- E-Commerce Actions -->
+            <div class="ecom-card-actions">
+              <button class="btn-add-cart" onclick="machineManager.addToCart('${m.id}')">
+                <span>🛒</span> Add to Cart
+              </button>
+              <button class="btn-buy-whatsapp" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))">
+                <span>💬</span> Buy on WhatsApp
               </button>
             </div>
           </div>
         </article>
       `;
     }).join("");
+  }
+
+  resetToDefaults() {
+    this.machines = [...DEFAULT_MACHINES];
+    this.persist();
+    this.renderCatalog();
+    this.showToast("Catalog restored with recommended models!");
   }
 
   getById(id) {
@@ -281,7 +595,7 @@ class MachineManager {
     const grid = document.getElementById("preset-photo-grid");
     if (!grid) return;
 
-    grid.innerHTML = PRESET_IMAGES.map((p, idx) => {
+    grid.innerHTML = PRESET_IMAGES.map((p) => {
       const resolved = this.resolveImagePath(p.path);
       return `
         <div class="preset-photo-item" data-path="${p.path}" onclick="machineManager.selectPreset('${p.path}', '${p.label}')" title="${p.label}">
@@ -330,6 +644,45 @@ class MachineManager {
       addBtn.addEventListener("click", () => this.openAddModal());
     }
 
+    // Cart Drawer triggers
+    const floatingCart = document.getElementById("floating-cart-btn");
+    if (floatingCart) {
+      floatingCart.addEventListener("click", () => this.openCartDrawer());
+    }
+
+    const navCartBtn = document.getElementById("btn-view-cart-nav");
+    if (navCartBtn) {
+      navCartBtn.addEventListener("click", () => this.openCartDrawer());
+    }
+
+    const cartCloseBtn = document.getElementById("cart-close-btn");
+    if (cartCloseBtn) {
+      cartCloseBtn.addEventListener("click", () => this.closeCartDrawer());
+    }
+
+    const cartOverlay = document.getElementById("cart-drawer-overlay");
+    if (cartOverlay) {
+      cartOverlay.addEventListener("click", (e) => {
+        if (e.target === cartOverlay) this.closeCartDrawer();
+      });
+    }
+
+    // Checkout WhatsApp button
+    const checkoutBtn = document.getElementById("btn-checkout-whatsapp");
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener("click", () => this.checkoutCartWhatsApp());
+    }
+
+    // Clear cart button
+    const clearCartBtn = document.getElementById("btn-clear-cart");
+    if (clearCartBtn) {
+      clearCartBtn.addEventListener("click", () => {
+        if (confirm("Are you sure you want to clear your cart?")) {
+          this.clearCart();
+        }
+      });
+    }
+
     // Modal submit
     const form = document.getElementById("machine-crud-form");
     if (form) {
@@ -352,7 +705,10 @@ class MachineManager {
     }
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") this.closeModal();
+      if (e.key === "Escape") {
+        this.closeModal();
+        this.closeCartDrawer();
+      }
     });
 
     // Media Switcher Tabs
@@ -544,14 +900,18 @@ class MachineManager {
   }
 
   openAddModal() {
-    document.getElementById("modal-title").innerText = "Add New Custom RO Machine";
+    document.getElementById("modal-title").innerText = "Add New Custom RO Machine (Owner Mode)";
     document.getElementById("machine-id").value = "";
     document.getElementById("m-form-name").value = "";
+    document.getElementById("m-form-sale-title").value = "Special Sale Edition • Custom Built";
     document.getElementById("m-form-category").value = "Domestic";
-    document.getElementById("m-form-capacity").value = "15 LPH";
+    document.getElementById("m-form-price").value = "11999";
+    document.getElementById("m-form-mrp").value = "16999";
+    document.getElementById("m-form-capacity").value = "15 LPH (12L Tank)";
     document.getElementById("m-form-stages").value = "8-Stage RO + UV + Alkaline + Active Copper";
-    document.getElementById("m-form-ideal").value = "Dharmapuri Borewell / Overhead Tank";
-    document.getElementById("m-form-badge").value = "Free Installation Included";
+    document.getElementById("m-form-ideal").value = "Dharmapuri Borewell / Overhead Tank (Up to 2500 TDS)";
+    document.getElementById("m-form-warranty").value = "1 Year Comprehensive Onsite Warranty";
+    document.getElementById("m-form-badge").value = "Festive Offer • Free Installation";
     document.getElementById("m-form-image-custom").value = "assets/bele-water-purifier.jpg";
     document.getElementById("m-form-desc").value = "Custom-assembled by Selvam .V with high-grade booster pump and genuine high-rejection TFC membrane.";
     
@@ -568,13 +928,17 @@ class MachineManager {
     const m = this.getById(id);
     if (!m) return;
 
-    document.getElementById("modal-title").innerText = "Edit Custom RO Machine";
+    document.getElementById("modal-title").innerText = "Edit RO Machine Details & Price";
     document.getElementById("machine-id").value = m.id;
     document.getElementById("m-form-name").value = m.name;
+    document.getElementById("m-form-sale-title").value = m.saleTitle || "";
     document.getElementById("m-form-category").value = m.category;
+    document.getElementById("m-form-price").value = m.price || 11999;
+    document.getElementById("m-form-mrp").value = m.mrp || 16999;
     document.getElementById("m-form-capacity").value = m.capacity;
     document.getElementById("m-form-stages").value = m.stages;
     document.getElementById("m-form-ideal").value = m.idealFor;
+    document.getElementById("m-form-warranty").value = m.warranty || "1 Year Comprehensive Onsite Warranty";
     document.getElementById("m-form-badge").value = m.badge || "";
     document.getElementById("m-form-image-custom").value = m.image;
     document.getElementById("m-form-desc").value = m.description || "";
@@ -607,10 +971,14 @@ class MachineManager {
   async handleFormSubmit() {
     const id = document.getElementById("machine-id").value;
     const name = document.getElementById("m-form-name").value.trim();
+    const saleTitle = document.getElementById("m-form-sale-title").value.trim();
     const category = document.getElementById("m-form-category").value;
+    const price = parseInt(document.getElementById("m-form-price").value.trim(), 10) || 11999;
+    const mrp = parseInt(document.getElementById("m-form-mrp").value.trim(), 10) || Math.round(price * 1.35);
     const capacity = document.getElementById("m-form-capacity").value.trim();
     const stages = document.getElementById("m-form-stages").value.trim();
     const idealFor = document.getElementById("m-form-ideal").value.trim();
+    const warranty = document.getElementById("m-form-warranty").value.trim();
     const badge = document.getElementById("m-form-badge").value.trim();
     const image = document.getElementById("m-form-image-custom").value.trim() || "assets/bele-water-purifier.jpg";
     const description = document.getElementById("m-form-desc").value.trim();
@@ -625,17 +993,17 @@ class MachineManager {
       if (index !== -1) {
         this.machines[index] = {
           ...this.machines[index],
-          name, category, capacity, stages, idealFor, badge, image, description
+          name, saleTitle, category, price, mrp, capacity, stages, idealFor, warranty, badge, image, description
         };
         this.showToast(`Updated "${name}" successfully!`);
       }
     } else {
       const newMachine = {
         id: "cm-" + Date.now(),
-        name, category, capacity, stages, idealFor, badge, image, description
+        name, saleTitle, category, price, mrp, rating: 4.9, reviewCount: 1, capacity, stages, idealFor, warranty, badge, image, description
       };
       this.machines.unshift(newMachine);
-      this.showToast(`Added "${name}" with exact photo!`);
+      this.showToast(`Added "${name}" with e-commerce pricing!`);
     }
 
     await this.persist();
