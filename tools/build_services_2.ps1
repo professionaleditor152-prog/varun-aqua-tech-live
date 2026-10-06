@@ -1,4 +1,4 @@
-﻿. "d:\varun aqua tech website\tools\templates.ps1"
+. "d:\varun aqua tech website\tools\templates.ps1"
 
 # 5. RO MAINTENANCE
 $maintContent = @"
@@ -18,7 +18,7 @@ $maintContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/filtration-stages.svg" alt="RO maintenance service Dharmapuri" width="500">
+      <img src="../assets/service-maintenance.jpg" alt="RO maintenance service Dharmapuri by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -40,6 +40,23 @@ $maintContent = @"
         <h4 class="service-title">Tank Sanitization &amp; Auto-Cut</h4>
         <p class="service-desc">Cleaning interior storage tank surfaces and confirming proper float switch shutoff function.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="split-section" style="margin-bottom: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Calibrated Digital TDS Testing</h3>
+      <p>
+        Every maintenance visit includes testing raw water TDS against purified output water with digital electronic meters to verify your membrane is working with over 90% rejection efficiency.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> Mineral retention assessment</li>
+        <li><span class="check">&#10003;</span> Pre-filter sediment flushing</li>
+        <li><span class="check">&#10003;</span> Auto-cut microswitch validation</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/water-tds-testing.jpg" alt="Water TDS Testing in Kitchen by Technician" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 
@@ -84,7 +101,7 @@ $amcContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/hero-purifier.svg" alt="RO AMC services in Dharmapuri" width="500">
+      <img src="../assets/service-amc.jpg" alt="RO AMC services in Dharmapuri by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -106,6 +123,23 @@ $amcContent = @"
         <h4 class="service-title">Priority Support</h4>
         <p class="service-desc">Prompt response when unforeseen leakages, electrical cuts, or water flow drops occur.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="split-section" style="margin-bottom: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Year-Round Service Security</h3>
+      <p>
+        Avoid sudden water contamination or expensive emergency repairs. Our scheduled AMC program ensures proactive replacement and regular inspections across homes, schools, and offices in Dharmapuri.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> Scheduled preventative servicing visits</li>
+        <li><span class="check">&#10003;</span> Priority on-call support within 24 hours</li>
+        <li><span class="check">&#10003;</span> Genuine replacement filter cartridges</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/ro-service-technician-filters.jpg" alt="Certified RO Technician Scheduled AMC Servicing" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 
@@ -152,7 +186,7 @@ $filterContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/filter-cartridges.svg" alt="RO filter and membrane replacement in Dharmapuri" width="500">
+      <img src="../assets/service-filters.jpg" alt="RO filter and membrane replacement in Dharmapuri by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -183,6 +217,23 @@ $filterContent = @"
           Polishes water taste, balances natural pH, and replenishes essential minerals like calcium and magnesium for healthy drinking water.
         </p>
       </div>
+    </div>
+  </div>
+
+  <div class="split-section" style="margin-bottom: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Genuine Tested Spares</h3>
+      <p>
+        We stock authentic 75/80/100 GPD thin-film composite membranes, spun PP sediment candles, coconut-shell CTO carbon blocks, and copper alkaline cartridges for balanced mineral taste.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> 100% genuine factory-sealed components</li>
+        <li><span class="check">&#10003;</span> High-rejection TFC spiral wound membranes</li>
+        <li><span class="check">&#10003;</span> Food-grade housing bowls &amp; O-rings</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/ro-spare-parts.jpg" alt="Genuine RO Spare Parts and Filter Cartridges Kit" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 
@@ -227,7 +278,7 @@ $commContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/commercial-plant.svg" alt="Commercial RO water purification solutions in Dharmapuri" width="500">
+      <img src="../assets/commercial-plant.jpg" alt="Commercial RO water purification solutions in Dharmapuri by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -249,6 +300,23 @@ $commContent = @"
         <h4 class="service-title">Custom Commercial Skids</h4>
         <p class="service-desc">Multi-membrane 4040/8040 setups with sand &amp; carbon media vessels for higher institutional needs.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="split-section" style="margin-bottom: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Industrial-Grade Skid Systems</h3>
+      <p>
+        Engineered for high daily throughput in commercial premises. Built on corrosion-resistant stainless steel skid frames with dual FRP media vessels, rotameter flow monitoring, and multi-stage raw water pre-filtration.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> Multi-stage 250 LPH to 5,000 LPH skids</li>
+        <li><span class="check">&#10003;</span> Vertical multi-stage high pressure booster pumps</li>
+        <li><span class="check">&#10003;</span> Commercial sand &amp; carbon filtration vessels</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/reverse-osmosis-system.jpg" alt="Commercial Multi-stage Industrial RO Skid System" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 

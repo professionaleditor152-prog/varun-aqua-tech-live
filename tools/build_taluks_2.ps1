@@ -1,4 +1,4 @@
-﻿. "d:\varun aqua tech website\tools\templates.ps1"
+. "d:\varun aqua tech website\tools\templates.ps1"
 
 # 5. NALLAMPALLI TALUK
 $nallampalliContent = @"
@@ -18,7 +18,7 @@ $nallampalliContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/district-map.svg" alt="RO Water Purifier Service in Nallampalli" width="500">
+      <img src="../assets/service-amc.jpg" alt="RO Water Purifier Service in Nallampalli by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -27,7 +27,7 @@ $nallampalliContent = @"
     <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
       <div class="service-card">
         <h4 class="service-title">Domestic Purifier Sales &amp; Setup</h4>
-        <p class="service-desc">Quality domestic RO water purifiers configured for residential homes with high borewell mineral levels.</p>
+        <p class="service-desc">Quality domestic RO water purifiers configured for residential homes with high borewell mineral levels &mdash; Free Doorstep Installation.</p>
       </div>
       <div class="service-card">
         <h4 class="service-title">Doorstep Filter Replacement</h4>
@@ -87,7 +87,7 @@ $karimangalamContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/filter-cartridges.svg" alt="RO Water Purifier Service in Karimangalam" width="500">
+      <img src="../assets/service-maintenance.jpg" alt="RO Water Purifier Service in Karimangalam by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -156,7 +156,7 @@ $pappireddipattiContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/hero-purifier.svg" alt="RO Water Purifier Service in Pappireddipatti" width="500">
+      <img src="../assets/service-sales.jpg" alt="RO Water Purifier Service in Pappireddipatti by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 

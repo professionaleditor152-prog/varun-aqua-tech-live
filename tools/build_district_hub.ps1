@@ -1,4 +1,4 @@
-﻿. "d:\varun aqua tech website\tools\templates.ps1"
+. "d:\varun aqua tech website\tools\templates.ps1"
 
 # 1. DISTRICT PILLAR PAGE
 $districtPillarContent = @"
@@ -19,6 +19,24 @@ $districtPillarContent = @"
     </div>
     <div class="split-visual">
       <img src="../assets/district-map.svg" alt="RO service areas in Dharmapuri district map" width="500">
+    </div>
+  </div>
+
+  <div class="split-section" style="margin-bottom: 3.5rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <span class="badge badge-aqua">Commercial &amp; Community Water</span>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Turnkey RO Solutions Across All 7 Taluks</h3>
+      <p>
+        From residential 8-stage copper alkaline water purifiers to high-output commercial RO plants for schools, hospitals, and factories across Dharmapuri district, founder <strong>Selvam .V</strong> coordinates doorstep logistics with genuine components.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> Fast dispatch from central Harur Main Road hub</li>
+        <li><span class="check">&#10003;</span> Genuine spare parts &amp; membrane stock ready for transit</li>
+        <li><span class="check">&#10003;</span> High-TDS borewell water solutions tailored for local geology</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/commercial-plant.jpg" alt="Commercial RO Plant Systems for Dharmapuri District" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 
@@ -177,6 +195,10 @@ Build-Subpage `
 # 2. DISTRICT HUB DIRECTORY (/dharmapuri/)
 $dharmapuriHubContent = @"
 <div style="max-width: 950px; margin: 0 auto;">
+  <div style="margin-bottom: 2.5rem;">
+    <img src="../assets/ro-service-technician-filters.jpg" alt="VARUN AQUA TECH District Doorstep Service &amp; Filtration Support" width="950" height="380" style="width: 100%; border-radius: var(--radius-xl); object-fit: cover; box-shadow: var(--shadow-md); max-height: 380px;">
+  </div>
+
   <div style="text-align: center; max-width: 760px; margin: 0 auto 3rem auto;">
     <span class="badge badge-aqua">Geographic Directory</span>
     <h2>VARUN AQUA TECH &mdash; RO Water Purifier Services in Dharmapuri District</h2>
@@ -258,8 +280,8 @@ Build-Subpage `
   -title "RO Water Purifier Services in Dharmapuri District | VARUN AQUA TECH" `
   -metaDesc "Explore VARUN AQUA TECH RO water purifier services across Dharmapuri District: Dharmapuri, Harur, Palacode, Pennagaram, Nallampalli, Karimangalam, Pappireddipatti." `
   -canonical "https://varunaquatech.com/dharmapuri/" `
-  -h1 "VARUN AQUA TECH — RO Water Purifier Services in Dharmapuri District" `
-  -subtitle "Directory of Revenue Taluks & Dedicated Local Service Areas" `
+  -h1 "VARUN AQUA TECH - RO Water Purifier Services in Dharmapuri District" `
+  -subtitle "Directory of Revenue Taluks &amp; Dedicated Local Service Areas" `
   -activeNav "district" `
   -breadcrumbs @(@{label="Home"; url="../"}, @{label="Dharmapuri District Directory"; url=""}) `
   -mainContent $dharmapuriHubContent `

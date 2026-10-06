@@ -1,4 +1,4 @@
-﻿. "d:\varun aqua tech website\tools\templates.ps1"
+. "d:\varun aqua tech website\tools\templates.ps1"
 
 # 1. DHARMAPURI TALUK
 $dharmapuriContent = @"
@@ -11,14 +11,14 @@ $dharmapuriContent = @"
         VARUN AQUA TECH is located within Dharmapuri taluk at Bosinaickenhalli on Harur Main Road, right near India1 ATM. Because our primary sales and service center is based here, customers throughout Dharmapuri town and surrounding wards receive our fastest doorstep support.
       </p>
       <p>
-        Whether you are facing water leakage, low dispensing flow, clogged sediment filters, or require a brand new domestic RO purifier installed in your home, our team provides transparent, reliable service.
+        Whether you are facing water leakage, low dispensing flow, clogged sediment filters, or require a brand new domestic RO purifier installed in your home, our team provides transparent, reliable service led by founder <strong>Selvam .V</strong>.
       </p>
       <div style="margin-top: 1.5rem;">
         <a href="#service-form" class="btn btn-primary">Book Dharmapuri Service</a>
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/hero-purifier.svg" alt="RO Water Purifier Service in Dharmapuri" width="500">
+      <img src="../assets/ro-service-technician-filters.jpg" alt="RO Water Purifier Service in Dharmapuri by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -27,7 +27,7 @@ $dharmapuriContent = @"
     <div class="services-grid" style="grid-template-columns: repeat(3, 1fr);">
       <div class="service-card">
         <h4 class="service-title">&#128167; RO Purifier Sales</h4>
-        <p class="service-desc">Domestic wall-mounted units and commercial purifiers sized for local borewell and tap water TDS.</p>
+        <p class="service-desc">Domestic wall-mounted units and commercial purifiers sized for local borewell and tap water TDS &mdash; Free Installation Included.</p>
       </div>
       <div class="service-card">
         <h4 class="service-title">&#128295; Doorstep Installation</h4>
@@ -95,7 +95,7 @@ $harurContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/district-map.svg" alt="RO service Harur Dharmapuri" width="500">
+      <img src="../assets/service-installation.jpg" alt="RO service Harur Dharmapuri by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -167,7 +167,7 @@ $palacodeContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/filter-cartridges.svg" alt="RO Water Purifier Service in Palacode" width="500">
+      <img src="../assets/service-repair.jpg" alt="RO Water Purifier Service in Palacode by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 
@@ -239,7 +239,7 @@ $pennagaramContent = @"
       </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/hero-purifier.svg" alt="RO Water Purifier Service in Pennagaram" width="500">
+      <img src="../assets/water-tds-testing.jpg" alt="RO Water Purifier Service in Pennagaram by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
     </div>
   </div>
 

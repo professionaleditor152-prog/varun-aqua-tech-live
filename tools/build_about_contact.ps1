@@ -1,8 +1,8 @@
-﻿. "d:\varun aqua tech website\tools\templates.ps1"
+. "d:\varun aqua tech website\tools\templates.ps1"
 
 # 1. ABOUT PAGE
 $aboutContent = @"
-<div style="max-width: 900px; margin: 0 auto;">
+<div style="max-width: 950px; margin: 0 auto;">
   <div class="split-section" style="margin-bottom: 3.5rem;">
     <div>
       <span class="badge badge-aqua">Our Mission &amp; Approach</span>
@@ -13,9 +13,30 @@ $aboutContent = @"
       <p>
         Our business was created to give local residents and businesses a reliable, approachable, and technically sound alternative to generic repair services. We focus specifically on reverse osmosis (RO) systems, water treatment filtration, and genuine consumable components.
       </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="#service-form" class="btn btn-primary">Book Doorstep Consultation</a>
+      </div>
     </div>
     <div class="split-visual">
-      <img src="../assets/filtration-stages.svg" alt="VARUN AQUA TECH RO water purifier service in Dharmapuri" width="500">
+      <img src="../assets/storefront-showroom.jpg" alt="VARUN AQUA TECH Showroom &amp; Service Care Center Bosinaickenhalli Dharmapuri" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
+    </div>
+  </div>
+
+  <div class="split-section" style="margin-bottom: 3.5rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <span class="badge badge-aqua">Leadership &amp; Field Expertise</span>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Direct Field Supervision by Founder Selvam .V</h3>
+      <p>
+        With over 15 years of continuous service across Dharmapuri district, founder <strong>Selvam .V</strong> personally inspects equipment, calibrates TDS testing, and oversees technicians to ensure reliable water purification for local families and businesses.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> 15+ years hands-on field experience in water treatment</li>
+        <li><span class="check">&#10003;</span> 5,000+ satisfied domestic &amp; commercial installations</li>
+        <li><span class="check">&#10003;</span> Strict commitment to 100% genuine spares &amp; accurate diagnostics</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/ro-service-technician-filters.jpg" alt="Founder Selvam .V and Field Technicians at VARUN AQUA TECH" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 
@@ -75,6 +96,10 @@ Build-Subpage `
 # 2. CONTACT PAGE
 $contactContent = @"
 <div style="max-width: 1000px; margin: 0 auto;">
+  <div style="margin-bottom: 2.5rem;">
+    <img src="../assets/storefront-showroom.jpg" alt="VARUN AQUA TECH Service Center on Harur Main Road Bosinaickenhalli Dharmapuri" width="1000" height="420" style="width: 100%; border-radius: var(--radius-xl); object-fit: cover; box-shadow: var(--shadow-md); max-height: 400px;">
+  </div>
+
   <div class="location-card-grid" style="margin-bottom: 3.5rem;">
     <div class="location-info-card">
       <div>
@@ -149,11 +174,11 @@ $contactContent = @"
 
 Build-Subpage `
   -folder "contact" `
-  -title "Contact VARUN AQUA TECH | RO Service in Dharmapuri | Phone & Location" `
-  -metaDesc "Contact VARUN AQUA TECH for RO water purifier sales, installation, repair & maintenance in Dharmapuri, Bosinaickenhalli. Call +91 88380 55968 or visit Harur Main Road." `
+  -title "Contact VARUN AQUA TECH | RO Service in Dharmapuri | Phone &amp; Location" `
+  -metaDesc "Contact VARUN AQUA TECH for RO water purifier sales, installation, repair &amp; maintenance in Dharmapuri, Bosinaickenhalli. Call +91 88380 55968 or visit Harur Main Road." `
   -canonical "https://varunaquatech.com/contact/" `
   -h1 "Contact VARUN AQUA TECH" `
-  -subtitle "RO Water Purifier Sales & Service Center — Bosinaickenhalli, Dharmapuri" `
+  -subtitle "RO Water Purifier Sales &amp; Service Center - Bosinaickenhalli, Dharmapuri" `
   -activeNav "contact" `
   -breadcrumbs @(@{label="Home"; url="../"}, @{label="Contact VARUN AQUA TECH"; url=""}) `
   -mainContent $contactContent `

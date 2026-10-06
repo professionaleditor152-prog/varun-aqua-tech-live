@@ -1,17 +1,25 @@
-﻿. "d:\varun aqua tech website\tools\templates.ps1"
+. "d:\varun aqua tech website\tools\templates.ps1"
 
 # 1. RO BUYING GUIDE
 $buyingContent = @"
 <div style="max-width: 950px; margin: 0 auto;">
-  <div style="margin-bottom: 3.5rem;">
-    <span class="badge badge-aqua">Educational Guide</span>
-    <h2>A Practical Guide to Water Quality, TDS &amp; Purifier Selection in Dharmapuri</h2>
-    <p style="font-size: 1.05rem; line-height: 1.8;">
-      Choosing the right water purifier in Dharmapuri requires understanding your water source. Because groundwater characteristics vary dramatically between borewells, open wells, and municipal Cauvery connections across the district, no single purification technology fits every home.
-    </p>
-    <p>
-      At VARUN AQUA TECH, we believe in assessing water quality before recommending equipment. Here is what you should consider before purchasing an RO water purifier.
-    </p>
+  <div class="split-section" style="margin-bottom: 3.5rem;">
+    <div>
+      <span class="badge badge-aqua">Educational Guide</span>
+      <h2>A Practical Guide to Water Quality, TDS &amp; Purifier Selection in Dharmapuri</h2>
+      <p style="font-size: 1.05rem; line-height: 1.8;">
+        Choosing the right water purifier in Dharmapuri requires understanding your water source. Because groundwater characteristics vary dramatically between borewells, open wells, and municipal Cauvery connections across the district, no single purification technology fits every home.
+      </p>
+      <p>
+        At VARUN AQUA TECH, we believe in assessing water quality before recommending equipment. Here is what you should consider before purchasing an RO water purifier.
+      </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="#service-form" class="btn btn-primary">Request Free TDS Assessment</a>
+      </div>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/water-tds-testing.jpg" alt="Testing Water TDS for RO Purifier Selection in Dharmapuri" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
+    </div>
   </div>
 
   <!-- Section 1: Water Source & TDS -->
@@ -77,16 +85,21 @@ $buyingContent = @"
   </div>
 
   <!-- Section 3: Sizing and Responsible Water Usage -->
-  <div style="background-color: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-sm); margin-bottom: 3rem;">
-    <h3 style="font-size: 1.4rem; color: var(--color-navy); margin-bottom: 1rem;">3. Tank Sizing &amp; Reject Water Management</h3>
-    <p>
-      For a typical family of 3 to 6 members, a storage tank capacity of 7 to 10 liters with an 8 to 12 LPH purification rate is generally ideal.
-    </p>
-    <p>
-      <strong>Responsible Water Use:</strong> Reverse osmosis inherently separates purified water from concentrated reject water. We encourage Dharmapuri households to route the reject drainage pipe into collection buckets or utility drains for floor cleaning, dish pre-rinsing, or gardening rather than allowing it to go to waste.
-    </p>
-    <div style="margin-top: 1.5rem;">
-      <a href="../ro-water-purifier-sales/" class="btn btn-primary">Explore Available RO Purifiers &rarr;</a>
+  <div class="split-section" style="margin-bottom: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <h3 style="font-size: 1.4rem; color: var(--color-navy); margin-bottom: 1rem;">3. Tank Sizing &amp; Reject Water Management</h3>
+      <p>
+        For a typical family of 3 to 6 members, a storage tank capacity of 7 to 10 liters with an 8 to 12 LPH purification rate is generally ideal.
+      </p>
+      <p>
+        <strong>Responsible Water Use:</strong> Reverse osmosis inherently separates purified water from concentrated reject water. We encourage Dharmapuri households to route the reject drainage pipe into collection buckets or utility drains for floor cleaning, dish pre-rinsing, or gardening rather than allowing it to go to waste.
+      </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="../ro-water-purifier-sales/" class="btn btn-primary">Explore Available RO Purifiers &rarr;</a>
+      </div>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/bele-water-purifier.jpg" alt="Domestic Wall-Mounted RO Purifier System" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 </div>
@@ -108,15 +121,23 @@ Build-Subpage `
 # 2. RO REPAIR GUIDE
 $repairGuideContent = @"
 <div style="max-width: 950px; margin: 0 auto;">
-  <div style="margin-bottom: 3.5rem;">
-    <span class="badge badge-aqua">Technical Support Hub</span>
-    <h2>RO Purifier Troubleshooting &amp; Diagnostic Guide</h2>
-    <p style="font-size: 1.05rem; line-height: 1.8;">
-      When an RO water purifier malfunctions, understanding the common warning signs can help you identify whether a simple maintenance step is required or whether professional doorstep diagnostic inspection is needed.
-    </p>
-    <p>
-      <em>Note: Multiple factors can contribute to any fault. Our team can assess the system and recommend the appropriate service on-site.</em>
-    </p>
+  <div class="split-section" style="margin-bottom: 3.5rem;">
+    <div>
+      <span class="badge badge-aqua">Technical Support Hub</span>
+      <h2>RO Purifier Troubleshooting &amp; Diagnostic Guide</h2>
+      <p style="font-size: 1.05rem; line-height: 1.8;">
+        When an RO water purifier malfunctions, understanding the common warning signs can help you identify whether a simple maintenance step is required or whether professional doorstep diagnostic inspection is needed.
+      </p>
+      <p>
+        <em>Note: Multiple factors can contribute to any fault. Our team can assess the system and recommend the appropriate service on-site.</em>
+      </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="#service-form" class="btn btn-primary">Book Diagnostic Visit</a>
+      </div>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/service-repair.jpg" alt="RO Purifier Troubleshooting and Diagnostics by VARUN AQUA TECH" width="540" height="380" style="border-radius: var(--radius-xl); object-fit: cover; width: 100%; box-shadow: var(--shadow-md);">
+    </div>
   </div>
 
   <!-- Troubleshooting Symptoms -->
@@ -164,6 +185,24 @@ $repairGuideContent = @"
       <p>
         If water flows continuously into the drain even after the purified water tank is completely filled, the internal Solenoid Valve (SV) or Auto-Shut-Off Valve (ASOV) may have failed, allowing feed water to pass unchecked.
       </p>
+    </div>
+  </div>
+
+  <!-- Genuine Spares Showcase -->
+  <div class="split-section" style="margin-bottom: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 2.25rem; box-shadow: var(--shadow-sm);">
+    <div>
+      <h3 style="font-size: 1.35rem; color: var(--color-navy); margin-bottom: 1rem;">Tested Genuine Components</h3>
+      <p>
+        When replacing components during service visits, our technicians use factory-tested booster pumps, food-grade solenoid valves, and high-rejection membranes to ensure long-term durability.
+      </p>
+      <ul class="checklist">
+        <li><span class="check">&#10003;</span> Heavy-duty booster pumps with pressure testing</li>
+        <li><span class="check">&#10003;</span> Certified food-grade inline filter cartridges</li>
+        <li><span class="check">&#10003;</span> Calibrated digital TDS measurement before &amp; after</li>
+      </ul>
+    </div>
+    <div class="split-visual">
+      <img src="../assets/ro-spare-parts.jpg" alt="Genuine Spare Parts Used During Diagnostic Repair" width="480" height="320" style="border-radius: var(--radius-lg); object-fit: cover; width: 100%; box-shadow: var(--shadow-sm);">
     </div>
   </div>
 

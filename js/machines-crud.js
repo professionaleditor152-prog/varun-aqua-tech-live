@@ -8,11 +8,21 @@ const DEFAULT_MACHINES = [];
 
 const PRESET_IMAGES = [
   { label: "Smart Countertop RO Dispenser (Premium Kitchen)", path: "assets/premium-ro-dispenser.jpg" },
-  { label: "RO Technician Service & Multi-Stage Filters", path: "assets/ro-service-technician-filters.jpg" },
+  { label: "Commercial RO Plant & Skid Frame (50-5000 LPH)", path: "assets/commercial-plant.jpg" },
+  { label: "Genuine RO Spare Parts & Assembly Kits", path: "assets/ro-spare-parts.jpg" },
+  { label: "Water Quality Testing & Digital TDS Meter", path: "assets/water-tds-testing.jpg" },
+  { label: "Showroom & Customer Experience Center", path: "assets/storefront-showroom.jpg" },
+  { label: "RO Technician Doorstep Service & Filters", path: "assets/ro-service-technician-filters.jpg" },
+  { label: "RO Sales & Modern Display Unit", path: "assets/service-sales.jpg" },
+  { label: "Doorstep Wall Mounting Installation", path: "assets/service-installation.jpg" },
+  { label: "Booster Pump & Electronics Repair", path: "assets/service-repair.jpg" },
+  { label: "Routine Maintenance & Sanitation", path: "assets/service-maintenance.jpg" },
+  { label: "Annual Maintenance Contract (AMC) Support", path: "assets/service-amc.jpg" },
+  { label: "Filter Cartridges & RO Membrane Pack", path: "assets/service-filters.jpg" },
   { label: "Domestic Alkaline Wall-Mounted RO", path: "assets/bele-water-purifier.jpg" },
-  { label: "Compact Under-Sink / Countertop Unit", path: "assets/benchtop-filtration.jpg" },
-  { label: "Commercial 50 LPH Purifier Unit", path: "assets/bluetech-smart.jpg" },
-  { label: "Commercial & Industrial RO Skid Plant", path: "assets/reverse-osmosis-system.jpg" },
+  { label: "Compact Under-Sink Filtration Unit", path: "assets/benchtop-filtration.jpg" },
+  { label: "Commercial 50 LPH Purifier Cabinet", path: "assets/bluetech-smart.jpg" },
+  { label: "Heavy-Duty Multi-Stage Skid System", path: "assets/reverse-osmosis-system.jpg" },
   { label: "Kitchen Counter Drinking Tap Installation", path: "assets/modern-kitchen-tap.jpg" },
   { label: "Multi-Layer Spiral-Wound RO Membrane", path: "assets/ro-membrane-layers.jpg" }
 ];
