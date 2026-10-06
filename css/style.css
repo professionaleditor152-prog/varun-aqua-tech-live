@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
 
 :root {
   --color-navy: #061B33;
@@ -18,6 +18,7 @@
   --color-warning: #F59E0B;
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-catalog: 'Syne', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-primary: var(--font-body);
   --shadow-sm: 0 2px 8px rgba(6, 27, 51, 0.04);
   --shadow-md: 0 8px 24px rgba(6, 27, 51, 0.08);
@@ -1785,7 +1786,9 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 
 .machine-card-image-wrap {
   position: relative;
-  height: 230px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
   background: #F7FAFC;
   overflow: hidden;
   cursor: pointer;
@@ -1795,7 +1798,8 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 .custom-machine-card:hover .machine-card-image-wrap img {
@@ -1904,9 +1908,12 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .machine-title {
-  font-size: 1.18rem;
+  font-family: var(--font-catalog);
+  font-size: 1.16rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
   color: var(--color-navy);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.35rem;
   cursor: pointer;
   line-height: 1.3;
 }
@@ -1995,9 +2002,10 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .ecom-deal-price {
-  font-family: var(--font-heading);
+  font-family: var(--font-catalog);
   font-size: 1.45rem;
-  font-weight: 900;
+  font-weight: 800;
+  letter-spacing: -0.015em;
   color: var(--color-navy);
   line-height: 1;
 }
@@ -2082,9 +2090,9 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   color: #FFFFFF;
   border: 1px solid var(--color-navy);
   border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-family: var(--font-catalog);
+  font-weight: 800;
+  font-size: 0.84rem;
   padding: 0.65rem 0.75rem;
   display: inline-flex;
   align-items: center;
@@ -2092,6 +2100,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   gap: 0.4rem;
   cursor: pointer;
   transition: var(--transition);
+  letter-spacing: 0.01em;
 }
 
 .btn-add-cart:hover {
@@ -2105,9 +2114,9 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   color: #FFFFFF;
   border: 1px solid #20BA5A;
   border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-family: var(--font-catalog);
+  font-weight: 800;
+  font-size: 0.84rem;
   padding: 0.65rem 0.75rem;
   display: inline-flex;
   align-items: center;
@@ -2116,6 +2125,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   cursor: pointer;
   transition: var(--transition);
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  letter-spacing: 0.01em;
 }
 
 .btn-buy-whatsapp:hover {
@@ -2123,64 +2133,64 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   transform: translateY(-1px);
 }
 
-/* Floating Shopping Cart Button */
+/* Compact Floating Shopping Cart Button */
 .floating-cart-btn {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   background: linear-gradient(135deg, #061B33 0%, #0877C9 100%);
   color: #FFFFFF;
   border: 2px solid var(--color-aqua);
   border-radius: var(--radius-full);
-  padding: 0.75rem 1.4rem;
+  padding: 0.55rem 1.05rem;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-heading);
+  gap: 0.55rem;
+  font-family: var(--font-catalog);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   cursor: pointer;
   z-index: 2800;
-  box-shadow: 0 8px 24px rgba(6, 27, 51, 0.35), 0 0 15px rgba(19, 197, 216, 0.3);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 18px rgba(6, 27, 51, 0.3), 0 0 12px rgba(19, 197, 216, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .floating-cart-btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(6, 27, 51, 0.45), 0 0 20px rgba(19, 197, 216, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6, 27, 51, 0.4), 0 0 16px rgba(19, 197, 216, 0.35);
 }
 
 .cart-btn-icon {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
 }
 
 .cart-badge {
   background: #EF4444;
   color: #FFFFFF;
   border-radius: var(--radius-full);
-  min-width: 22px;
-  height: 22px;
+  min-width: 19px;
+  height: 19px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 900;
-  padding: 0 5px;
-  border: 2px solid #FFFFFF;
+  padding: 0 4px;
+  border: 1.5px solid #FFFFFF;
 }
 
-/* Cart Drawer (Slide-out) */
+/* Compact Cart Drawer (Small & Sleek) */
 .cart-drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 27, 51, 0.65);
-  backdrop-filter: blur(5px);
+  background: rgba(6, 27, 51, 0.6);
+  backdrop-filter: blur(4px);
   z-index: 3500;
   display: flex;
   justify-content: flex-end;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .cart-drawer-overlay.active {
@@ -2189,14 +2199,14 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-drawer {
-  width: min(440px, 100vw);
+  width: min(340px, 92vw);
   height: 100vh;
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.2);
 }
 
 .cart-drawer-overlay.active .cart-drawer {
@@ -2204,7 +2214,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-drawer-header {
-  padding: 1.25rem 1.4rem;
+  padding: 0.85rem 1.1rem;
   border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -2216,21 +2226,24 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 .cart-header-title-wrap {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.55rem;
 }
 
 .cart-header-title-wrap h3 {
-  font-size: 1.15rem;
+  font-family: var(--font-catalog);
+  font-size: 0.98rem;
+  font-weight: 800;
   color: #FFFFFF;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .cart-count-pill {
   background: rgba(19, 197, 216, 0.25);
   color: var(--color-aqua);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 0.2rem 0.6rem;
+  padding: 0.15rem 0.5rem;
   border-radius: var(--radius-full);
 }
 
@@ -2238,10 +2251,10 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   background: none;
   border: none;
   color: #FFFFFF;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   cursor: pointer;
   line-height: 1;
-  padding: 0.2rem;
+  padding: 0.15rem;
   opacity: 0.8;
   transition: opacity 0.2s;
 }
@@ -2251,30 +2264,30 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-drawer-body {
-  padding: 1.25rem 1.4rem;
+  padding: 0.85rem 1rem;
   overflow-y: auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.65rem;
 }
 
 .cart-empty-state {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 2.2rem 1rem;
   margin: auto 0;
 }
 
 .cart-empty-icon {
-  font-size: 3rem;
-  margin-bottom: 0.75rem;
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
   display: block;
 }
 
 .cart-item {
   display: flex;
-  gap: 0.85rem;
-  padding: 0.85rem;
+  gap: 0.65rem;
+  padding: 0.55rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: #FAFCFD;
@@ -2282,9 +2295,9 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-item-thumb {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--color-border);
   background: #fff;
@@ -2304,18 +2317,19 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-item-name {
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-family: var(--font-catalog);
+  font-size: 0.84rem;
+  font-weight: 800;
   color: var(--color-navy);
-  line-height: 1.3;
-  margin-bottom: 0.25rem;
+  line-height: 1.25;
+  margin-bottom: 0.2rem;
 }
 
 .cart-item-price {
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 800;
   color: var(--color-blue);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
 }
 
 .cart-item-qty-row {
@@ -2337,13 +2351,13 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 .cart-qty-btn {
   background: none;
   border: none;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
   color: var(--color-navy);
   transition: background 0.15s;
@@ -2355,9 +2369,9 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-qty-num {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  min-width: 24px;
+  min-width: 20px;
   text-align: center;
 }
 
@@ -2365,10 +2379,10 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   background: none;
   border: none;
   color: #EF4444;
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0.2rem;
+  padding: 0.15rem;
 }
 
 .cart-item-remove-btn:hover {
@@ -2376,7 +2390,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 }
 
 .cart-drawer-footer {
-  padding: 1.25rem 1.4rem;
+  padding: 0.85rem 1rem;
   border-top: 1px solid var(--color-border);
   background: #FFFFFF;
 }
@@ -2385,16 +2399,16 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   background: var(--color-bg-light);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 0.85rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.65rem;
 }
 
 .cart-summary-line {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .cart-sum-free {
@@ -2409,38 +2423,40 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 
 .cart-total-line {
   border-top: 1px dashed var(--color-border);
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 800;
   color: var(--color-navy);
 }
 
 .cart-sum-total {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 900;
+  font-family: var(--font-catalog);
+  font-size: 1.15rem;
+  font-weight: 800;
   color: var(--color-blue);
 }
 
 .cart-customer-fields {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.55rem;
 }
 
 .form-control-sm {
-  padding: 0.45rem 0.75rem;
-  font-size: 0.85rem;
+  padding: 0.38rem 0.65rem;
+  font-size: 0.82rem;
   border-radius: 6px;
 }
 
 .cart-checkout-btn {
   width: 100%;
-  padding: 0.85rem 1rem;
-  font-size: 1rem;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-catalog);
+  font-size: 0.92rem;
   font-weight: 800;
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  letter-spacing: 0.01em;
 }
 
 .btn-clear-cart-link {
@@ -2450,8 +2466,8 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   background: none;
   border: none;
   color: var(--color-text-muted);
-  font-size: 0.78rem;
-  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  margin-top: 0.45rem;
   cursor: pointer;
   text-decoration: underline;
 }
