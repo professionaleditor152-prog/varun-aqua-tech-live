@@ -181,7 +181,7 @@ $customMachinesContent = @"
           <textarea id="m-form-desc" class="form-control" rows="3" placeholder="Explain the key features, filter materials, and advantages..."></textarea>
         </div>
 
-        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+        <div class="crud-modal-footer">
           <button type="button" id="btn-cancel-modal" class="btn btn-secondary">Cancel</button>
           <button type="submit" class="btn btn-primary">Save Machine</button>
         </div>
