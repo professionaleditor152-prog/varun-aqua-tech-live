@@ -1,65 +1,18 @@
 /**
  * VARUN AQUA TECH - Custom Machines CRUD & WhatsApp Order System
- * Founder & Proprietor: Mr. Varun
+ * Founder & Proprietor: Selvam .V
  * Direct WhatsApp: +91 88380 55968
  */
 
-const DEFAULT_MACHINES = [
-  {
-    id: "cm-1",
-    name: "Varun Pro Alkaline Copper RO",
-    category: "Domestic",
-    capacity: "15 LPH (12L Storage)",
-    stages: "8-Stage (RO + UV + UF + Active Copper + Alkaline + TDS Controller)",
-    idealFor: "Borewell & Hard Water up to 2500 TDS",
-    price: "₹8,499",
-    image: "assets/bele-water-purifier.jpg",
-    badge: "Free Installation Included",
-    description: "Custom-built domestic water purifier featuring Japanese alkaline mineral balls and pure copper infusion for immunity and health. Comes with free professional doorstep installation in Dharmapuri."
-  },
-  {
-    id: "cm-2",
-    name: "Varun Smart Multi-Stage Countertop RO",
-    category: "Domestic",
-    capacity: "18 LPH (10L Storage)",
-    stages: "7 Stages (RO + UV + Mineralizer + Auto Purity Flush)",
-    idealFor: "Apartments, Modular Kitchens & Homes",
-    price: "₹9,999",
-    image: "assets/benchtop-filtration.jpg",
-    badge: "Free Installation Included",
-    description: "Compact multi-stage countertop and under-sink system with direct flow indicator, food-grade transparent tank, and whisper-quiet booster pump."
-  },
-  {
-    id: "cm-3",
-    name: "Varun Commercial 50 LPH Direct Flow",
-    category: "Commercial",
-    capacity: "50 LPH Direct Flow",
-    stages: "5 Stages (Dual 20\" Pre-Filter + Dual 100 GPD RO + Post Carbon)",
-    idealFor: "Offices, Clinics, Cafes & Bakeries",
-    price: "₹16,500",
-    image: "assets/bluetech-smart.jpg",
-    badge: "Commercial Grade",
-    description: "Robust continuous-duty commercial purifier designed for workplaces and commercial kitchens across Dharmapuri requiring reliable high-volume drinking water."
-  },
-  {
-    id: "cm-4",
-    name: "Varun Heavy-Duty 250 LPH RO Plant",
-    category: "Industrial",
-    capacity: "250 LPH Continuous Flow",
-    stages: "FRP Sand & Carbon Vessels + 4040 TFC Membrane + High Pressure Pump",
-    idealFor: "Schools, Hospitals, Marriage Halls & Industries",
-    price: "₹48,000",
-    image: "assets/reverse-osmosis-system.jpg",
-    badge: "Stainless Steel Skid",
-    description: "Stainless steel SS 304 skid-mounted commercial RO plant with high-pressure vertical pump, rotameter flow meters, pressure gauges, and full 1-year AMC maintenance."
-  }
-];
+const DEFAULT_MACHINES = [];
 
 const PRESET_IMAGES = [
-  { label: "Domestic Alkaline RO (Wall-Mounted)", path: "assets/bele-water-purifier.jpg" },
-  { label: "Compact Countertop / Under-Sink Unit", path: "assets/benchtop-filtration.jpg" },
+  { label: "Smart Countertop RO Dispenser (Premium Kitchen)", path: "assets/premium-ro-dispenser.jpg" },
+  { label: "RO Technician Service & Multi-Stage Filters", path: "assets/ro-service-technician-filters.jpg" },
+  { label: "Domestic Alkaline Wall-Mounted RO", path: "assets/bele-water-purifier.jpg" },
+  { label: "Compact Under-Sink / Countertop Unit", path: "assets/benchtop-filtration.jpg" },
   { label: "Commercial 50 LPH Purifier Unit", path: "assets/bluetech-smart.jpg" },
-  { label: "Heavy-Duty 250-5000 LPH Commercial Plant", path: "assets/reverse-osmosis-system.jpg" },
+  { label: "Commercial & Industrial RO Skid Plant", path: "assets/reverse-osmosis-system.jpg" },
   { label: "Kitchen Counter Drinking Tap Installation", path: "assets/modern-kitchen-tap.jpg" },
   { label: "Multi-Layer Spiral-Wound RO Membrane", path: "assets/ro-membrane-layers.jpg" }
 ];
@@ -76,16 +29,15 @@ class MachineManager {
   }
 
   detectAssetPrefix() {
-    // If running in a subdirectory (e.g. /custom-machines/), assets need ../ prefix
     const path = window.location.pathname;
-    if (path.includes("/custom-machines/") || path.includes("/about/") || path.includes("/ro-")) {
+    if (path.includes("/custom-machines/") || path.includes("/about/") || path.includes("/ro-") || path.includes("/contact/")) {
       return "../";
     }
     return "";
   }
 
   resolveImagePath(imgPath) {
-    if (!imgPath) return this.assetPrefix + "assets/bele-water-purifier.jpg";
+    if (!imgPath) return this.assetPrefix + "assets/premium-ro-dispenser.jpg";
     if (imgPath.startsWith("http://") || imgPath.startsWith("https://") || imgPath.startsWith("data:")) {
       return imgPath;
     }
@@ -104,7 +56,7 @@ class MachineManager {
       const res = await fetch("/api/machines", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
+        if (Array.isArray(data)) {
           this.machines = data;
           localStorage.setItem("varun_custom_machines", JSON.stringify(data));
           return;
@@ -124,8 +76,7 @@ class MachineManager {
       }
     }
 
-    this.machines = JSON.parse(JSON.stringify(DEFAULT_MACHINES));
-    this.persist();
+    this.machines = [];
   }
 
   async persist() {
@@ -137,7 +88,7 @@ class MachineManager {
         body: JSON.stringify(this.machines)
       });
     } catch (e) {
-      // Offline or static mode
+      // Offline or static fallback
     }
   }
 
@@ -146,16 +97,17 @@ class MachineManager {
       const matchCategory = this.currentFilter === "All" || m.category.toLowerCase() === this.currentFilter.toLowerCase();
       const q = this.searchQuery.toLowerCase().trim();
       const matchSearch = !q || 
-        m.name.toLowerCase().includes(q) || 
-        m.capacity.toLowerCase().includes(q) || 
-        m.stages.toLowerCase().includes(q) ||
-        m.idealFor.toLowerCase().includes(q);
+        (m.name && m.name.toLowerCase().includes(q)) || 
+        (m.capacity && m.capacity.toLowerCase().includes(q)) || 
+        (m.stages && m.stages.toLowerCase().includes(q)) ||
+        (m.idealFor && m.idealFor.toLowerCase().includes(q));
       return matchCategory && matchSearch;
     });
   }
 
   redirectToWhatsApp(machine) {
-    const text = `Hello VARUN AQUA TECH (Mr. Varun),\n\nI am interested in your custom-built machine:\n• *Machine:* ${machine.name}\n• *Category:* ${machine.category}\n• *Capacity:* ${machine.capacity}\n• *Purification:* ${machine.stages}\n• *Price / Quote:* ${machine.price}\n\nPlease share availability, water test assessment, and free installation schedule for my location in Dharmapuri.`;
+    if (!machine) return;
+    const text = `Hello VARUN AQUA TECH (Founder: Selvam .V),\n\nI would like to inquire about the custom-built machine:\n• *Model:* ${machine.name}\n• *Category:* ${machine.category} RO\n• *Capacity:* ${machine.capacity}\n• *Stages / Tech:* ${machine.stages}\n• *Ideal For:* ${machine.idealFor}\n\nPlease share quotation, availability, and installation details for Dharmapuri.`;
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   }
@@ -164,14 +116,28 @@ class MachineManager {
     const container = document.getElementById("custom-machines-grid");
     if (!container) return;
 
+    if (this.machines.length === 0) {
+      container.innerHTML = `
+        <div class="crud-empty-card" style="text-align: center; padding: 3.5rem 1.5rem; background: #FFFFFF; border: 2px dashed var(--color-border); border-radius: var(--radius-xl); grid-column: 1 / -1; box-shadow: var(--shadow-sm);">
+          <div style="font-size: 2.8rem; margin-bottom: 0.75rem;">⚙️</div>
+          <h3 style="color: var(--color-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Custom RO Machines Ready</h3>
+          <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 0.95rem; line-height: 1.6;">
+            Have a custom requirement for your home, commercial kitchen, clinic, or industry? Click below to add and publish custom machines with direct WhatsApp ordering.
+          </p>
+          <button class="btn btn-primary btn-lg" onclick="machineManager.openAddModal()">＋ Add Custom Machine</button>
+        </div>
+      `;
+      return;
+    }
+
     const filtered = this.getFilteredMachines();
 
     if (filtered.length === 0) {
       container.innerHTML = `
-        <div class="crud-empty-state">
-          <div class="crud-empty-icon">🔍</div>
-          <h3>No Custom Machines Found</h3>
-          <p>No machines matched "${this.searchQuery}" in category "${this.currentFilter}".</p>
+        <div class="crud-empty-state" style="grid-column: 1 / -1; text-align: center; padding: 2.5rem; background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔍</div>
+          <h3 style="color: var(--color-navy);">No Matching Machines Found</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.95rem;">No machines matched "${this.searchQuery}" in category "${this.currentFilter}".</p>
           <button class="btn btn-secondary btn-sm" onclick="machineManager.resetFilters()">Clear Filters</button>
         </div>
       `;
@@ -187,7 +153,7 @@ class MachineManager {
         <article class="custom-machine-card" data-id="${m.id}">
           <div class="machine-card-image-wrap" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))" title="Click to order on WhatsApp">
             <span class="machine-badge ${badgeClass}">${m.badge || m.category}</span>
-            <img src="${imgSrc}" alt="${m.name} - VARUN AQUA TECH" loading="lazy" onerror="this.src='${this.resolveImagePath('assets/bele-water-purifier.jpg')}'">
+            <img src="${imgSrc}" alt="${m.name} - VARUN AQUA TECH" loading="lazy" onerror="this.src='${this.resolveImagePath('assets/premium-ro-dispenser.jpg')}'">
             <div class="machine-image-overlay">
               <span>💬 Click to Order on WhatsApp</span>
             </div>
@@ -225,9 +191,8 @@ class MachineManager {
             <p class="machine-desc">${m.description || ""}</p>
 
             <div class="machine-card-footer">
-              <div class="machine-price-wrap">
-                <span class="price-label">Price / Starting:</span>
-                <span class="price-val">${m.price}</span>
+              <div class="machine-consult-tag" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--color-blue); font-weight: 700;">
+                <span>🛡️</span> Custom Build
               </div>
               <button class="btn btn-whatsapp btn-sm machine-order-btn" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))">
                 <span>💬</span> Order on WhatsApp
@@ -278,12 +243,6 @@ class MachineManager {
     const addBtn = document.getElementById("btn-add-machine");
     if (addBtn) {
       addBtn.addEventListener("click", () => this.openAddModal());
-    }
-
-    // Reset Defaults button
-    const resetBtn = document.getElementById("btn-reset-defaults");
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => this.handleResetDefaults());
     }
 
     // Modal submit
@@ -340,14 +299,13 @@ class MachineManager {
     document.getElementById("m-form-name").value = "";
     document.getElementById("m-form-category").value = "Domestic";
     document.getElementById("m-form-capacity").value = "15 LPH";
-    document.getElementById("m-form-stages").value = "8-Stage RO + UV + UF + Alkaline";
+    document.getElementById("m-form-stages").value = "8-Stage RO + UV + Alkaline + Active Copper";
     document.getElementById("m-form-ideal").value = "Dharmapuri Borewell / Overhead Tank";
-    document.getElementById("m-form-price").value = "₹8,499";
     document.getElementById("m-form-badge").value = "Free Installation Included";
-    document.getElementById("m-form-image-custom").value = "assets/bele-water-purifier.jpg";
-    document.getElementById("m-form-image-preset").value = "assets/bele-water-purifier.jpg";
-    document.getElementById("m-form-desc").value = "Custom-assembled with high-grade booster pump and genuine TFC membrane.";
-    this.updateImagePreview("assets/bele-water-purifier.jpg");
+    document.getElementById("m-form-image-custom").value = "assets/premium-ro-dispenser.jpg";
+    document.getElementById("m-form-image-preset").value = "assets/premium-ro-dispenser.jpg";
+    document.getElementById("m-form-desc").value = "Custom-assembled by Selvam .V with high-grade booster pump and genuine high-rejection TFC membrane.";
+    this.updateImagePreview("assets/premium-ro-dispenser.jpg");
 
     document.getElementById("machine-crud-modal").classList.add("active");
   }
@@ -363,7 +321,6 @@ class MachineManager {
     document.getElementById("m-form-capacity").value = m.capacity;
     document.getElementById("m-form-stages").value = m.stages;
     document.getElementById("m-form-ideal").value = m.idealFor;
-    document.getElementById("m-form-price").value = m.price;
     document.getElementById("m-form-badge").value = m.badge || "";
     document.getElementById("m-form-image-custom").value = m.image;
     document.getElementById("m-form-image-preset").value = m.image;
@@ -385,9 +342,8 @@ class MachineManager {
     const capacity = document.getElementById("m-form-capacity").value.trim();
     const stages = document.getElementById("m-form-stages").value.trim();
     const idealFor = document.getElementById("m-form-ideal").value.trim();
-    const price = document.getElementById("m-form-price").value.trim();
     const badge = document.getElementById("m-form-badge").value.trim();
-    const image = document.getElementById("m-form-image-custom").value.trim() || "assets/bele-water-purifier.jpg";
+    const image = document.getElementById("m-form-image-custom").value.trim() || "assets/premium-ro-dispenser.jpg";
     const description = document.getElementById("m-form-desc").value.trim();
 
     if (!name) {
@@ -396,20 +352,18 @@ class MachineManager {
     }
 
     if (id) {
-      // Update existing
       const index = this.machines.findIndex(m => m.id === id);
       if (index !== -1) {
         this.machines[index] = {
           ...this.machines[index],
-          name, category, capacity, stages, idealFor, price, badge, image, description
+          name, category, capacity, stages, idealFor, badge, image, description
         };
         this.showToast(`Updated "${name}" successfully!`);
       }
     } else {
-      // Create new
       const newMachine = {
         id: "cm-" + Date.now(),
-        name, category, capacity, stages, idealFor, price, badge, image, description
+        name, category, capacity, stages, idealFor, badge, image, description
       };
       this.machines.unshift(newMachine);
       this.showToast(`Added "${name}" successfully!`);
@@ -428,15 +382,6 @@ class MachineManager {
       this.machines = this.machines.filter(item => item.id !== id);
       await this.persist();
       this.showToast(`Deleted "${m.name}"`);
-      this.renderCatalog();
-    }
-  }
-
-  async handleResetDefaults() {
-    if (confirm("Reset custom machines to factory default models? Any custom machines added will be replaced with defaults.")) {
-      this.machines = JSON.parse(JSON.stringify(DEFAULT_MACHINES));
-      await this.persist();
-      this.showToast("Reset to default machines");
       this.renderCatalog();
     }
   }

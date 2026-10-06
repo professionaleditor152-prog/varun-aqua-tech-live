@@ -279,12 +279,18 @@ p:last-child {
 .brand-logo {
   display: flex;
   align-items: center;
-  height: 48px;
+  gap: 0.65rem;
+  text-decoration: none;
 }
 
-.brand-logo img {
+.brand-logo img,
+.brand-logo-img {
+  width: 48px;
   height: 48px;
-  width: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
 }
 
 .nav-desktop {
@@ -1424,9 +1430,11 @@ textarea.form-control { resize: vertical; min-height: 100px; }
    BRAND & OWNER HIGHLIGHT STYLES
    ============================================================ */
 .brand-logo-img {
-  height: 46px;
-  width: auto;
+  width: 48px;
+  height: 48px;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
+  flex-shrink: 0;
   margin-right: 0.6rem;
 }
 
