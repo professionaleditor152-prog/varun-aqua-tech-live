@@ -8,7 +8,7 @@ echo Repository: https://github.com/professionaleditor152-prog/varun-aqua-tech-
 echo =======================================================
 echo.
 
-git push -u origin main
+git push -u origin main --force
 
 if %ERRORLEVEL% EQU 0 (
     echo.
