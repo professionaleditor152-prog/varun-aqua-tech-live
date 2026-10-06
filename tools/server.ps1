@@ -64,6 +64,75 @@ while ($listener.IsListening) {
             }
         }
         
+        # API Endpoint for Media / Image Upload
+        if ($rawUrl -eq "/api/upload") {
+            $response.Headers.Add("Access-Control-Allow-Origin", "*")
+            $response.Headers.Add("Access-Control-Allow-Methods", "POST, OPTIONS")
+            $response.Headers.Add("Access-Control-Allow-Headers", "Content-Type")
+            
+            if ($request.HttpMethod -eq "OPTIONS") {
+                $response.StatusCode = 200
+                $response.Close()
+                continue
+            }
+            
+            if ($request.HttpMethod -eq "POST") {
+                try {
+                    $reader = New-Object System.IO.StreamReader($request.InputStream, [System.Text.Encoding]::UTF8)
+                    $body = $reader.ReadToEnd()
+                    $reader.Close()
+                    
+                    $uploadData = $body | ConvertFrom-Json
+                    $fileName = $uploadData.filename
+                    $dataUrl = $uploadData.data
+                    
+                    if (-not $fileName) { $fileName = "machine_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".jpg" }
+                    $safeName = [System.IO.Path]::GetFileNameWithoutExtension($fileName) -replace '[^a-zA-Z0-9_-]', '_'
+                    $ext = [System.IO.Path]::GetExtension($fileName)
+                    if (-not $ext) { $ext = ".jpg" }
+                    $uniqueName = "$safeName" + "_" + (Get-Date -Format "yyyyMMdd_HHmmss") + $ext
+                    
+                    $uploadDir = Join-Path $root "assets\uploads"
+                    if (-not (Test-Path $uploadDir)) { New-Item -ItemType Directory -Path $uploadDir | Out-Null }
+                    $destPath = Join-Path $uploadDir $uniqueName
+                    
+                    $base64 = $dataUrl
+                    if ($base64 -match '^data:image\/[a-zA-Z0-9\+\-\.]+;base64,(.+)$') {
+                        $base64 = $Matches[1]
+                    }
+                    
+                    $bytes = [System.Convert]::FromBase64String($base64)
+                    [System.IO.File]::WriteAllBytes($destPath, $bytes)
+                    
+                    $relUrl = "assets/uploads/$uniqueName"
+                    $jsonRes = @{
+                        success = $true
+                        filePath = $relUrl
+                        message = "Uploaded successfully"
+                    } | ConvertTo-Json -Compress
+                    
+                    $resBytes = [System.Text.Encoding]::UTF8.GetBytes($jsonRes)
+                    $response.ContentType = "application/json; charset=utf-8"
+                    $response.ContentLength64 = $resBytes.Length
+                    $response.OutputStream.Write($resBytes, 0, $resBytes.Length)
+                    $response.Close()
+                    continue
+                } catch {
+                    $errRes = @{
+                        success = $false
+                        error = $_.Exception.Message
+                    } | ConvertTo-Json -Compress
+                    $errBytes = [System.Text.Encoding]::UTF8.GetBytes($errRes)
+                    $response.StatusCode = 500
+                    $response.ContentType = "application/json; charset=utf-8"
+                    $response.ContentLength64 = $errBytes.Length
+                    $response.OutputStream.Write($errBytes, 0, $errBytes.Length)
+                    $response.Close()
+                    continue
+                }
+            }
+        }
+        
         if ($rawUrl -eq "/" -or $rawUrl.EndsWith("/")) {
             $rawUrl += "index.html"
         }

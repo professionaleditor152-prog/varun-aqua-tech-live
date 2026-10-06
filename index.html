@@ -414,31 +414,46 @@
           </div>
 
           <div class="form-group">
-            <label for="m-form-image-preset" class="form-label">Select Photo Asset</label>
-            <select id="m-form-image-preset" class="form-control">
-              <option value="assets/premium-ro-dispenser.jpg">Smart Countertop RO Dispenser (Premium Kitchen)</option>
-              <option value="assets/commercial-plant.jpg">Commercial RO Plant &amp; Skid Frame (50-5000 LPH)</option>
-              <option value="assets/ro-spare-parts.jpg">Genuine RO Spare Parts &amp; Assembly Kits</option>
-              <option value="assets/water-tds-testing.jpg">Water Quality Testing &amp; Digital TDS Meter</option>
-              <option value="assets/storefront-showroom.jpg">Showroom &amp; Customer Experience Center</option>
-              <option value="assets/ro-service-technician-filters.jpg">RO Technician Service &amp; Multi-Stage Filters</option>
-              <option value="assets/service-sales.jpg">RO Sales &amp; Modern Display Unit</option>
-              <option value="assets/service-installation.jpg">Doorstep Wall Mounting Installation</option>
-              <option value="assets/service-repair.jpg">Booster Pump &amp; Electronics Repair</option>
-              <option value="assets/service-maintenance.jpg">Routine Maintenance &amp; Sanitation</option>
-              <option value="assets/service-amc.jpg">Annual Maintenance Contract (AMC) Support</option>
-              <option value="assets/service-filters.jpg">Filter Cartridges &amp; RO Membrane Pack</option>
-              <option value="assets/bele-water-purifier.jpg">Domestic Alkaline RO (Wall-Mounted)</option>
-              <option value="assets/benchtop-filtration.jpg">Compact Countertop / Under-Sink Unit</option>
-              <option value="assets/bluetech-smart.jpg">Commercial 50 LPH Purifier Unit</option>
-              <option value="assets/reverse-osmosis-system.jpg">Heavy-Duty 250-5000 LPH Plant</option>
-              <option value="assets/modern-kitchen-tap.jpg">Kitchen Counter Tap Installation</option>
-              <option value="assets/ro-membrane-layers.jpg">Multi-Layer Spiral-Wound RO Membrane</option>
-            </select>
-            <input type="text" id="m-form-image-custom" class="form-control" style="margin-top: 0.5rem;" placeholder="Or enter custom image URL / path">
-            <div class="img-preview-box">
-              <img id="m-form-image-preview" src="assets/premium-ro-dispenser.jpg" alt="Preview">
-              <span style="font-size: 0.82rem; color: var(--color-text-muted);">Current image preview shown to customers.</span>
+            <label class="form-label">Exact Machine Model Photo *</label>
+            
+            <!-- Source Selector Tabs -->
+            <div class="image-source-switcher">
+              <button type="button" class="img-tab-btn active" data-tab="upload">📷 Upload Photo</button>
+              <button type="button" class="img-tab-btn" data-tab="presets">🖼️ Gallery Presets</button>
+              <button type="button" class="img-tab-btn" data-tab="url">🔗 Image URL</button>
+            </div>
+
+            <!-- Tab 1: Upload Dropzone -->
+            <div id="tab-content-upload" class="img-tab-panel active">
+              <div class="media-upload-dropzone" id="media-dropzone">
+                <input type="file" id="m-form-image-file" accept="image/*" class="media-file-input">
+                <div class="dropzone-icon">📷</div>
+                <div class="dropzone-title">Click to upload photo or take picture</div>
+                <div class="dropzone-subtitle">Attach photos from your device, phone camera, or file manager</div>
+                <div id="dropzone-status" class="dropzone-status" style="display: none;"></div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Gallery Presets Grid -->
+            <div id="tab-content-presets" class="img-tab-panel">
+              <div class="preset-photo-grid" id="preset-photo-grid"></div>
+            </div>
+
+            <!-- Tab 3: Custom URL Input -->
+            <div id="tab-content-url" class="img-tab-panel">
+              <input type="text" id="m-form-image-custom" class="form-control" placeholder="Or enter custom image path / URL (e.g. assets/bele-water-purifier.jpg)">
+            </div>
+
+            <!-- Live Image Preview Card -->
+            <div class="img-preview-card" id="img-preview-card">
+              <div class="img-preview-thumb">
+                <img id="m-form-image-preview" src="assets/bele-water-purifier.jpg" alt="Model Preview">
+              </div>
+              <div class="img-preview-meta">
+                <span class="preview-status-badge" id="preview-status-badge">Default Model</span>
+                <span class="preview-filename" id="preview-filename">bele-water-purifier.jpg</span>
+                <button type="button" class="btn-clear-img" id="btn-clear-img">Change / Upload New Photo</button>
+              </div>
             </div>
           </div>
 

@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "id": "cm-domestic-alkaline",
+    "name": "Varun Aqua Alkaline Domestic RO",
+    "category": "Domestic",
+    "capacity": "15 LPH (12L Tank)",
+    "stages": "8-Stage RO + UV + UF + Alkaline + Copper",
+    "idealFor": "Borewell / High TDS Water (Up to 2500 TDS)",
+    "badge": "Free Installation Included",
+    "image": "assets/bele-water-purifier.jpg",
+    "description": "Multi-stage advanced RO purifier with high-rejection membrane and natural mineral cartridge for sweet, healthy drinking water in Dharmapuri homes."
+  },
+  {
+    "id": "cm-bluetech-commercial",
+    "name": "Bluetech Smart Commercial RO Unit",
+    "category": "Commercial",
+    "capacity": "50 LPH Continuous Flow",
+    "stages": "5-Stage High-Flow Commercial Filtration",
+    "idealFor": "Offices, Clinics, Schools & Commercial Kitchens",
+    "badge": "Heavy-Duty Booster Pump",
+    "image": "assets/bluetech-smart.jpg",
+    "description": "Commercial 50 LPH water purification unit with high-pressure diaphragm pump, dual pressure gauges, and durable wall/tabletop cabinet."
+  },
+  {
+    "id": "cm-countertop-dispenser",
+    "name": "Varun Pro Smart Countertop RO Dispenser",
+    "category": "Domestic",
+    "capacity": "15 LPH Instant Flow",
+    "stages": "Multi-Stage RO + UV-C + Micro-Carbon",
+    "idealFor": "Modern Modular Kitchens & Dining Tables",
+    "badge": "Instant Touch Dispense",
+    "image": "assets/premium-ro-dispenser.jpg",
+    "description": "Sleek tabletop water purifier with digital LED status display, child lock safety, and zero countertop clutter for modern apartments."
+  },
+  {
+    "id": "cm-industrial-plant",
+    "name": "Heavy-Duty Commercial Skid RO Plant",
+    "category": "Industrial",
+    "capacity": "250 to 5000 LPH (Custom Sized)",
+    "stages": "FRP Sand & Carbon Media + 4040/8040 RO Membranes",
+    "idealFor": "Schools, Hospitals, Hotels & Manufacturing Units",
+    "badge": "Custom Built by Selvam .V",
+    "image": "assets/commercial-plant.jpg",
+    "description": "Engineered on 304 stainless steel skids with industrial high-pressure multi-stage pumps, digital flow rotameters, and automated backwash valves."
+  }
+]
