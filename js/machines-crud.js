@@ -6,6 +6,25 @@
 
 const DEFAULT_MACHINES = [
   {
+    id: "cm-1791305258309",
+    name: "PUROFLO",
+    saleTitle: "Special Sale Edition • Custom Built",
+    category: "Domestic",
+    price: 11999,
+    mrp: 16999,
+    rating: 4.9,
+    reviewCount: 1,
+    capacity: "15 LPH (12L Tank)",
+    stages: "8-Stage RO + UV + Alkaline + Active Copper",
+    idealFor: "Dharmapuri Borewell / Overhead Tank (Up to 2500 TDS)",
+    warranty: "1 Year Comprehensive Onsite Warranty",
+    badge: "Festive Offer • Free Installation",
+    freeDelivery: true,
+    freeInstall: true,
+    image: "assets/uploads/5_20261006_222950.png",
+    description: "Custom-assembled by Selvam .V with high-grade booster pump and genuine high-rejection TFC membrane."
+  },
+  {
     id: "cm-domestic-alkaline",
     name: "Varun Pro Alkaline Copper RO Purifier",
     saleTitle: "Dharmapuri High-TDS Borewell Special • 8-Stage Mineralizer",
@@ -21,7 +40,7 @@ const DEFAULT_MACHINES = [
     badge: "Bestseller • 29% OFF",
     freeDelivery: true,
     freeInstall: true,
-    image: "assets/bele-water-purifier.jpg",
+    image: "assets/uploads/ChatGPT_Image_Oct_4__2026__09_32_18_AM_20261006_222914.png",
     description: "Specially engineered for Dharmapuri groundwater with 80 GPD high-rejection TFC membrane and natural mineral cartridge for sweet, alkaline water (pH 7.5 - 8.5)."
   },
   {
@@ -99,25 +118,6 @@ const DEFAULT_MACHINES = [
     freeInstall: true,
     image: "assets/benchtop-filtration.jpg",
     description: "Concealed under-counter filtration system that keeps kitchen platforms 100% clean, delivering pure mineral water through a sleek chrome gooseneck faucet."
-  },
-  {
-    id: "cm-spare-parts-kit",
-    name: "Genuine RO Pre-Filter & Annual Service Kit",
-    saleTitle: "Universal Spun Filter + Carbon + Sediment Replacement Pack",
-    category: "Domestic",
-    price: 1499,
-    mrp: 2200,
-    rating: 4.9,
-    reviewCount: 210,
-    capacity: "Full Annual Service Kit",
-    stages: "Spun Pre-Filter + Sediment Filter + Carbon Block + Spanner",
-    idealFor: "All Domestic RO Brands (Kent, Aquaguard, Livpure & Custom)",
-    warranty: "100% Genuine Quality Guarantee",
-    badge: "Maintenance Kit • 32% OFF",
-    freeDelivery: true,
-    freeInstall: false,
-    image: "assets/ro-spare-parts.jpg",
-    description: "Complete filter replacement bundle with 100% food-grade virgin polypropylene spun filter and high-iodine activated carbon for complete sediment and chlorine removal."
   }
 ];
 
@@ -208,6 +208,8 @@ class MachineManager {
     // If loaded data is missing price or empty, upgrade with DEFAULT_MACHINES
     if (!loaded || loaded.length === 0 || !loaded[0].price) {
       loaded = [...DEFAULT_MACHINES];
+    } else {
+      loaded = loaded.filter(m => m.id !== "cm-spare-parts-kit");
     }
 
     this.machines = loaded;
