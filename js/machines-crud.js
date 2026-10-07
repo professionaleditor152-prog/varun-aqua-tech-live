@@ -153,7 +153,11 @@ class MachineManager {
 
   detectAssetPrefix() {
     const path = window.location.pathname;
-    if (path.includes("/custom-machines/") || path.includes("/about/") || path.includes("/ro-") || path.includes("/contact/") || path.includes("/dharmapuri/")) {
+    const cleanPath = path.replace(/^\/|\/$/g, "");
+    if (!cleanPath || cleanPath === "index.html") {
+      return "";
+    }
+    if (cleanPath.includes("/") || cleanPath.startsWith("custom-machines") || cleanPath.startsWith("about") || cleanPath.startsWith("ro-") || cleanPath.startsWith("contact") || cleanPath.startsWith("dharmapuri") || cleanPath.startsWith("commercial-ro")) {
       return "../";
     }
     return "";
@@ -180,7 +184,11 @@ class MachineManager {
   async loadMachines() {
     let loaded = null;
     try {
-      const res = await fetch("/api/machines", { cache: "no-store" });
+      let res = await fetch("/api/machines", { cache: "no-store" });
+      if (!res.ok) {
+        // Fallback to static data/machines.json for static hosts like Vercel
+        res = await fetch(this.resolveImagePath("data/machines.json"), { cache: "no-store" });
+      }
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
