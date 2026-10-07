@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -102,6 +102,10 @@
           <span>&#128222;</span> +91 88380 55968
         </a>
         <a href="../contact/#service-form" class="btn btn-primary btn-sm">Book Service</a>
+        <button type="button" class="header-cart-btn" id="btn-header-cart" onclick="machineManager.openCartDrawer()" aria-label="View Shopping Cart">
+          <span class="header-cart-icon">🛒</span>
+          <span class="header-cart-badge" id="header-cart-badge">0</span>
+        </button>
         <button class="mobile-menu-btn" aria-label="Open mobile navigation">
           <span></span><span></span><span></span>
         </button>
@@ -193,26 +197,26 @@
     </p>
   </div>
 
-  <!-- CRUD Toolbar -->
+  <!-- CRUD Toolbar (Mobile-First Search & Horizontal Filter) -->
   <div class="crud-toolbar">
-    <div class="crud-filter-group" aria-label="Machine Categories">
-      <button class="crud-filter-btn active" data-filter="All">All Machines</button>
-      <button class="crud-filter-btn" data-filter="Domestic">Domestic RO</button>
-      <button class="crud-filter-btn" data-filter="Commercial">Commercial (50-100 LPH)</button>
-      <button class="crud-filter-btn" data-filter="Industrial">Industrial Plants</button>
-    </div>
-
     <div class="crud-search-wrap">
       <span class="crud-search-icon">&#128269;</span>
-      <input type="text" id="machine-search-input" class="crud-search-input" placeholder="Search machine, TDS, capacity...">
+      <input type="text" id="machine-search-input" class="crud-search-input" placeholder="Search purifier, capacity, TDS..." aria-label="Search purifiers">
+    </div>
+
+    <div class="crud-filter-group" aria-label="Machine Categories">
+      <button class="crud-filter-btn active" data-filter="All">All</button>
+      <button class="crud-filter-btn" data-filter="Domestic">Domestic</button>
+      <button class="crud-filter-btn" data-filter="Commercial">Commercial</button>
+      <button class="crud-filter-btn" data-filter="Industrial">Industrial</button>
     </div>
 
     <div class="crud-admin-buttons">
-      <button id="btn-add-machine" class="btn btn-primary btn-sm">&#65291; Add Custom Machine</button>
+      <button id="btn-add-machine" class="btn btn-primary btn-sm">&#65291; Add Machine</button>
       <button type="button" id="btn-view-cart-nav" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.35rem;">
-        <span>ðŸ›’</span> Cart (<span id="nav-cart-count">0</span>)
+        <span>🛒</span> Cart (<span id="nav-cart-count">0</span>)
       </button>
-      <button type="button" class="btn btn-secondary btn-sm" onclick="machineManager.resetToDefaults()" title="Restore all recommended models">ðŸ”„ Reset</button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="machineManager.resetToDefaults()" title="Restore 6 recommended models">🔄 Reset</button>
     </div>
   </div>
 
@@ -400,12 +404,49 @@
         </div>
 
         <button type="button" id="btn-checkout-whatsapp" class="btn btn-whatsapp btn-block cart-checkout-btn">
-          <span>ðŸ’¬</span> Order Cart on WhatsApp
+          <span>💬</span> Order Cart on WhatsApp
         </button>
         
         <button type="button" id="btn-clear-cart" class="btn-clear-cart-link">Clear Cart</button>
       </div>
     </div>
+  </div>
+
+  <!-- Product Detail Bottom Sheet / Modal -->
+  <div id="product-detail-sheet" class="sheet-overlay" role="dialog" aria-modal="true" aria-labelledby="sheet-product-title">
+    <div class="sheet-container">
+      <div class="sheet-drag-handle"></div>
+      <div class="sheet-header">
+        <span id="sheet-category-pill" class="machine-category-pill">Domestic RO</span>
+        <button type="button" class="sheet-close-btn" id="sheet-close-btn" aria-label="Close product details">&times;</button>
+      </div>
+      
+      <div class="sheet-body" id="sheet-body-content">
+        <!-- Populated dynamically by machines-crud.js -->
+      </div>
+
+      <div class="sheet-footer">
+        <button type="button" class="btn btn-primary sheet-btn-cart" id="sheet-btn-add-cart">
+          <span>🛒</span> Add to Cart
+        </button>
+        <button type="button" class="btn btn-whatsapp sheet-btn-whatsapp" id="sheet-btn-whatsapp">
+          <span>💬</span> WhatsApp Order
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Mobile Cart Bar (Visible when cart contains items) -->
+  <div id="sticky-mobile-cart-bar" class="sticky-mobile-cart-bar" style="display: none;">
+    <div class="sticky-cart-info" onclick="machineManager.openCartDrawer()">
+      <span class="sticky-cart-icon">🛒</span>
+      <span class="sticky-cart-items" id="sticky-cart-items-text">0 Items</span>
+      <span class="sticky-cart-dot">•</span>
+      <span class="sticky-cart-price" id="sticky-cart-price-text">₹0</span>
+    </div>
+    <button type="button" class="sticky-cart-action-btn" onclick="machineManager.openCartDrawer()">
+      View Cart &rarr;
+    </button>
   </div>
 
   <!-- Custom Engineering Highlights Strip -->

@@ -323,6 +323,27 @@ class MachineManager {
     const navCount = document.getElementById("nav-cart-count");
     if (navCount) navCount.innerText = count;
 
+    // Header cart badge (Mobile & Desktop Header icon)
+    const headerCartBadge = document.getElementById("header-cart-badge");
+    if (headerCartBadge) {
+      headerCartBadge.innerText = count;
+      headerCartBadge.style.display = count > 0 ? "inline-flex" : "none";
+    }
+
+    // Sticky Mobile Cart Bar (visible when cart has items)
+    const stickyCartBar = document.getElementById("sticky-mobile-cart-bar");
+    if (stickyCartBar) {
+      if (count > 0) {
+        stickyCartBar.style.display = "flex";
+        const itemsEl = document.getElementById("sticky-cart-items-text");
+        if (itemsEl) itemsEl.innerText = `${count} ${count === 1 ? 'Item' : 'Items'}`;
+        const priceEl = document.getElementById("sticky-cart-price-text");
+        if (priceEl) priceEl.innerText = `₹${total.toLocaleString('en-IN')}`;
+      } else {
+        stickyCartBar.style.display = "none";
+      }
+    }
+
     // Drawer header count
     const drawerCount = document.getElementById("cart-drawer-count");
     if (drawerCount) drawerCount.innerText = `${count} ${count === 1 ? 'item' : 'items'}`;
@@ -499,84 +520,158 @@ class MachineManager {
       const badgeText = m.badge || `${discountPercent}% OFF`;
 
       return `
-        <article class="custom-machine-card" data-id="${m.id}">
-          <div class="machine-card-image-wrap" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))" title="Click to view & order on WhatsApp">
-            <span class="machine-badge badge-free-install">${badgeText}</span>
-            <img src="${imgSrc}" alt="${m.name} - VARUN AQUA TECH" loading="lazy" onerror="this.src='${this.resolveImagePath('assets/bele-water-purifier.jpg')}'">
-            <div class="machine-image-overlay">
-              <span>💬 Click to Order on WhatsApp</span>
-            </div>
+        <article class="custom-machine-card" data-id="${m.id}" onclick="machineManager.openDetailSheet('${m.id}')" title="Tap to view full specifications, order, or customize">
+          <div class="machine-card-image-wrap">
+            <span class="machine-card-badge">${badgeText}</span>
+            <img src="${imgSrc}" alt="${m.name} - VARUN AQUA TECH" loading="lazy" onerror="this.src='${this.resolveImagePath('assets/bele-water-purifier.jpg')}';">
           </div>
 
           <div class="machine-card-body">
-            <div class="machine-header-row">
-              <span class="machine-category-pill">${m.category} RO</span>
-              <div class="machine-admin-actions">
-                <button class="btn-icon-sm" onclick="machineManager.openEditModal('${m.id}')" title="Edit Price & Specs">✏️</button>
-                <button class="btn-icon-sm btn-icon-danger" onclick="machineManager.deleteMachine('${m.id}')" title="Delete Product">🗑️</button>
-              </div>
+            <div class="machine-card-meta">
+              <span class="machine-card-cat">${m.category}</span>
+              <span class="machine-card-rating">★ ${m.rating || '4.9'}</span>
             </div>
 
-            <h3 class="machine-title" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))">${m.name}</h3>
-            ${m.saleTitle ? `<div class="machine-card-subtitle">${m.saleTitle}</div>` : ''}
+            <h3 class="machine-card-title">${m.name}</h3>
 
-            <div class="machine-rating-row">
-              <span class="rating-stars">★★★★★</span>
-              <span class="rating-text">${m.rating || '4.9'}</span>
-              <span class="rating-count">(${m.reviewCount || '120'} reviews)</span>
+            <div class="machine-card-price-row">
+              <span class="machine-card-price">₹${price.toLocaleString('en-IN')}</span>
+              <span class="machine-card-mrp"><del>₹${mrp.toLocaleString('en-IN')}</del></span>
             </div>
 
-            <!-- E-Commerce Price Section -->
-            <div class="ecom-price-box">
-              <div class="ecom-price-row">
-                <span class="ecom-deal-price">₹${price.toLocaleString('en-IN')}</span>
-                <span class="ecom-mrp"><del>₹${mrp.toLocaleString('en-IN')}</del></span>
-                <span class="ecom-discount-tag">Save ₹${savings.toLocaleString('en-IN')} (${discountPercent}% OFF)</span>
-              </div>
-              <div class="ecom-perks-row">
-                <span>🚚 FREE Delivery</span> &bull; <span>🔧 FREE Installation in Dharmapuri</span>
-              </div>
-            </div>
-
-            <!-- Clear Spec Grid -->
-            <div class="ecom-spec-grid">
-              <div class="ecom-spec-item">
-                <span class="ecom-spec-icon">⚡</span>
-                <span class="ecom-spec-key">Capacity:</span>
-                <span class="ecom-spec-val">${m.capacity}</span>
-              </div>
-              <div class="ecom-spec-item">
-                <span class="ecom-spec-icon">🛡️</span>
-                <span class="ecom-spec-key">Stages:</span>
-                <span class="ecom-spec-val">${m.stages}</span>
-              </div>
-              <div class="ecom-spec-item">
-                <span class="ecom-spec-icon">💧</span>
-                <span class="ecom-spec-key">TDS Limit:</span>
-                <span class="ecom-spec-val">${m.idealFor}</span>
-              </div>
-              <div class="ecom-spec-item">
-                <span class="ecom-spec-icon">🏅</span>
-                <span class="ecom-spec-key">Warranty:</span>
-                <span class="ecom-spec-val">${m.warranty || '1 Year Comprehensive Onsite Warranty'}</span>
-              </div>
-            </div>
-
-            <p class="machine-desc">${m.description || ""}</p>
-
-            <!-- E-Commerce Actions -->
-            <div class="ecom-card-actions">
-              <button class="btn-add-cart" onclick="machineManager.addToCart('${m.id}')">
-                <span>🛒</span> Add to Cart
-              </button>
-              <button class="btn-buy-whatsapp" onclick="machineManager.redirectToWhatsApp(machineManager.getById('${m.id}'))">
-                <span>💬</span> Buy on WhatsApp
-              </button>
+            <div class="machine-card-footer-tap">
+              <span>View Specs &amp; Order</span>
+              <span class="tap-arrow">&rarr;</span>
             </div>
           </div>
         </article>
       `;
     }).join("");
+  }
+
+  openDetailSheet(machineId) {
+    const m = this.getById(machineId);
+    if (!m) return;
+
+    this.activeDetailId = machineId;
+    const sheet = document.getElementById("product-detail-sheet");
+    const content = document.getElementById("sheet-body-content");
+    const catPill = document.getElementById("sheet-category-pill");
+    if (!sheet || !content) return;
+
+    const imgSrc = this.resolveImagePath(m.image);
+    const price = m.price || 11999;
+    const mrp = m.mrp || Math.round(price * 1.35);
+    const savings = mrp - price;
+    const discountPercent = Math.max(10, Math.round((savings / mrp) * 100));
+    const badgeText = m.badge || `${discountPercent}% OFF`;
+
+    if (catPill) catPill.innerText = `${m.category} RO Purifier`;
+
+    content.innerHTML = `
+      <div class="sheet-image-hero">
+        <span class="sheet-offer-badge">${badgeText}</span>
+        <img src="${imgSrc}" alt="${m.name}" onerror="this.src='${this.resolveImagePath('assets/bele-water-purifier.jpg')}';">
+      </div>
+
+      <div class="sheet-info-block">
+        <h2 class="sheet-title" id="sheet-product-title">${m.name}</h2>
+        ${m.saleTitle ? `<div class="sheet-tagline">${m.saleTitle}</div>` : ''}
+
+        <div class="sheet-rating-row">
+          <span class="sheet-stars">★★★★★</span>
+          <span class="sheet-rating-num">${m.rating || '4.9'}</span>
+          <span class="sheet-reviews">(${m.reviewCount || '140'} reviews)</span>
+          <span class="sheet-verified-badge">✓ Verified Genuine</span>
+        </div>
+
+        <!-- Price Box -->
+        <div class="sheet-price-card">
+          <div class="sheet-price-row">
+            <span class="sheet-deal-price">₹${price.toLocaleString('en-IN')}</span>
+            <span class="sheet-mrp"><del>₹${mrp.toLocaleString('en-IN')}</del></span>
+            <span class="sheet-save-tag">Save ₹${savings.toLocaleString('en-IN')} (${discountPercent}% OFF)</span>
+          </div>
+          <div class="sheet-perks-row">
+            <span>🚚 FREE Delivery</span>
+            <span>•</span>
+            <span>🔧 FREE Installation in Dharmapuri</span>
+          </div>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="sheet-specs-section">
+          <h4 class="sheet-section-heading">Technical Specifications</h4>
+          <div class="sheet-specs-grid">
+            <div class="sheet-spec-item">
+              <span class="sheet-spec-icon">⚡</span>
+              <div>
+                <div class="sheet-spec-label">Capacity / Flow</div>
+                <div class="sheet-spec-val">${m.capacity}</div>
+              </div>
+            </div>
+            <div class="sheet-spec-item">
+              <span class="sheet-spec-icon">🛡️</span>
+              <div>
+                <div class="sheet-spec-label">Purification Stages</div>
+                <div class="sheet-spec-val">${m.stages}</div>
+              </div>
+            </div>
+            <div class="sheet-spec-item">
+              <span class="sheet-spec-icon">💧</span>
+              <div>
+                <div class="sheet-spec-label">Ideal Water Source</div>
+                <div class="sheet-spec-val">${m.idealFor}</div>
+              </div>
+            </div>
+            <div class="sheet-spec-item">
+              <span class="sheet-spec-icon">🏅</span>
+              <div>
+                <div class="sheet-spec-label">Warranty Coverage</div>
+                <div class="sheet-spec-val">${m.warranty || '1 Year Comprehensive Onsite Warranty'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="sheet-desc-section">
+          <h4 class="sheet-section-heading">Product Overview</h4>
+          <p class="sheet-desc-text">${m.description || 'Custom assembled by Selvam .V with heavy-duty components specifically calibrated for Dharmapuri groundwater.'}</p>
+        </div>
+
+        <!-- Admin Actions (Edit/Delete) -->
+        <div class="sheet-admin-bar">
+          <button type="button" class="btn-sheet-edit" onclick="machineManager.closeDetailSheet(); machineManager.openEditModal('${m.id}')">✏️ Edit Details</button>
+          <button type="button" class="btn-sheet-delete" onclick="machineManager.closeDetailSheet(); machineManager.deleteMachine('${m.id}')">🗑️ Delete Model</button>
+        </div>
+      </div>
+    `;
+
+    // Hook up bottom action buttons
+    const addCartBtn = document.getElementById("sheet-btn-add-cart");
+    if (addCartBtn) {
+      addCartBtn.onclick = () => {
+        this.addToCart(m.id);
+        this.closeDetailSheet();
+      };
+    }
+
+    const waBtn = document.getElementById("sheet-btn-whatsapp");
+    if (waBtn) {
+      waBtn.onclick = () => {
+        this.redirectToWhatsApp(m);
+      };
+    }
+
+    sheet.classList.add("active");
+    document.body.classList.add("sheet-open");
+  }
+
+  closeDetailSheet() {
+    const sheet = document.getElementById("product-detail-sheet");
+    if (sheet) sheet.classList.remove("active");
+    document.body.classList.remove("sheet-open");
   }
 
   resetToDefaults() {
@@ -714,10 +809,30 @@ class MachineManager {
       });
     }
 
+    // Product Detail Sheet close buttons and backdrop click
+    const sheetCloseBtn = document.getElementById("sheet-close-btn");
+    if (sheetCloseBtn) {
+      sheetCloseBtn.addEventListener("click", () => this.closeDetailSheet());
+    }
+
+    const sheetOverlay = document.getElementById("product-detail-sheet");
+    if (sheetOverlay) {
+      sheetOverlay.addEventListener("click", (e) => {
+        if (e.target === sheetOverlay) this.closeDetailSheet();
+      });
+    }
+
+    // Header Cart Button
+    const headerCartBtn = document.getElementById("btn-header-cart");
+    if (headerCartBtn) {
+      headerCartBtn.addEventListener("click", () => this.openCartDrawer());
+    }
+
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         this.closeModal();
         this.closeCartDrawer();
+        this.closeDetailSheet();
       }
     });
 
