@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 echo =======================================================
 echo Pushing VARUN AQUA TECH files to GitHub:
-echo Repository: https://github.com/professionaleditor152-prog/varun-aqua-tech-website-final
+echo Repository: https://github.com/professionaleditor152-prog/varun-aqua-tech-live
 echo =======================================================
 echo.
 
@@ -14,7 +14,7 @@ if %ERRORLEVEL% EQU 0 (
     echo.
     echo =======================================================
     echo SUCCESS! All files have been pushed to GitHub:
-    echo https://github.com/professionaleditor152-prog/varun-aqua-tech-website-final
+    echo https://github.com/professionaleditor152-prog/varun-aqua-tech-live
     echo =======================================================
 ) else (
     echo.
