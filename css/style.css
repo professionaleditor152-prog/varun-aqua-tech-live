@@ -763,115 +763,158 @@ p:last-child {
 /* Primary Services Grid */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .service-card {
   background: var(--color-white);
-  border-radius: var(--radius-xl);
+  border-radius: 16px;
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(6, 27, 51, 0.04);
   display: flex;
   flex-direction: column;
-  transition: var(--transition);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.service-card:active {
+  transform: scale(0.97);
+  border-color: var(--color-blue);
+  box-shadow: 0 2px 6px rgba(8, 119, 201, 0.15);
+}
+
+@media (hover: hover) {
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(8, 119, 201, 0.12);
+    border-color: rgba(19, 197, 216, 0.5);
+  }
 }
 
 .service-card-img-wrap {
   position: relative;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #F0F4F8;
+  background: linear-gradient(180deg, #F8FCFD 0%, #EFF7FA 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service-card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.35s ease;
   display: block;
 }
 
-.service-card:hover .service-card-img-wrap img {
-  transform: scale(1.06);
+@media (hover: hover) {
+  .service-card:hover .service-card-img-wrap img {
+    transform: scale(1.06);
+  }
 }
 
 .service-card-badge {
   position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
-  font-size: 0.72rem;
+  top: 8px;
+  left: 8px;
+  font-size: 0.66rem;
   font-weight: 800;
-  padding: 0.3rem 0.7rem;
+  padding: 0.22rem 0.55rem;
   border-radius: var(--radius-full);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background: rgba(6, 27, 51, 0.82);
+  letter-spacing: 0.03em;
+  background: rgba(6, 27, 51, 0.88);
   color: #FFFFFF;
   backdrop-filter: blur(4px);
   z-index: 2;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  max-width: calc(100% - 16px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .service-card-body {
-  padding: 1.6rem 1.6rem 1.8rem 1.6rem;
+  padding: 14px 14px 16px 14px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: space-between;
 }
 
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-blue), var(--color-aqua));
-  opacity: 0;
-  transition: var(--transition);
-  z-index: 3;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(19, 197, 216, 0.4);
-}
-
-.service-card:hover::before { opacity: 1; }
-
-.service-icon-box {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-md);
-  background-color: var(--color-aqua-light);
+.service-card-meta {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: var(--color-blue);
-  font-size: 1.6rem;
-  transition: var(--transition);
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.70rem;
 }
 
-.service-card:hover .service-icon-box {
-  background-color: var(--color-blue);
-  color: var(--color-white);
+.service-card-cat {
+  color: var(--color-blue);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.service-card-rating {
+  color: #D97706;
+  font-weight: 700;
 }
 
 .service-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--color-navy);
+  margin-bottom: 5px;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .service-desc {
-  font-size: 0.93rem;
-  margin-bottom: 1.75rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   flex-grow: 1;
+}
+
+.service-card-footer-tap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(225, 237, 242, 0.9);
+  font-size: 0.76rem;
+  color: var(--color-blue);
+  font-weight: 700;
+  min-height: 32px;
+  text-decoration: none;
+}
+
+.service-card-footer-tap .tap-arrow {
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover .service-card-footer-tap .tap-arrow {
+  transform: translateX(3px);
 }
 
 .service-card .btn {
@@ -1619,7 +1662,8 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 
 @media (max-width: 600px) {
   .section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-  .services-grid, .trouble-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .trouble-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn { width: 100%; }
   .hero-trust-points { flex-direction: column; gap: 0.75rem; }
@@ -3880,6 +3924,103 @@ textarea.form-control { resize: vertical; min-height: 100px; }
     align-items: flex-start;
     gap: 0.65rem;
   }
+
+  /* Services & Diagnostic Boxes in Mobile-First 2-Column Catalogue Design */
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .service-card {
+    border-radius: 16px !important;
+  }
+
+  .service-card-img-wrap {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+  }
+
+  .service-card-badge {
+    top: 6px !important;
+    left: 6px !important;
+    font-size: 0.60rem !important;
+    padding: 0.18rem 0.42rem !important;
+  }
+
+  .service-card-body {
+    padding: 8px 8px 10px 8px !important;
+  }
+
+  .service-card-meta {
+    font-size: 0.62rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .service-title {
+    font-size: 0.82rem !important;
+    margin-bottom: 3px !important;
+    line-height: 1.2 !important;
+  }
+
+  .service-desc {
+    font-size: 0.68rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 6px !important;
+    -webkit-line-clamp: 2 !important;
+  }
+
+  .service-card-footer-tap {
+    font-size: 0.64rem !important;
+    padding-top: 4px !important;
+    min-height: 24px !important;
+  }
+
+  .service-card .btn {
+    width: 100% !important;
+    font-size: 0.74rem !important;
+    padding: 0.35rem 0.5rem !important;
+    min-height: 36px !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Diagnostic Troubleshooting Issue Boxes */
+  .trouble-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .trouble-card {
+    border-radius: 14px !important;
+    padding: 10px 9px !important;
+    min-height: 105px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .trouble-card:active {
+    transform: scale(0.97) !important;
+  }
+
+  .trouble-icon {
+    font-size: 1.15rem !important;
+  }
+
+  .trouble-name {
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .trouble-note {
+    font-size: 0.66rem !important;
+    line-height: 1.25 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
 }
 
 /* 4. Compact Mobile Phones (<= 480px) */
@@ -4025,6 +4166,30 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   .custom-machines-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+  }
+
+  .services-grid, .trouble-grid {
+    gap: 8px !important;
+  }
+
+  .service-card-body {
+    padding: 6px 6px 8px 6px !important;
+  }
+
+  .service-title {
+    font-size: 0.76rem !important;
+  }
+
+  .service-desc {
+    font-size: 0.64rem !important;
+  }
+
+  .trouble-name {
+    font-size: 0.76rem !important;
+  }
+
+  .trouble-note {
+    font-size: 0.62rem !important;
   }
 
   .machine-card-body {
