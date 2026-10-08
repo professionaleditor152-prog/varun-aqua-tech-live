@@ -1,0 +1,13 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // VARUN AQUA TECH - Products Collection
+    // Public visitors can read products to view the catalog on the landing page
+    // Only authenticated admin accounts can create, edit, toggle active status, or delete products
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

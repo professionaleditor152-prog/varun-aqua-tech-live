@@ -183,20 +183,76 @@ class MachineManager {
 
   async loadMachines() {
     let loaded = null;
-    try {
-      let res = await fetch("/api/machines", { cache: "no-store" });
-      if (!res.ok) {
-        // Fallback to static data/machines.json for static hosts like Vercel
-        res = await fetch(this.resolveImagePath("data/machines.json"), { cache: "no-store" });
-      }
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          loaded = data;
+
+    // 1. Retrieve active products from Cloud Firestore collection "products"
+    if (window.db) {
+      try {
+        const snapshot = await window.db.collection("products").get();
+        if (!snapshot.empty) {
+          const firestoreProducts = [];
+          snapshot.forEach(doc => {
+            const d = doc.data();
+            // Requirement: Public landing page displays active products
+            if (d.active !== false) {
+              const salePrice = Number(d.salePrice != null ? d.salePrice : (d.price != null ? d.price : 11999));
+              const origPrice = Number(d.originalPrice != null ? d.originalPrice : (d.mrp != null ? d.mrp : Math.round(salePrice * 1.35)));
+              const discountText = d.discount || (origPrice > salePrice ? `${Math.round(((origPrice - salePrice) / origPrice) * 100)}% OFF` : "");
+
+              firestoreProducts.push({
+                id: doc.id,
+                name: d.name || "Custom RO Purifier",
+                saleTitle: d.saleTitle || "",
+                category: d.category || "Domestic",
+                price: salePrice,
+                salePrice: salePrice,
+                mrp: origPrice,
+                originalPrice: origPrice,
+                discount: discountText,
+                badge: d.badge || discountText || "Special Offer",
+                rating: d.rating || 4.9,
+                reviewCount: d.reviewCount || 1,
+                capacity: d.capacity || "15 LPH (12L Tank)",
+                stages: d.stages || "8-Stage RO + UV + Alkaline + Active Copper",
+                idealFor: d.idealFor || "Dharmapuri Groundwater (Up to 2500 TDS)",
+                warranty: d.warranty || "1 Year Comprehensive Onsite Warranty",
+                freeDelivery: d.freeDelivery !== false,
+                freeInstall: d.freeInstall !== false,
+                image: d.image || "assets/bele-water-purifier.jpg",
+                description: d.description || "",
+                ctaLink: d.ctaLink || d.buyLink || "",
+                buyLink: d.ctaLink || d.buyLink || "",
+                active: true,
+                createdAt: d.createdAt || null
+              });
+            }
+          });
+
+          if (firestoreProducts.length > 0) {
+            loaded = firestoreProducts;
+            console.log(`[Firestore] Successfully retrieved ${loaded.length} active products from 'products' collection.`);
+          }
         }
+      } catch (firestoreErr) {
+        console.warn("[Firestore] Could not retrieve products from Firestore (using fallback):", firestoreErr);
       }
-    } catch (e) {
-      console.log("Using localStorage fallback for machines:", e);
+    }
+
+    // 2. Fallback to API / static data / localStorage if Firestore is empty or offline
+    if (!loaded) {
+      try {
+        let res = await fetch("/api/machines", { cache: "no-store" });
+        if (!res.ok) {
+          res = await fetch(this.resolveImagePath("data/machines.json"), { cache: "no-store" });
+        }
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            loaded = data;
+          }
+        }
+      } catch (e) {
+        console.log("Using localStorage fallback for machines:", e);
+      }
     }
 
     if (!loaded) {
@@ -221,11 +277,17 @@ class MachineManager {
     }
 
     this.machines = loaded;
-    this.persist();
+    this.persistLocalOnly();
+  }
+
+  persistLocalOnly() {
+    try {
+      localStorage.setItem("varun_custom_machines", JSON.stringify(this.machines));
+    } catch (e) {}
   }
 
   async persist() {
-    localStorage.setItem("varun_custom_machines", JSON.stringify(this.machines));
+    this.persistLocalOnly();
     try {
       await fetch("/api/machines", {
         method: "POST",
@@ -659,9 +721,17 @@ class MachineManager {
 
     const waBtn = document.getElementById("sheet-btn-whatsapp");
     if (waBtn) {
-      waBtn.onclick = () => {
-        this.redirectToWhatsApp(m);
-      };
+      if (m.ctaLink && m.ctaLink.trim() && m.ctaLink !== "#") {
+        waBtn.innerHTML = `<span>⚡</span> Buy / Order Now`;
+        waBtn.onclick = () => {
+          window.open(m.ctaLink, "_blank");
+        };
+      } else {
+        waBtn.innerHTML = `<span>💬</span> WhatsApp Order`;
+        waBtn.onclick = () => {
+          this.redirectToWhatsApp(m);
+        };
+      }
     }
 
     sheet.classList.add("active");
@@ -1107,28 +1177,67 @@ class MachineManager {
     const badge = document.getElementById("m-form-badge").value.trim();
     const image = document.getElementById("m-form-image-custom").value.trim() || "assets/bele-water-purifier.jpg";
     const description = document.getElementById("m-form-desc").value.trim();
+    const discount = badge || `${Math.round(((mrp - price) / mrp) * 100)}% OFF`;
 
     if (!name) {
       alert("Please enter machine name");
       return;
     }
 
+    const firestoreData = {
+      name,
+      description,
+      image,
+      originalPrice: mrp,
+      salePrice: price,
+      discount,
+      ctaLink: "",
+      active: true,
+      category,
+      saleTitle,
+      capacity,
+      stages,
+      idealFor,
+      warranty,
+      rating: 4.9,
+      reviewCount: 1,
+      freeDelivery: true,
+      freeInstall: true,
+      updatedAt: new Date().toISOString()
+    };
+
     if (id) {
       const index = this.machines.findIndex(m => m.id === id);
       if (index !== -1) {
         this.machines[index] = {
           ...this.machines[index],
-          name, saleTitle, category, price, mrp, capacity, stages, idealFor, warranty, badge, image, description
+          name, saleTitle, category, price, salePrice: price, mrp, originalPrice: mrp, discount, capacity, stages, idealFor, warranty, badge, image, description, active: true
         };
         this.showToast(`Updated "${name}" successfully!`);
       }
+      if (window.db) {
+        try {
+          await window.db.collection("products").doc(id).set(firestoreData, { merge: true });
+        } catch (err) {
+          console.warn("[Firestore] Error updating product:", err);
+        }
+      }
     } else {
+      const targetId = "cm-" + Date.now();
       const newMachine = {
-        id: "cm-" + Date.now(),
-        name, saleTitle, category, price, mrp, rating: 4.9, reviewCount: 1, capacity, stages, idealFor, warranty, badge, image, description
+        id: targetId,
+        name, saleTitle, category, price, salePrice: price, mrp, originalPrice: mrp, discount, rating: 4.9, reviewCount: 1, capacity, stages, idealFor, warranty, badge, image, description, active: true
       };
       this.machines.unshift(newMachine);
       this.showToast(`Added "${name}" with e-commerce pricing!`);
+
+      if (window.db) {
+        try {
+          await window.db.collection("products").doc(targetId).set({ ...firestoreData, createdAt: new Date().toISOString() });
+        } catch (err) {
+          console.warn("[Firestore] Error creating product:", err);
+        }
+      }
     }
 
     await this.persist();
@@ -1142,6 +1251,13 @@ class MachineManager {
 
     if (confirm(`Are you sure you want to delete "${m.name}"?`)) {
       this.machines = this.machines.filter(item => item.id !== id);
+      if (window.db) {
+        try {
+          await window.db.collection("products").doc(id).delete();
+        } catch (err) {
+          console.warn("[Firestore] Error deleting product:", err);
+        }
+      }
       await this.persist();
       this.showToast(`Deleted "${m.name}"`);
       this.renderCatalog();
@@ -1163,6 +1279,44 @@ class MachineManager {
     }, 3000);
   }
 }
+
+// Global helper to seed default products into Firestore products collection
+window.seedProductsToFirestore = async function() {
+  if (!window.db) {
+    throw new Error("Cloud Firestore is not initialized.");
+  }
+  const defaultItems = typeof DEFAULT_MACHINES !== "undefined" ? DEFAULT_MACHINES : [];
+  let count = 0;
+  for (const item of defaultItems) {
+    const origPrice = Number(item.mrp || Math.round(item.price * 1.35));
+    const salePrice = Number(item.price || 11999);
+    const disc = item.badge || `${Math.round(((origPrice - salePrice) / origPrice) * 100)}% OFF`;
+
+    await window.db.collection("products").doc(item.id).set({
+      name: item.name,
+      description: item.description || "",
+      image: item.image || "assets/bele-water-purifier.jpg",
+      originalPrice: origPrice,
+      salePrice: salePrice,
+      discount: disc,
+      ctaLink: "",
+      active: true,
+      category: item.category || "Domestic",
+      saleTitle: item.saleTitle || "",
+      capacity: item.capacity || "15 LPH",
+      stages: item.stages || "Multi-Stage RO",
+      idealFor: item.idealFor || "Dharmapuri Groundwater",
+      warranty: item.warranty || "1 Year Comprehensive Onsite Warranty",
+      rating: item.rating || 4.9,
+      reviewCount: item.reviewCount || 10,
+      freeDelivery: true,
+      freeInstall: true,
+      createdAt: new Date().toISOString()
+    }, { merge: true });
+    count++;
+  }
+  return count;
+};
 
 // Global instance
 let machineManager;

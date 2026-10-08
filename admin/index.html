@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Product Manager | VARUN AQUA TECH</title>
+  <meta name="description" content="Protected admin portal for VARUN AQUA TECH product management, inventory, and Firestore catalog configuration.">
+  <link rel="canonical" href="https://varunaquatech.com/admin/">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Admin Product Manager - VARUN AQUA TECH",
+    "description": "Protected admin portal for VARUN AQUA TECH product management, Dharmapuri",
+    "url": "https://varunaquatech.com/admin/",
+    "telephone": "+91 88380 55968"
+  }
+  </script>
+
+  <style>
+    :root {
+      --admin-navy: #0F2744;
+      --admin-blue: #0077B6;
+      --admin-cyan: #00B4D8;
+      --admin-bg: #F8FAFC;
+      --admin-border: #E2E8F0;
+      --admin-card: #FFFFFF;
+      --admin-text: #1E293B;
+      --admin-muted: #64748B;
+      --admin-success: #16A34A;
+      --admin-danger: #DC2626;
+      --admin-radius: 12px;
+      --admin-shadow: 0 4px 18px rgba(15, 39, 68, 0.08);
+    }
+
+    body {
+      background: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Top Bar */
+    .admin-navbar {
+      background: var(--admin-navy);
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+    }
+    .admin-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .admin-brand-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .admin-brand-tag {
+      background: var(--admin-blue);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .admin-user-pill {
+      background: rgba(255,255,255,0.12);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-admin-link {
+      background: transparent;
+      color: #94A3B8;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-admin-link:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+    .btn-admin-logout {
+      background: rgba(220, 38, 38, 0.18);
+      color: #FCA5A5;
+      border: 1px solid rgba(220, 38, 38, 0.4);
+    }
+    .btn-admin-logout:hover {
+      background: #DC2626;
+      color: #fff;
+      border-color: #DC2626;
+    }
+
+    /* Container */
+    .admin-container {
+      max-width: 1240px;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Main H1 Title (for validate.ps1 compliance) */
+    .admin-main-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--admin-navy);
+      margin: 0 0 0.35rem 0;
+      letter-spacing: -0.02em;
+    }
+    .admin-main-sub {
+      color: var(--admin-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Auth Loading Spinner */
+    .admin-loading-state {
+      text-align: center;
+      padding: 6rem 1rem;
+    }
+    .spinner-lg {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #E2E8F0;
+      border-top-color: var(--admin-blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Login Card */
+    .login-wrap {
+      max-width: 440px;
+      margin: 3.5rem auto;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      padding: 2.25rem;
+      box-shadow: var(--admin-shadow);
+    }
+    .login-brand-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .login-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      margin-bottom: 0.75rem;
+      object-fit: cover;
+    }
+    .login-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--admin-navy);
+      margin: 0 0 0.35rem 0;
+    }
+    .login-sub {
+      color: var(--admin-muted);
+      font-size: 0.88rem;
+    }
+    .form-group-admin {
+      margin-bottom: 1.15rem;
+    }
+    .form-label-admin {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--admin-navy);
+      margin-bottom: 0.35rem;
+    }
+    .form-input-admin {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.7rem 0.95rem;
+      border: 1.5px solid var(--admin-border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      font-family: inherit;
+    }
+    .form-input-admin:focus {
+      outline: none;
+      border-color: var(--admin-blue);
+      box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);
+    }
+    .btn-login-submit {
+      width: 100%;
+      background: var(--admin-navy);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-login-submit:hover {
+      background: var(--admin-blue);
+    }
+    .login-error-alert {
+      display: none;
+      background: #FEF2F2;
+      border: 1px solid #FCA5A5;
+      color: #B91C1C;
+      padding: 0.75rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      margin-bottom: 1.15rem;
+    }
+    .login-guide-box {
+      margin-top: 1.75rem;
+      padding: 1rem;
+      background: #F1F5F9;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* Dashboard Stats */
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .stat-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--admin-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-val {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--admin-navy);
+      margin-top: 0.25rem;
+    }
+    .stat-card.stat-active .stat-val {
+      color: var(--admin-success);
+    }
+    .stat-card.stat-inactive .stat-val {
+      color: var(--admin-muted);
+    }
+
+    /* Action Bar */
+    .admin-toolbar {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .btn-admin-action {
+      background: var(--admin-blue);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.15rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s ease;
+    }
+    .btn-admin-action:hover {
+      background: #006094;
+    }
+    .btn-admin-secondary {
+      background: #F1F5F9;
+      color: var(--admin-navy);
+      border: 1px solid var(--admin-border);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-admin-secondary:hover {
+      background: #E2E8F0;
+    }
+    .admin-search-input {
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--admin-border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      min-width: 240px;
+      font-family: inherit;
+    }
+    .admin-select-filter {
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid var(--admin-border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      background: #fff;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Products Table */
+    .products-table-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .admin-table th {
+      background: #F8FAFC;
+      padding: 0.9rem 1.15rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--admin-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1.5px solid var(--admin-border);
+    }
+    .admin-table td {
+      padding: 1.1rem 1.15rem;
+      border-bottom: 1px solid var(--admin-border);
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+    .admin-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    /* Product Cell */
+    .product-cell {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 280px;
+    }
+    .product-thumbnail {
+      width: 58px;
+      height: 58px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      flex-shrink: 0;
+      padding: 3px;
+    }
+    .product-title-line {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .product-subtitle {
+      font-size: 0.78rem;
+      color: var(--admin-muted);
+      margin-top: 0.15rem;
+    }
+    .product-specs-compact {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      margin-top: 0.2rem;
+    }
+    .cat-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .cat-domestic { background: #E0F2FE; color: #0369A1; }
+    .cat-commercial { background: #FEF3C7; color: #B45309; }
+    .cat-industrial { background: #FEE2E2; color: #B91C1C; }
+
+    /* Pricing Cell */
+    .pricing-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .price-sale {
+      font-weight: 800;
+      color: var(--admin-navy);
+      font-size: 1.05rem;
+    }
+    .price-orig {
+      font-size: 0.8rem;
+      color: #94A3B8;
+    }
+    .badge-discount {
+      background: #DCFCE7;
+      color: #15803D;
+      font-weight: 700;
+      font-size: 0.76rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* Status Cell & Switch */
+    .status-cell {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .badge-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+    }
+    .badge-status-active {
+      background: #DCFCE7;
+      color: #166534;
+    }
+    .badge-status-inactive {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+    .btn-toggle-status {
+      background: transparent;
+      border: 1px solid var(--admin-border);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      color: var(--admin-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-toggle-status:hover {
+      background: var(--admin-navy);
+      color: #fff;
+    }
+
+    /* CTA Link Preview */
+    .cta-link-preview {
+      color: var(--admin-blue);
+      font-weight: 600;
+      text-decoration: underline;
+      font-size: 0.85rem;
+    }
+    .cta-default {
+      color: #64748B;
+      font-size: 0.82rem;
+      font-style: italic;
+    }
+
+    /* Action Buttons */
+    .action-btn-group {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .btn-act {
+      border: 1px solid var(--admin-border);
+      background: #fff;
+      border-radius: 6px;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-act-edit:hover {
+      background: var(--admin-blue);
+      color: #fff;
+      border-color: var(--admin-blue);
+    }
+    .btn-act-delete {
+      color: var(--admin-danger);
+    }
+    .btn-act-delete:hover {
+      background: var(--admin-danger);
+      color: #fff;
+      border-color: var(--admin-danger);
+    }
+
+    /* Empty state */
+    .empty-state-box {
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Modal Overlay */
+    .admin-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 39, 68, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .admin-modal-overlay.active {
+      display: flex;
+    }
+    .admin-modal-box {
+      background: #fff;
+      border-radius: var(--admin-radius);
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+    .admin-modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+    .admin-modal-header h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--admin-navy);
+    }
+    .admin-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--admin-muted);
+      cursor: pointer;
+    }
+    .admin-modal-body {
+      padding: 1.5rem;
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+    .admin-modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--admin-border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      background: #F8FAFC;
+      position: sticky;
+      bottom: 0;
+    }
+
+    /* Active Checkbox Switch */
+    .switch-label-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      cursor: pointer;
+      user-select: none;
+      background: #F1F5F9;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+    }
+    .switch-label-wrap input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* Toast */
+    .admin-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--admin-navy);
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 2000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    .admin-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .admin-footer {
+      text-align: center;
+      padding: 2.5rem 1rem 3rem 1rem;
+      color: var(--admin-muted);
+      font-size: 0.85rem;
+    }
+    .admin-footer a {
+      color: var(--admin-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid-2, .form-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .admin-navbar {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+      .admin-nav-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .admin-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toolbar-left, .toolbar-right {
+        width: 100%;
+      }
+      .admin-search-input {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="admin-navbar">
+    <a href="./" class="admin-brand">
+      <img src="../assets/favicon.svg" alt="VARUN AQUA TECH Logo">
+      <div>
+        <span class="admin-brand-name">VARUN AQUA TECH</span>
+        <span class="admin-brand-tag">Admin Console</span>
+      </div>
+    </a>
+    <div class="admin-nav-actions">
+      <div id="admin-user-pill" class="admin-user-pill">
+        <span>👤</span>
+        <span id="admin-user-email">Checking Session...</span>
+      </div>
+      <a href="../" class="btn-admin-link" target="_blank" rel="noopener">
+        <span>🌐</span> View Public Site
+      </a>
+      <button type="button" id="btn-admin-logout" class="btn-admin-link btn-admin-logout">
+        <span>🚪</span> Sign Out
+      </button>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <!-- Main Heading (Required by validation) -->
+    <h1 class="admin-main-title">VARUN AQUA TECH — Admin Product Management</h1>
+    <p class="admin-main-sub">
+      Live Cloud Firestore Catalog Sync • Founder &amp; Proprietor: Selvam .V • Direct Support: <a href="tel:+918838055968" style="color: var(--admin-blue); font-weight: 600;">+91 88380 55968</a>
+    </p>
+
+    <!-- Initial Auth State Checking Spinner -->
+    <div id="admin-auth-loading" class="admin-loading-state">
+      <div class="spinner-lg"></div>
+      <p style="color: var(--admin-muted); font-weight: 600;">Connecting to Firebase Authentication...</p>
+    </div>
+
+    <!-- VIEW 1: UNAUTHENTICATED LOGIN VIEW -->
+    <div id="admin-login-section" style="display: none;">
+      <div class="login-wrap">
+        <div class="login-brand-header">
+          <img src="../assets/favicon.svg" alt="VARUN AQUA TECH Logo" class="login-logo">
+          <h2 class="login-title">Owner &amp; Admin Sign In</h2>
+          <p class="login-sub">Enter your authorized Firebase credentials to manage products in Firestore.</p>
+        </div>
+
+        <div id="login-error-alert" class="login-error-alert"></div>
+
+        <form id="admin-login-form">
+          <div class="form-group-admin">
+            <label for="login-email" class="form-label-admin">Admin Email Address *</label>
+            <input type="email" id="login-email" class="form-input-admin" placeholder="owner@varunaquatech.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group-admin">
+            <label for="login-password" class="form-label-admin">Password *</label>
+            <input type="password" id="login-password" class="form-input-admin" placeholder="••••••••••••" required autocomplete="current-password">
+          </div>
+
+          <div style="text-align: right; margin-bottom: 1.25rem;">
+            <a href="#" id="btn-forgot-password" style="font-size: 0.82rem; color: var(--admin-blue); text-decoration: none;">Forgot Password?</a>
+          </div>
+
+          <button type="submit" id="btn-login-submit" class="btn-login-submit">
+            Sign In to Dashboard &rarr;
+          </button>
+        </form>
+
+        <div class="login-guide-box">
+          <strong>🔒 Security &amp; Firebase Setup Notice:</strong><br>
+          Admin accounts are created inside your Firebase Project Console under <em>Authentication &rarr; Users</em>. Only authenticated accounts have write access to Cloud Firestore.
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: AUTHENTICATED DASHBOARD VIEW -->
+    <div id="admin-dashboard-section" style="display: none;">
+      <!-- Stats Summary -->
+      <div class="admin-stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Products in Firestore</div>
+          <div id="stat-total" class="stat-val">0</div>
+        </div>
+        <div class="stat-card stat-active">
+          <div class="stat-label">Active on Landing Page</div>
+          <div id="stat-active" class="stat-val">0</div>
+        </div>
+        <div class="stat-card stat-inactive">
+          <div class="stat-label">Inactive / Hidden Models</div>
+          <div id="stat-inactive" class="stat-val">0</div>
+        </div>
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="admin-toolbar">
+        <div class="toolbar-left">
+          <button type="button" id="btn-admin-add-product" class="btn-admin-action">
+            <span>＋</span> Add New Product
+          </button>
+          <button type="button" id="btn-seed-firestore" class="btn-admin-secondary" title="Import default 6 showroom models into Firestore collection 'products'">
+            <span>📥</span> Seed 6 Models to Firestore
+          </button>
+          <button type="button" id="btn-refresh-products" class="btn-admin-secondary" title="Re-fetch from Firestore">
+            <span>🔄</span> Sync / Refresh
+          </button>
+        </div>
+
+        <div class="toolbar-right">
+          <input type="text" id="admin-search-input" class="admin-search-input" placeholder="🔍 Search product name, capacity...">
+          <select id="admin-filter-status" class="admin-select-filter">
+            <option value="all">All Statuses</option>
+            <option value="active">Active Only</option>
+            <option value="inactive">Inactive Only</option>
+          </select>
+          <select id="admin-filter-cat" class="admin-select-filter">
+            <option value="all">All Categories</option>
+            <option value="Domestic">Domestic</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Industrial">Industrial</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Table View -->
+      <div class="products-table-card">
+        <div id="products-loading" class="admin-loading-state" style="padding: 3rem 1rem;">
+          <div class="spinner-lg"></div>
+          <p style="color: var(--admin-muted);">Loading products from Cloud Firestore...</p>
+        </div>
+
+        <div id="products-empty" class="empty-state-box" style="display: none;">
+          <div class="empty-icon">📦</div>
+          <h3 style="color: var(--admin-navy); margin-bottom: 0.5rem;">No Products Found in Cloud Firestore</h3>
+          <p style="color: var(--admin-muted); max-width: 500px; margin: 0 auto 1.5rem auto; font-size: 0.92rem;">
+            Your Firestore <code>products</code> collection is currently empty. You can add a new product or click "Seed 6 Models to Firestore" to import the existing showroom catalog in 1 click.
+          </p>
+          <button type="button" onclick="adminPortal.handleSeedDefaults()" class="btn-admin-action">
+            📥 Import 6 Models to Firestore
+          </button>
+        </div>
+
+        <div id="products-table-wrap" class="table-responsive" style="display: none;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Product &amp; Category</th>
+                <th>Price (Sale / MRP)</th>
+                <th>Discount</th>
+                <th>Live Status</th>
+                <th>CTA / Buy Link</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-body">
+              <!-- Rendered dynamically by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ADD / EDIT PRODUCT MODAL -->
+  <div id="admin-product-modal" class="admin-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="admin-modal-box">
+      <div class="admin-modal-header">
+        <h3 id="modal-title">Add New Product</h3>
+        <button type="button" class="admin-modal-close" onclick="adminPortal.closeProductModal()">&times;</button>
+      </div>
+
+      <form id="admin-product-form">
+        <div class="admin-modal-body">
+          <div class="form-grid-2">
+            <div class="form-group-admin">
+              <label for="prod-name" class="form-label-admin">Product Name *</label>
+              <input type="text" id="prod-name" class="form-input-admin" placeholder="e.g. Varun Pro Alkaline Copper RO" required>
+            </div>
+            <div class="form-group-admin">
+              <label for="prod-category" class="form-label-admin">Category *</label>
+              <select id="prod-category" class="form-input-admin">
+                <option value="Domestic">Domestic</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Industrial">Industrial</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group-admin">
+            <label for="prod-sale-title" class="form-label-admin">Sale Tagline / Offer Title</label>
+            <input type="text" id="prod-sale-title" class="form-input-admin" placeholder="e.g. Dharmapuri High-TDS Borewell Special • 8-Stage Mineralizer">
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group-admin">
+              <label for="prod-original-price" class="form-label-admin">Original Price (MRP ₹) *</label>
+              <input type="number" id="prod-original-price" class="form-input-admin" placeholder="16999" required min="0">
+            </div>
+            <div class="form-group-admin">
+              <label for="prod-sale-price" class="form-label-admin">Sale Price (Offer ₹) *</label>
+              <input type="number" id="prod-sale-price" class="form-input-admin" placeholder="11999" required min="0">
+            </div>
+            <div class="form-group-admin">
+              <label for="prod-discount" class="form-label-admin">Discount Label</label>
+              <input type="text" id="prod-discount" class="form-input-admin" placeholder="29% OFF">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group-admin">
+              <label for="prod-cta-link" class="form-label-admin">Buy / CTA Link (Optional)</label>
+              <input type="url" id="prod-cta-link" class="form-input-admin" placeholder="https://... (Leave empty for default WhatsApp)">
+            </div>
+            <div class="form-group-admin" style="display: flex; align-items: flex-end;">
+              <label class="switch-label-wrap" style="width: 100%;">
+                <input type="checkbox" id="prod-active-check" checked>
+                <div>
+                  <strong style="color: var(--admin-navy);">Active Status</strong>
+                  <div style="font-size: 0.78rem; color: var(--admin-muted);">Show on public landing page</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Product Image Selector -->
+          <div class="form-group-admin" style="background: #F8FAFC; padding: 1rem; border-radius: 8px; border: 1px solid var(--admin-border);">
+            <label class="form-label-admin">Product Image Source</label>
+            <div style="margin-bottom: 0.75rem;">
+              <select id="prod-preset-select" class="form-input-admin" style="margin-bottom: 0.5rem;"></select>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <input type="text" id="prod-image-path" class="form-input-admin" placeholder="Image URL or assets/path" style="flex: 1;">
+              <label class="btn-admin-secondary" style="margin: 0; cursor: pointer; white-space: nowrap;">
+                📁 Upload Photo
+                <input type="file" id="prod-image-file" accept="image/*" style="display: none;">
+              </label>
+            </div>
+            <div style="margin-top: 0.75rem; display: flex; align-items: center; gap: 1rem;">
+              <img id="modal-img-preview" src="../assets/bele-water-purifier.jpg" alt="Preview" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid #CBD5E1; border-radius: 8px; background: #fff; padding: 2px;">
+              <span style="font-size: 0.8rem; color: var(--admin-muted);">Live image preview for the landing page card</span>
+            </div>
+          </div>
+
+          <!-- Technical Specs -->
+          <div class="form-grid-2">
+            <div class="form-group-admin">
+              <label for="prod-capacity" class="form-label-admin">Capacity / Flow Rate</label>
+              <input type="text" id="prod-capacity" class="form-input-admin" placeholder="15 LPH (12L Tank)">
+            </div>
+            <div class="form-group-admin">
+              <label for="prod-stages" class="form-label-admin">Purification Stages</label>
+              <input type="text" id="prod-stages" class="form-input-admin" placeholder="8-Stage RO + UV + Alkaline + Active Copper">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group-admin">
+              <label for="prod-ideal" class="form-label-admin">Ideal Water Source</label>
+              <input type="text" id="prod-ideal" class="form-input-admin" placeholder="Dharmapuri Borewell (Up to 2500 TDS)">
+            </div>
+            <div class="form-group-admin">
+              <label for="prod-warranty" class="form-label-admin">Warranty</label>
+              <input type="text" id="prod-warranty" class="form-input-admin" placeholder="1 Year Comprehensive Onsite Warranty">
+            </div>
+          </div>
+
+          <div class="form-group-admin">
+            <label for="prod-desc" class="form-label-admin">Description &amp; Highlights</label>
+            <textarea id="prod-desc" class="form-input-admin" rows="3" placeholder="Detailed product description..."></textarea>
+          </div>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-secondary" onclick="adminPortal.closeProductModal()">Cancel</button>
+          <button type="submit" id="btn-modal-save" class="btn-admin-action">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="admin-toast" class="admin-toast"></div>
+
+  <!-- Footer -->
+  <footer class="admin-footer">
+    <p>VARUN AQUA TECH &bull; Dharmapuri, Tamil Nadu &bull; Phone / WhatsApp: <a href="tel:+918838055968">+91 88380 55968</a></p>
+    <p style="font-size: 0.78rem; color: #94A3B8;">Connected to Cloud Firestore &bull; Collection: <code>products</code> &bull; Firebase Auth Protected</p>
+  </footer>
+
+  <!-- Firebase SDK v10 (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/machines-crud.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
